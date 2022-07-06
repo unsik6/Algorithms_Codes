@@ -1,0 +1,12 @@
+he
+she
+his
+hers
+Q
+hehhishhersehsehrqsehsershishers
+
+patternMatching result
+he 1 8 29
+she 29
+his 5 27
+hers 10 31
