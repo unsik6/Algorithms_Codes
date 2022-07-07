@@ -15,5 +15,3 @@
 	> - Time complexity: <br/>preprocessing to construct the automata using all patterns needs time linear to sum the length of all patterns. And, Searching patterns in a given text needs time linear to the length of the text. $$O(\sum{|pattern|}  + n)\,,where\,n\,is\,the\,length\,of\,the\,text$$
 	> &nbsp;&nbsp; Aho-Corasck Automata is the deterministic automata to find all location of multiple patterns in a given text. Preprocessing patterns constructs the automata looked like a trie. Next, put a give text, the string in which we want to find patterns, in the automata.
 <br/>
-
-ㅅㄷㄴㅅ
