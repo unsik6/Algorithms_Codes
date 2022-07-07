@@ -41,7 +41,7 @@ public:
 
 	// gotoFunc(state, symbol)
 	// go to the node of the edge labeled symbol from state.
-	int gotoFunc(int, int) {}
+	int gotoFunc(int, int);
 
 	// construct(pattern strings)
 	// construct Automata, Failure Array(Func), OutputArray(Func)
