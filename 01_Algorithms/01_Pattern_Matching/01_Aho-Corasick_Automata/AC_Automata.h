@@ -26,7 +26,7 @@ public:
 	{
 		m_automaton.push_back(new list<edgePair*>);
 		m_outputs.push_back(new vector<int>);
-		patterns = nullptr;
+		m_patterns = nullptr;
 		m_failure = nullptr;
 	}
 	AC_Automata(vector<string>* _patArr) : AC_Automata()
@@ -36,7 +36,12 @@ public:
 	~AC_Automata()
 	{
 		for (int i = 0; i < m_automaton.size(); i++)
+		{
 			delete m_automaton[i];
+			delete m_outputs[i];
+		}
+		delete[] m_failure;
+		delete[] m_patterns;
 	}
 
 	// gotoFunc(state, symbol)
