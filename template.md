@@ -4,6 +4,7 @@
 
 - The bolded texts and markdown keywords below are have to be written.
 - Other texts are just descirptions about what should be contained.
+- The number labeled to the algorithm is the number in each category.
 ---
 1. The name of Algorithm
 	> <b>- Contributor:</b> github nickname who write this.
