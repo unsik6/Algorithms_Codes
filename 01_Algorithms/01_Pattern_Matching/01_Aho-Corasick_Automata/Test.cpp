@@ -1,5 +1,5 @@
 #include <iostream>
-#include "C:\Users\ShinHyeonJun\Desktop\Test\Test\BIRD_2D.h"
+#include "AC_Automata.h"
 
 using namespace std;
 
@@ -8,22 +8,23 @@ using namespace std;
 
 int main()
 {
-	int N, M;
-	cin >> N >> M;
-	string* txtRow = new string[N];
-	for (int i = 0; i < N; i++)
+	vector<string> patterns;
+	string curPat;
+	cin >> curPat;
+	while (curPat != "Q")
 	{
-		cin >> txtRow[i];
-	}
-	string* patRow = new string[M];
-	for (int i = 0; i < M; i++)
-	{
-		cin >> patRow[i];
+		patterns.push_back(curPat);
+		cin >> curPat;
 	}
 
-	BIRD_2D bird(txtRow, N, patRow, M);
-	bird.checkPrint();
-	bird.patternMatching();
+	AC_Automata ac(&patterns);
+	string text;
+	cin >> text;
+
+	ac.printForCheck();
+	cout << endl;
+	ac.patternMatching(text);
+
 
 	return 0;
 }

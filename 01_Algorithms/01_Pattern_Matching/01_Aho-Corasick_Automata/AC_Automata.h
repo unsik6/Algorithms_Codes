@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <list>
@@ -5,7 +6,6 @@
 #include <string>
 using namespace std;
 
-#pragma once
 class AC_Automata
 {
 	struct edgePair
@@ -18,15 +18,15 @@ class AC_Automata
 	vector<vector<int>*> m_outputs;	// ouputs[state] = pattern rows
 	int* m_failure;
 
-	int patternNum = 0;
-	string* patterns;	// This string array is only for restoring patterns.
+	int m_patternNum = 0;
+	string* m_patterns;	// This string array is only for restoring patterns.
 
 public:
 	AC_Automata()
 	{
 		m_automaton.push_back(new list<edgePair*>);
 		m_outputs.push_back(new vector<int>);
-		patterns = nullptr;
+		m_patterns = nullptr;
 		m_failure = nullptr;
 	}
 	AC_Automata(vector<string>* _patArr) : AC_Automata()
@@ -36,7 +36,12 @@ public:
 	~AC_Automata()
 	{
 		for (int i = 0; i < m_automaton.size(); i++)
+		{
 			delete m_automaton[i];
+			delete m_outputs[i];
+		}
+		delete[] m_failure;
+		delete[] m_patterns;
 	}
 
 	// gotoFunc(state, symbol)

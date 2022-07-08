@@ -26,13 +26,13 @@ int AC_Automata::gotoFunc(int _state, int _symbol)	// return value -2(error), -1
 
 void AC_Automata::construct(vector<string>* _patArr)
 {
-	patterns = new string[_patArr->size()];
-	patternNum = _patArr->size();
+	m_patterns = new string[_patArr->size()];
+	m_patternNum = _patArr->size();
 	// construct Goto
 	for (int i = 0; i < _patArr->size(); i++)
 	{
 		int curState = 0;
-		patterns[i] = _patArr->at(i);
+		m_patterns[i] = _patArr->at(i);
 		for (int j = 0; j < _patArr->at(i).length(); j++)
 		{
 			int retGoto = gotoFunc(curState, _patArr->at(i)[j]);
@@ -90,7 +90,7 @@ void AC_Automata::construct(vector<string>* _patArr)
 void AC_Automata::patternMatching(string _txt)
 {
 	int curState = 0;
-	vector<int>* patPos = new vector<int>[patternNum];
+	vector<int>* patPos = new vector<int>[m_patternNum];
 	for (int i = 0; i < _txt.length(); i++)
 	{
 		while (gotoFunc(curState, _txt[i]) == -1)
@@ -108,15 +108,16 @@ void AC_Automata::patternMatching(string _txt)
 
 	// print locations of each pattern
 	cout << "Pattern Matching|n";
-	for (int i = 0; i < patternNum; i++)
+	for (int i = 0; i < m_patternNum; i++)
 	{
-		cout << patterns[i] << " | ";
+		cout << m_patterns[i] << " | ";
 		for (int j = 0; j < patPos[i].size(); j++)
 		{
 			cout << patPos[i][j] << ", ";
 		}
 		cout << endl;
 	}
+	delete[] patPos;
 }
 
 void AC_Automata::printForCheck()
@@ -143,7 +144,7 @@ void AC_Automata::printForCheck()
 		cout << s << " |  ";
 		for (int i = 0; i < m_outputs[s]->size(); i++)
 		{
-			cout << patterns[m_outputs[s]->at((size_t)i)] << ", ";
+			cout << m_patterns[m_outputs[s]->at((size_t)i)] << ", ";
 		}
 
 		cout << endl;
