@@ -1,32 +1,29 @@
 #include <iostream>
-#include <vector>
-#include <list>
-#include <queue>
-#include <string>
-#include "AC_Automata.h"
+#include "C:\Users\ShinHyeonJun\Desktop\Test\Test\BIRD_2D.h"
 
 using namespace std;
 
-class BIRD_2D
-{
-	int m_txtSize = 0; int m_patSize = 0;
-	string* m_txt = nullptr;
-	string* m_patSize;
 
-	AC_Automata m_ac;
-	int* m_kmp_DP_col = nullptr;
-	
-	BIRD_2D(string* _pattern, int _tSize)
-	{
-	}
-
-
-};
 
 
 int main()
 {
-	
+	int N, M;
+	cin >> N >> M;
+	string* txtRow = new string[N];
+	for (int i = 0; i < N; i++)
+	{
+		cin >> txtRow[i];
+	}
+	string* patRow = new string[M];
+	for (int i = 0; i < M; i++)
+	{
+		cin >> patRow[i];
+	}
+
+	BIRD_2D bird(txtRow, N, patRow, M);
+	bird.checkPrint();
+	bird.patternMatching();
 
 	return 0;
 }
