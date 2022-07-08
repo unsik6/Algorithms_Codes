@@ -18,8 +18,8 @@ class AC_Automata
 	vector<vector<int>*> m_outputs;	// ouputs[state] = pattern rows
 	int* m_failure;
 
-	int patternNum = 0;
-	string* patterns;	// This string array is only for restoring patterns.
+	int m_patternNum = 0;
+	string* m_patterns;	// This string array is only for restoring patterns.
 
 public:
 	AC_Automata()
