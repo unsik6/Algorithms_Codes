@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <list>
@@ -5,7 +6,6 @@
 #include <string>
 using namespace std;
 
-#pragma once
 class AC_Automata
 {
 	struct edgePair
