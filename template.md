@@ -7,20 +7,22 @@
 - The number labeled to the algorithm is the number in each category.
 ---
 1. The name of Algorithm
-	> <b>- Contributor:</b> github nickname who write this.
-	> <b>- Reference:</b> the books, papers or etc that you refernece.
-	> <b>- Time complexity:</b> time compelxity of the algorithm with big-O notation.
-    > <b>- Space complexity:</b> space compelxity of the algorithm with big-O notation.
+	> <b>- Contributor:</b> github nickname who write this.<br/>
+	> <b>- Reference:</b> the books, papers or etc that you refernece.<br/>
+	> <b>- Time complexity:</b> time compelxity of the algorithm with big-O notation.<br/>
+    > <b>- Space complexity:</b> space compelxity of the algorithm with big-O notation.<br/>
 	> &nbsp;&nbsp;Abstract of the algorithm.
 <br/>
 ---
+<br/>
 (markdown)
+
 ```markdown
 1. The name of Algorithm
 	> - Contributor: github nickname who write this.
 	> - Reference: the books, papers or etc that you refernece.
 	> - Time complexity: time compelxity of the algorithm with big-O notation.
-    > - Space complexity: space compelxity of the algorithm with big-O notation.
+ 	> - Space complexity: space compelxity of the algorithm with big-O notation.
 	> &nbsp;&nbsp;Abstract of the algorithm.
 <br/>
 ```
