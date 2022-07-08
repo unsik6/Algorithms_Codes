@@ -10,7 +10,6 @@
 	> <b>- Contributor:</b> github nickname who write this.<br/>
 	> <b>- Reference:</b> the books, papers or etc that you refernece. <br/>
 	> <b>- Language used to implement:</b> the programming language used to implement the algorithm <br/>
-	> 
 	> <b>- Abstract:</b> Abstract of the algorithm. <br/>
 	> <b>- Time complexity:</b> time compelxity of the algorithm with big-O notation. <br/>
         <b>- Space complexity:</b> space compelxity of the algorithm with big-O notation. <br/>
@@ -24,7 +23,6 @@
 	> - Contributor: github nickname who write this.
 	> - Reference: the books, papers or etc that you refernece.
 	> - Language used to implement: the programming language used to implement the algorithm
-	>
 	> - Abstract: Abstract of the algorithm. <br/>
 	> - Time complexity: time compelxity of the algorithm with big-O notation.
  	> - Space complexity: space compelxity of the algorithm with big-O notation.
