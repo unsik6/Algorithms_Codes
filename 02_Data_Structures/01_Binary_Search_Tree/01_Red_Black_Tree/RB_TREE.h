@@ -9,10 +9,20 @@ class RB_TREE
 	{
 		T m_elem;
 		bool m_RB;	// true = red, false = black;
+		bool m_isNIL;
 		Node* m_parent = nullptr; Node* m_left = nullptr; Node* m_right = nullptr;
 
 	public:
-		Node(T _elem, bool _rb, Node* _p = nullptr, Node* _l = nullptr, Node* _r = nullptr) : m_elem(_elem), m_RB(_rb), m_parent(_p), m_left(_l), m_right(_r) {}
+		Node(T _elem, bool _rb, bool _isNil, Node* _p = nullptr, Node* _l = nullptr, Node* _r = nullptr) : m_elem(_elem), m_RB(_rb), m_isNIL(_isNil), m_parent(_p), m_left(_l), m_right(_r)
+		{
+			if (!m_isNIL)
+			{
+				m_left = new Node(NULL, false, true);
+				m_right = new Node(NULL, false, true);
+				m_left->setPar(this);
+				m_right->setPar(this);
+			}
+		}
 		~Node()
 		{
 			if (m_left != nullptr)
@@ -35,6 +45,7 @@ class RB_TREE
 		Node* getRight() { return m_right; }
 		void setElem(T _e) { m_elem = _e; }
 		T getElem() { return m_elem; }
+		bool isNIL() { return m_isNIL; }
 
 		bool operator < (const Node& _a)
 		{
@@ -83,7 +94,7 @@ public:
 	Node* search(T _tar)
 	{
 		Node* curNode = m_root;
-		while (curNode != nullptr)
+		while (!curNode->isNIL())
 		{
 			if (curNode->getElem() < _tar)
 				curNode = curNode->getRight();
@@ -102,11 +113,11 @@ public:
 		// insert Root
 		if (m_root == nullptr)
 		{
-			m_root = new Node(_e, false);
+			m_root = new Node(_e, false, false);
 			return;
 		}
 
-		Node* newNode = new Node(_e, true);
+		Node* newNode = new Node(_e, true, false);
 
 		// find the first position of newNode and the parent of newNode;
 		Node* curNode = m_root;
@@ -117,7 +128,7 @@ public:
 			{
 				parNode = curNode;
 				curNode = curNode->getRight();
-				if (curNode == nullptr)
+				if (curNode->isNIL())
 				{
 					parNode->setRight(newNode);
 					newNode->setPar(parNode);
@@ -129,7 +140,7 @@ public:
 				parNode = curNode;
 				curNode = curNode->getLeft();
 
-				if (curNode == nullptr)
+				if (curNode->isNIL())
 				{
 					parNode->setLeft(newNode);
 					newNode->setPar(parNode);
@@ -138,10 +149,11 @@ public:
 			}
 		}
 
-		if(parNode != m_root) fix(newNode, parNode);
+		delete curNode;
+		if (parNode != m_root) fix(newNode, parNode);
 	}
 
-	private:
+private:
 	// if Double RED occurs, we need to set the part of RB Tree to satisfy the property of RB Tree.
 	void fix(Node* _cur, Node* _p)
 	{
@@ -157,9 +169,7 @@ public:
 				uncleNode = grandNode->getLeft();
 
 			bool RBOfUncle = true;
-			if (uncleNode == nullptr)
-				RBOfUncle = false;
-			else if (!uncleNode->getRB())
+			if (!uncleNode->getRB())
 				RBOfUncle = false;
 
 			// Recoloring
@@ -183,11 +193,11 @@ public:
 	// Recoloring
 	void recoloring(Node* _p, Node* _u, Node* _g)
 	{
-		if(_g != m_root) _g->setRB(true);
+		if (_g != m_root) _g->setRB(true);
 		_p->setRB(false);
 		_u->setRB(false);
 	}
-	
+
 	// Restructuring
 	void restructuring(Node* _cur, Node* _p, Node* _g)
 	{
@@ -263,7 +273,7 @@ public:
 		}
 		Node* subT4 = w->getRight();
 
-		
+
 		if (_g->getPar() != nullptr)
 		{
 			if (_g->getPar()->getLeft() == _g)
@@ -280,24 +290,23 @@ public:
 
 		u->setPar(v);
 		u->setLeft(subT1); u->setRight(subT2);
-		if(subT1 != nullptr) subT1->setPar(u);
-		if(subT2 != nullptr) subT2->setPar(u);
+		subT1->setPar(u);
+		subT2->setPar(u);
 		u->setRB(true);
 
 		w->setPar(v);
 		w->setLeft(subT3); w->setRight(subT4);
-		if (subT3 != nullptr) subT3->setPar(w);
-		if (subT4 != nullptr) subT4->setPar(w);
+		subT3->setPar(w);
+		subT4->setPar(w);
 		w->setRB(true);
 	}
 
 	void leftRotation(Node* _p)
 	{
 		Node* c = _p->getRight();
-		_p->setRight(c);
-
-		if (c->getLeft() != nullptr)
-			c->getLeft()->setPar(_p);
+		_p->setRight(c->getLeft());
+		// if
+		c->getLeft()->setPar(_p);
 		c->setPar(_p->getPar());
 
 		if (_p->getPar() == nullptr)
@@ -314,14 +323,14 @@ public:
 	void rightRotation(Node* _p)
 	{
 		Node* c = _p->getLeft();
-		_p->setLeft(c);
-
-		if (c->getRight() != nullptr)
-			c->getRight()->setPar(_p);
+		_p->setLeft(c->getRight());
+		// if
+		c->getRight()->setPar(_p);
+		c->setPar(_p->getPar());
 
 		if (_p->getPar() == nullptr)
 			m_root = c;
-		else if (_p->getPar()->getLeft())
+		else if (_p == _p->getPar()->getLeft())
 			_p->getPar()->setLeft(c);
 		else
 			_p->getPar()->setRight(c);
@@ -338,18 +347,18 @@ public:
 			_del->getPar()->setLeft(_repl);
 		else
 			_del->getPar()->setRight(_repl);
-		if(_repl != nullptr)
+		if (_repl != nullptr)
 			_repl->setPar(_del->getPar());
 	}
 
 	Node* findMinOfSubtree(Node* _r)
 	{
-		if (_r->getLeft() != nullptr)
+		if (!_r->getLeft()->isNIL())
 			findMinOfSubtree(_r->getLeft());
 		else
 			return _r;
 	}
-	public:
+public:
 	void deleteNode(T _e)
 	{
 		Node* delNode = this->search(_e);
@@ -360,15 +369,25 @@ public:
 		bool reNodeColor = rNode->getRB();
 
 		// if the node(delNode) that will be deleted has just one child.
-		if (delNode->getLeft() == nullptr)
+		if (delNode->getLeft()->isNIL())
 		{
 			rrNode = delNode->getRight();
 			transplant(delNode, delNode->getRight());
+			// delete delNode
+			// Since the destructor of node class deletes all children of the node, all children pointer of delNode must be set nullptr.
+			if (!delNode->getLeft()->isNIL()) delNode->setLeft(nullptr);
+			delNode->setRight(nullptr);
+			delete delNode;
 		}
-		else if (delNode->getRight() == nullptr)
+		else if (delNode->getRight()->isNIL())
 		{
 			rrNode = delNode->getLeft();
 			transplant(delNode, delNode->getLeft());
+			// delete delNode
+			// Since the destructor of node class deletes all children of the node, all children pointer of delNode must be set nullptr.
+			delNode->setLeft(nullptr);
+			if (!delNode->getRight()->isNIL()) delNode->setRight(nullptr);
+			delete delNode;
 		}
 		// else = delNode has two child
 		else
@@ -399,15 +418,15 @@ public:
 
 			// delete delNode
 			// Since the destructor of node class deletes all children of the node, all children pointer of delNode must be set nullptr.
-			delNode->setLeft(nullptr);
-			delNode->setRight(nullptr);
+			if (!delNode->getLeft()->isNIL()) delNode->setLeft(nullptr);
+			if (!delNode->getRight()->isNIL()) delNode->setRight(nullptr);
 			delete delNode;
 		}
 
 		if (reNodeColor == false)
 			fixInDel(rrNode);
 	}
-	private:
+private:
 	void fixInDel(Node* _rrNode)
 	{
 		while (_rrNode != m_root && !_rrNode->getRB())
@@ -425,8 +444,7 @@ public:
 				}
 				// the sibling becomes or is black.
 				// case 2: the two child of the sibling are black
-				if ((!sibling->getLeft()->getRB() && !sibling->getRight()->getRB())
-					|| (sibling->getLeft() == nullptr && sibling->getRight() == nullptr))
+				if (!sibling->getLeft()->getRB() && !sibling->getRight()->getRB())
 				{
 					sibling->setRB(true);
 					_rrNode = _rrNode->getPar();
@@ -434,7 +452,7 @@ public:
 				else
 				{
 					// case 3: the right child of the sibling is black. And the left child of the sibling is red
-					if (!sibling->getRight()->getRB() || sibling->getRight() == nullptr)
+					if (!sibling->getRight()->getRB())
 					{
 						sibling->getLeft()->setRB(false);
 						sibling->setRB(true);
@@ -446,8 +464,7 @@ public:
 					// case 4: the right child of the sibing is red.
 					sibling->setRB(_rrNode->getPar()->getRB());
 					_rrNode->getPar()->setRB(false);
-					if (sibling->getRight() != nullptr)
-						sibling->getRight()->setRB(false);
+					sibling->getRight()->setRB(false);
 					leftRotation(_rrNode->getPar());
 
 					// when case 4 is fin, the probelm is solved. So, escape the loop.
@@ -467,8 +484,7 @@ public:
 				}
 				// the sibling becomes or is black.
 				// case 2: the two child of the sibling are black
-				if ((!sibling->getLeft()->getRB() && !sibling->getRight()->getRB())
-					|| (sibling->getLeft() == nullptr && sibling->getRight() == nullptr))
+				if (!sibling->getLeft()->getRB() && !sibling->getRight()->getRB())
 				{
 					sibling->setRB(true);
 					_rrNode = _rrNode->getPar();
@@ -476,7 +492,7 @@ public:
 				else
 				{
 					// case 3: the right child of the sibling is black. And the left child of the sibling is red
-					if (!sibling->getLeft()->getRB() || sibling->getLeft() == nullptr)
+					if (!sibling->getLeft()->getRB())
 					{
 						sibling->getRight()->setRB(false);
 						sibling->setRB(true);
@@ -488,8 +504,7 @@ public:
 					// case 4: the right child of the sibing is red.
 					sibling->setRB(_rrNode->getPar()->getRB());
 					_rrNode->getPar()->setRB(false);
-					if (sibling->getLeft() != nullptr)
-						sibling->getLeft()->setRB(false);
+					sibling->getLeft()->setRB(false);
 					rightRotation(_rrNode->getPar());
 
 					// when case 4 is fin, the probelm is solved. So, escape the loop.
@@ -499,13 +514,17 @@ public:
 		}
 		_rrNode->setRB(false);
 	}
-	public:
+public:
 	void checkPrintByInOrderTraversal(Node* _r)
 	{
-		if (_r->getLeft() != nullptr)
+		if (!_r->getLeft()->isNIL())
 			checkPrintByInOrderTraversal(_r->getLeft());
-		cout << _r->getElem() << '/' << (_r->getRB() ? "R" : "B") << '/' << _r->getDepth() << ' ';
-		if (_r->getRight() != nullptr)
+		cout << _r->getElem() << '/' << (_r->getRB() ? "R" : "B") << '/' << _r->getDepth() << '/';
+		if(_r != m_root)
+			cout << _r->getPar()->getElem() << ' ';
+		else
+			cout << "NIL ";
+		if (!_r->getRight()->isNIL())
 			checkPrintByInOrderTraversal(_r->getRight());
 	}
 };
