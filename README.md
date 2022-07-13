@@ -39,7 +39,7 @@
   </tr>
   <tr>
 	  <td><center>Graph</center></td>
-	  <td><center><a href = "#Graph_AdjacencyList">Adjacency List</a></center></td>
+	  <td><center><a href = "#Graph_AdjacencyList">Adjacency List representation</a></center></td>
   </tr>
 </table>
 
@@ -122,7 +122,7 @@
 ## Graph
 <p id = "Graph_AdjacencyList"></p>
 
-1. [Graph Adjacency List](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList)
+1. [Adjacency List representation](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList)
 > - Contributor: unsik6
  > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
  > - Language used to implement: C++
