@@ -1,5 +1,6 @@
 
 
+
 # Algorithms_Codes
 
 # Outline
@@ -24,7 +25,7 @@
     <td><center><a href = "#BIRD_2D">BIRD Algorithm</a></center></td>
   </tr>
   <tr>
-	  <td rowspan= 3><center>Data Structure</center></td>
+	  <td rowspan= 4><center>Data Structure</center></td>
 	  <td><center>Binary Search Tree</center></td>
 	  <td><center><a href = "#RB_TREE">Red-Black Tree</a></center></td>
   </tr>
@@ -35,6 +36,10 @@
     <tr>
 	  <td><center>Set</center></td>
 	  <td><center><a href = "#DisjointSet">DisjointSet</a></center></td>
+  </tr>
+  <tr>
+	  <td><center>Graph</center></td>
+	  <td><center><a href = "#Graph_AdjacencyList">Adjacency List</a></center></td>
   </tr>
 </table>
 
@@ -112,3 +117,17 @@
  > - Abstract:<br/>&nbsp;&nbsp; Disjoint Set(Union-Find Set) is a data structure implemented as a forest. Disjoint Set has sets that have the representative number. So, as I did, Disjoint Set can be implemented using the unordered_map<key, representative number of the set to which the key belongs>. Disjoint Set has two main operation, <i>Find</i> and <i>Union</i>. <i>Find</i> is passed a key and returns the representative of the set to wich the key belongs. <i>Union</i> is passed two keys. If the keys belong to the same set, it merges the sets.
  > - Time complexity: <br/>&nbsp;&nbsp; The time complexity of <i>Find</i> and <i>Union</i> is <i>O(n)</i>, if implemented as naive algorithm, where <i>n</i> is the number of elements. But, using <i>Path compression</i> and <i>Union by rank</i>, the time complexity is <i>amortized O(1)</i>. So, $$Find\ and\ Union =O(log n)$$
  > - Space complexity: (implementation: unorodered_set)<br/>&nbsp;&nbsp; It just need the pair, key and representative, by each elements. And, if appling <i>Path compression</i> and <i> Union by rank</i>, we need the pair, <representativ, height of the tree representing the set> by each set. The number of sets is less than the number of elements. So, $$O(n)$$
+
+
+## Graph
+<p id = "Graph_AdjacencyList"></p>
+
+1. [Graph Adjacency List](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList)
+> - Contributor: unsik6
+ > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+ > - Language used to implement: C++
+ > - Abstract:<br/>&nbsp;&nbsp; Adjacency List is the one of the representations of graph. The idea of this representation is storing the edges from each vector in same linked list. This representation needs less space than <i>Adjacency Matrix representation</i>.<br/>&nbsp;&nbsp; I implement that <i>std::vector<std::list<Edge*>*></i>. <i>Edge</i> is the custom class that has the pointers pointing the source vertex and the destination vertex and a weight. I implement Adjacency List as template class that need two type defined by user. The first type is the type of the element of vertices and the second type is the type of the weight of edges.
+ > - Time complexity: !!! This time complexity is not about Adjacency List ADT. !!!<br/>&nbsp;&nbsp; <i>Insert vertex</i> needs that the two array is inserted each one element, so the operation runs in <i>amortized O(1)</i> time. <i>delete vertex</i> and <i>find vertex</i> by the element of vertex runs in <i>O(|V|)</i>, where <i>V</i> is the set of vertices. The operations need to find the vertex having the element we input.  <i>insert edge</i> by a weight and two elements of vertices, source vertex and destination vertex, runs in <i>O(|V|)</i> time. The operation need to find the index of  the source vertex. <i>delete edge</i> by the same parameters runs in <i>O(|V|+|E|)</i> time, where <i>E</i> is the set of edges. The operation need to visit adjacency lists of all vertices and edges. <i>find edge</i> by the same parameters runs in <i>O(degree of source vertex)</i>.
+ > - Space complexity: !!! This time complexity is not about Adjacency List ADT. !!!<br/>&nbsp;&nbsp; I added one more array(<i>std::vector<Vertex*></i>) having pointers of all vertices. This array needs <i>O(|V|)</i> space. Adjacency lists of all vertices have pointers of all edges. And all adjacency lists are stored in same array. So, we need <i>O(|V| + |E|)</i> space. Since we don't discuss about the number of elements of vertex and edge, total space complexity is <i>O(|V| + |E|)</i>.
+
+<br/>
