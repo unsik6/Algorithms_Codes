@@ -82,10 +82,6 @@ Graph_AdjacencyList<VT, ET>::~Graph_AdjacencyList()
 template<typename VT, typename ET>
 void Graph_AdjacencyList<VT, ET>::insertVertex(VT _velem)
 {
-	// Exception: the same vertex already exist
-	for (int i = 0; i < m_vertices.size(); i++)
-		if (m_vertices[i]->getElem() == _velem) return;
-
 	m_vertices.push_back(new Vertex(_velem));
 	m_adjacencyList.push_back(new list<Edge*>);
 }
@@ -162,15 +158,6 @@ void Graph_AdjacencyList<VT, ET>::insertEdge(VT _srcVElem, VT _dstVElem, ET _eWt
 	int srcIdx = -1;
 	for (int i = 0; i < m_vertices.size(); i++)
 		if (m_vertices[i] == srcPtr) srcIdx = i;
-
-	// Exception: The same edge already exist
-	for (Edge* edge : *m_adjacencyList[srcIdx])
-	{
-		if (edge->getDst() == dstPtr && edge->getWeight() == _eWt)
-		{
-			return;
-		}
-	}
 
 	// insertEdge
 	m_adjacencyList[srcIdx]->push_back(new Edge(srcPtr, dstPtr, _eWt));	
