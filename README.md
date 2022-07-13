@@ -24,13 +24,17 @@
     <td><center><a href = "#BIRD_2D">BIRD Algorithm</a></center></td>
   </tr>
   <tr>
-	  <td rowspan= 2><center>Data Structure</center></td>
+	  <td rowspan= 3><center>Data Structure</center></td>
 	  <td><center>Binary Search Tree</center></td>
 	  <td><center><a href = "#RB_TREE">Red-Black Tree</a></center></td>
   </tr>
   <tr>
 	  <td><center>Priority_Queue</center></td>
 	  <td><center><a href = "#Heap">Heap</a></center></td>
+  </tr>
+    <tr>
+	  <td><center>Set</center></td>
+	  <td><center><a href = "#DisjointSet">DisjointSet</a></center></td>
   </tr>
 </table>
 
@@ -94,3 +98,17 @@
  > - Abstract:<br/>&nbsp;&nbsp; Heap is the one of the famous data structure. Heap is the left-complete binary tree. The main property of heap is <i>par.key() <= children.key(), where the heap is Min-Heap</i>, If the heap is Max-Heap, the property is reversed. It is outstanding to implement Priority queue. Heap keeps the optimal value(minimum or maximum) at the root of heap. Since, the time complexity of <i>insert</i> and <i>removeOptimalValue(with getOptimalValue)</i> is <i>O(log n)</i>, where <i>n</i> is the number of elements, heap is used to sort in <i>O(nlog n) time</i>.
  > - Time complexity: <br/>&nbsp;&nbsp;$$Build\ Heap\ =O(n)$$ &nbsp;&nbsp;Since heap is the left-complete binary tree, the height of heap is <i>O(log n)</i>. So, $$Insert\ and\ removeOptimalValue =O(log n)$$
  > - Space complexity: (implementation: array)<br/>&nbsp;&nbsp; Since heap is the left-complete binary tree, heap don't need empty space, altough the heap is implemented as array. So, $$O(n)$$
+
+<br/><br/>
+
+## Set
+
+<p id = "DisjointSet"></p>
+
+1. [DisjointSet](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/03_Set/01_Disjoint_Set)
+> - Contributor: unsik6
+ > - Reference: [TECHIE DELIGT</>](https://www.techiedelight.com/ko/disjoint-set-data-structure-union-find-algorithm/)
+ > - Language used to implement: C++
+ > - Abstract:<br/>&nbsp;&nbsp; Disjoint Set(Union-Find Set) is a data structure implemented as a forest. Disjoint Set has sets that have the representative number. So, as I did, Disjoint Set can be implemented using the unordered_map<key, representative number of the set to which the key belongs>. Disjoint Set has two main operation, <i>Find</i> and <i>Union</i>. <i>Find</i> is passed a key and returns the representative of the set to wich the key belongs. <i>Union</i> is passed two keys. If the keys belong to the same set, it merges the sets.
+ > - Time complexity: <br/>&nbsp;&nbsp; The time complexity of <i>Find</i> and <i>Union</i> is <i>O(n)</i>, if implemented as naive algorithm, where <i>n</i> is the number of elements. But, using <i>Path compression</i> and <i>Union by rank</i>, the time complexity is <i>amortized O(1)</i>. So, $$Find\ and\ Union =O(log n)$$
+ > - Space complexity: (implementation: unorodered_set)<br/>&nbsp;&nbsp; It just need the pair, key and representative, by each elements. And, if appling <i>Path compression</i> and <i> Union by rank</i>, we need the pair, <representativ, height of the tree representing the set> by each set. The number of sets is less than the number of elements. So, $$O(n)$$
