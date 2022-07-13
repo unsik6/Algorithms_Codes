@@ -13,17 +13,20 @@ private:
 
 
 	void swapByIDX(int _a, int _b);
-	void upHeap();
-	void downHeap();
+	void upHeap(int _startIdx);
+	void downHeap(int _startIdx);
 	
 public:
 	Heap();
 	Heap(int _cap, bool _isMin = true);
 	~Heap();
 
+	int getSize() { return m_size; }
+
 	T getOptimal();
 	void insert(T _e);
 	T removeOpt();
+	void updateKey(T _target, T _revisedElem);
 
 	void printAll();
 };
@@ -46,22 +49,22 @@ void Heap<T>::swapByIDX(int _a, int _b)
 }
 
 template<typename T>
-void Heap<T>::upHeap()
+void Heap<T>::upHeap(int _startIdx)
 {
-	int curIdx = m_size;
+	int curIdx = _startIdx;
 	while (curIdx > 0)
 	{
 		// This is MinHeap.
 		if (m_isMinHeap)
 		{
-			if ((m_arr[curIdx] < m_arr[curIdx / 2]) * m_isMinHeap)
+			if (m_arr[curIdx] < m_arr[curIdx / 2])
 				swapByIDX(curIdx, curIdx / 2);
 			else return;
 		}
 		// This is MaxHeap.
 		else
 		{
-			if ((m_arr[curIdx] > m_arr[curIdx / 2]) * m_isMinHeap)
+			if (m_arr[curIdx / 2] < m_arr[curIdx])
 				swapByIDX(curIdx, curIdx / 2);
 			else return;
 		}
@@ -71,12 +74,12 @@ void Heap<T>::upHeap()
 }
 
 template<typename T>
-void Heap<T>::downHeap()
+void Heap<T>::downHeap(int _startIdx)
 {
-	int curIdx = 1;
+	int curIdx = _startIdx;
 	while (curIdx * 2 <= m_size || curIdx* 2 + 1 <= m_size)
 	{
-		int opt = m_arr[curIdx];
+		T opt = m_arr[curIdx];
 		int optIdx = curIdx;
 		// This is MinHeap.
 		if (m_isMinHeap)
@@ -95,12 +98,12 @@ void Heap<T>::downHeap()
 		// This is MaxHeap.
 		else
 		{
-			if (m_arr[curIdx * 2] > m_arr[curIdx])
+			if (m_arr[curIdx] < m_arr[curIdx * 2])
 			{
 				opt = m_arr[curIdx * 2];
 				optIdx = curIdx * 2;
 			}
-			if (m_arr[curIdx * 2 + 1] > m_arr[optIdx])
+			if (m_arr[optIdx] < m_arr[curIdx * 2 + 1])
 			{
 				opt = m_arr[curIdx * 2 + 1];
 				optIdx = curIdx * 2 + 1;
@@ -138,7 +141,7 @@ void Heap<T>::insert(T _e)
 	}
 
 	m_arr[++m_size] = _e;
-	upHeap();
+	upHeap(m_size);
 }
 
 template <typename T>
@@ -147,14 +150,35 @@ T Heap<T>::removeOpt()
 	if (m_size == 0)
 	{
 		cerr << "EMPTY EXCEPTION\n" << endl;
-		return NULL;
+		return m_arr[0];	// return trash.
 	}
 
 	T ret = m_arr[1];
 	m_arr[1] = m_arr[m_size--];
-	downHeap();
+	downHeap(1);
 
 	return ret;
+}
+
+template<typename T>
+void Heap<T>::updateKey(T _target, T _revisedElem)
+{
+	int targetIdx = -1;
+	for (int i = 0; i < m_size; i++)
+	{
+		if (m_arr[i] == _target) targetIdx = i; break;
+	}
+	m_arr[targetIdx] = _revisedElem;
+	if (m_isMinHeap)
+	{
+		if (_target < _revisedElem) upHeap(targetIdx);
+		else downHeap(targetIdx);
+	}
+	else
+	{
+		if (_target < _revisedElem) downHeap(targetIdx);
+		else upHeap(targetIdx);
+	}
 }
 
 template <typename T>

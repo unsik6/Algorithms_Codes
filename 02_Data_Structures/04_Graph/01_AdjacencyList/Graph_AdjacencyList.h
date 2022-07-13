@@ -7,7 +7,7 @@ using namespace std;
 template<typename VT, typename ET>
 class Graph_AdjacencyList
 {
-private:
+public:
 	class Vertex
 	{
 	private:
@@ -16,7 +16,7 @@ private:
 	public:
 		Vertex(VT _e = NULL) { m_elem = _e; }
 
-		int getElem() { return m_elem; }
+		VT getElem() { return m_elem; }
 		void setID(VT _e) { m_elem = _e; }
 	};
 
@@ -30,14 +30,15 @@ private:
 		Edge(Vertex* _src, Vertex* _dst, ET _wt) { m_src = _src; m_dst = _dst; m_wt = _wt; }
 		bool operator <(const Edge& _a)
 		{
-			if (this->m_wt < _a.m_wt) return true;
-			else return false;
+			return this->m_wt < _a.m_wt;
 		}
 
+		Vertex* getSrc() { return m_src; }
 		Vertex* getDst() { return m_dst; }
 		ET getWeight() { return m_wt; }
 	};
 
+private:
 	// just keep the information of vertices
 	vector<Vertex*> m_vertices;
 
@@ -47,6 +48,12 @@ private:
 public:
 	Graph_AdjacencyList() {}
 	~Graph_AdjacencyList();
+
+	size_t getVerticesNum() { return m_vertices.size(); }
+
+	// vertex Function
+	Vertex* vertexPtrByRankinVertices(int _idx);
+	list<Edge*>* listPtrByRankInAL(int _idx);
 
 	// Vertex Function
 	void insertVertex(VT _vElem);
@@ -77,6 +84,18 @@ Graph_AdjacencyList<VT, ET>::~Graph_AdjacencyList()
 		delete m_adjacencyList[i];
 		delete m_vertices[i];
 	}
+}
+template<typename VT, typename ET>
+typename Graph_AdjacencyList<VT, ET>::Vertex* Graph_AdjacencyList<VT, ET>::vertexPtrByRankinVertices(int _idx)
+{
+	return m_vertices[_idx];
+}
+
+
+template<typename VT, typename ET>
+list<typename Graph_AdjacencyList<VT, ET>::Edge*>* Graph_AdjacencyList<VT, ET>::listPtrByRankInAL(int _idx)
+{
+	return m_adjacencyList[_idx];
 }
 
 template<typename VT, typename ET>
