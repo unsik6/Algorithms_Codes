@@ -26,8 +26,8 @@
     <td><center><a href = "#BIRD_2D">BIRD Algorithm</a></center></td>
   </tr>
   <tr>
-    <td><center>MST(Graph Algorithms)</center></td>
-    <td><center><a href = "#Prim_Algorithm">Prim Algorithm</a></center></td>
+    <td><center>Graph Algorithms</center></td>
+    <td><center><a href = "#MST">MST</a><br/>(<a href = "#Prim_Algorithm">Prim's Algorithm</a>, <a href = "#Kruskal_Algorithm">Kruskal's Algorithm</a>)</center></td>
   </tr>
   <tr>
 	  <td rowspan= 4><center>Data Structure</center></td>
@@ -54,7 +54,7 @@
 
 <p id = "AC_Automata"></p>
 
-1. [Aho-Corasick Automata](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_Pattern_Matching/01_Aho-Corasick_Automata)
+1. [<b>Aho-Corasick Automata</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_Pattern_Matching/01_Aho-Corasick_Automata)
 	> - Contributor: unsik6
 	> - Reference: Alfred V. Aho and Margaret J. Corasick, "Efficient String Matching: An Aid to Bibliographic Search", ACM(1975) 18 (6) 333-340
 	> - Language used to implement: C++
@@ -69,34 +69,54 @@
 
 <p id = "BIRD_2D"></p>
 
-1. [BIRD Algorithm](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/02_2D_Pattern_Matching/01_BIRD_2D_Pattern_Matching)
- > - Contributor: unsik6
- > - Reference: R.S.Bird, "TWO DIMENSIONAL PATTERN MATCHING", IPL(1977), 168-170
- > - Language used to implement: C++
- > - Abstract: <br/>&nbsp;&nbsp;Two dimensional pattern matching algorithm of R. S. Bird uses Aho-Corasick automata and KMP pattern Matching algorithm. The rows of pattern(<i>m X m </i>) is considered multiple patterns. So, as Aho-Corasick automata is applied to row matching, Bird algorithm finds all rows that occur in a position of text(<i>n X n</i>). In two dimensional pattern matching, It can be siad that the patterns was found by finding all the rows of pattern in order. It can be computation using KMP algorithm.
- > - Time complexity: (implementation: array) <br/>&nbsp;&nbsp; One of preprocessing to construct an AC automata by all rows of pattern needs <i>O(m<sup>2</sup>)</i> time. In the original paper, Other preprocessing, labeling all rows of pattern, was introduced it needs same time. but it can run in <i>O(m)</i> time using an AC automata already constructed. Also, It can run in the preprocessing to construct Output Func of an AC automata. The rest of preprocessing is to construct a KMP failure function using the labels of rows of pattern, and It runs in time in <i>O(m<sup>2</sup>)</i>.<br/>&nbsp;&nbsp;The prcessing to find all location of pattern in text run in  <i>O(n<sup>2</sup>)</i> time, since there are <i>n</i> column and KMP algorithm in each column needs <i>O(n)</i> time. And row matching needs <i>O(n<sup>2</sup>)</i> time, since Time complexity of the pattern matching using AC automata is linear. So, $$O(m^2 + m + m^2 + n^2 + n^2)$$ $$Total\ running\ time=O(n^2+m^2)$$
- > - Space complexity: (implementation: array) <br/>&nbsp;&nbsp; There are an AC automata, which haves at most <i>m<sup>2</sup></i> nodes, the failure function of the AC automata that also have the same number of elements becuase it is implemented as array, the output function, which have <i>m<sup>2</sup></i> elements, and the KMP failure function, in column matching process, that have <i>m</i> elements. And we need the array that have <i>n</i> elements, to keep how many rows of pattern matched before using KMP algorithm in column matching. So, the space complexity of this algorithm is $$O(n+m^2)$$
+1. [<b>BIRD Algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/02_2D_Pattern_Matching/01_BIRD_2D_Pattern_Matching)
+	 > - Contributor: unsik6
+	 > - Reference: R.S.Bird, "TWO DIMENSIONAL PATTERN MATCHING", IPL(1977), 168-170
+	 > - Language used to implement: C++
+	 > - Abstract: <br/>&nbsp;&nbsp;Two dimensional pattern matching algorithm of R. S. Bird uses Aho-Corasick automata and KMP pattern Matching algorithm. The rows of pattern(<i>m X m </i>) is considered multiple patterns. So, as Aho-Corasick automata is applied to row matching, Bird algorithm finds all rows that occur in a position of text(<i>n X n</i>). In two dimensional pattern matching, It can be siad that the patterns was found by finding all the rows of pattern in order. It can be computation using KMP algorithm.
+	 > - Time complexity: (implementation: array) <br/>&nbsp;&nbsp; One of preprocessing to construct an AC automata by all rows of pattern needs <i>O(m<sup>2</sup>)</i> time. In the original paper, Other preprocessing, labeling all rows of pattern, was introduced it needs same time. but it can run in <i>O(m)</i> time using an AC automata already constructed. Also, It can run in the preprocessing to construct Output Func of an AC automata. The rest of preprocessing is to construct a KMP failure function using the labels of rows of pattern, and It runs in time in <i>O(m<sup>2</sup>)</i>.<br/>&nbsp;&nbsp;The prcessing to find all location of pattern in text run in  <i>O(n<sup>2</sup>)</i> time, since there are <i>n</i> column and KMP algorithm in each column needs <i>O(n)</i> time. And row matching needs <i>O(n<sup>2</sup>)</i> time, since Time complexity of the pattern matching using AC automata is linear. So, $$O(m^2 + m + m^2 + n^2 + n^2)$$ $$Total\ running\ time=O(n^2+m^2)$$
+	 > - Space complexity: (implementation: array) <br/>&nbsp;&nbsp; There are an AC automata, which haves at most <i>m<sup>2</sup></i> nodes, the failure function of the AC automata that also have the same number of elements becuase it is implemented as array, the output function, which have <i>m<sup>2</sup></i> elements, and the KMP failure function, in column matching process, that have <i>m</i> elements. And we need the array that have <i>n</i> elements, to keep how many rows of pattern matched before using KMP algorithm in column matching. So, the space complexity of this algorithm is $$O(n+m^2)$$
 <br/><br/>
 
-## MST (Graph Algorithm)
+## Graph Algorithm
+
+<p id = "MST"></p>
+
+[<b>MST</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/03_Graph_algorithms/01_MST)
 
 - Minimum Spanning Tree(MST) problem is one of the famous problems. The problem is that finding a spanning tree with the minimum weight of a given connected, undirected graph. It is no matter the given graph is weighted or not. If the given graph is unweighted, we can solve the problem considering the weights of all edges are same. A spanning tree for a connected, undirected graph is an undirected tree, a subgraph which includes all vertices of the given graph. The weight of a spanning tree is the sum of the weight of all edges of itself. If a spanning tree has the least weight than othes, the spanning tree is MST.
+- Here are two MST algorithms, Prim's and Kruskal's. The algorithms are implemented in one namespace <i>MST</i>,
+- They return different datatype. So, If you want to test the algorithm, NOT use the function named the name of algorithms. please use the function whose name starts with <i>print</i>.
 
 <p id = "Prim_Algorithm"></p>
 
-1. [Prim Algorithm](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/03_MST(Graph_Algorithms)/01_Prim_algorithm)
- > - Contributor: unsik6
- > - Reference: R.S.Bird, "TWO DIMENSIONAL PATTERN MATCHING", IPL(1977), 168-170
- > - Language used to implement: C++
- > - Abstract:<br/>&nbsp;&nbsp; <i>Prim algorithm</i> is the algorithm to find MST. The idea of prim algorithm is like BFS. We insert the root vertex in <i>FRINGE</i> priority-queue. The priority-queue orders the vertices by the minimum weight of the edges of the vertex. And, in loop, pop a vertex from the priority-queue and put the minimum weighted edge of the vertex into the MST edge set. (All vertices of the given graph belong to MST, so the ouput is the set of edges.) The next process in the loop is that all adjacent vertices of the vertex, the destination of latest inserted edge,  insert into <i>FRINGE</i> priority-queue. <i>Prim algorithm</i> concentrate the information of vertices. Though it control the edges, consider vertices first. <br/>
-  > &nbsp;&nbsp;The algorithm needs several datastructure, <i>Heap</i>. And, The input is a graph. I use my [heap implementation](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Priority_Queue/01_Heap) and [adjacency list representation of graph](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList).
- > &nbsp;&nbsp;There are a two main implementations. One is that implementing the priority-queue as <i>unordered_array</i>. Anoter is the implementation using <i>Heap</i>. Since <i>oredered_array</i> has no advantage, it is excluded.
- > - Time complexity: (discuss in theory, not aout my implementation) <br/>&nbsp;&nbsp; In the first implementation, The algorithm runs in <i>O(V|<sup>2</sup>) time</i>, where <i>V</i> is the set of vertices. The dominative operation is searching the vertex, which has the minimum weighted incident edge from a vertex of <i>FRINGE</i>. It runs in <i>O(|V|)</i> time by each iteration. So, the time complexity is <i>O(|V|)</i>.<br/>
- > &nbsp;&nbsp;The second implementation, using <i>Heap</i>. The searching operation runs in <i>O(log n)</i> time. And, since each edges can be considered from source and destination, the keys that mean the minimum weight of all edges from a vertex can be updated. <i>DecreasKey</i> of <i>Heap</i> runs in <i>O(log n)</i> time. So, the total time complexity of updating keys is <i>O(|E|log n)</i>, where <i>E</i> is the set of edges.  $$using\ unordered_array=O(|V|^2)$$ $$using\ heap=O(|V| log n + |E|log n) = O(|E| log n)$$
- > - Space complexity: <br/>&nbsp;&nbsp; Regardless how to implement <i>FRINGE</i> priority-queue, the priority-queue has <i>O(|V|)</i> elements. $$O(|V|)$$
+1. <b> Prim's Algorithm</b>
+	 > - Contributor: unsik6
+	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	 > - Language used to implement: C++
+	 > - Abstract:<br/>&nbsp;&nbsp; <i>Prim's algorithm</i> is the algorithm to find MST. The idea of Prim's algorithm is like BFS. We insert the root vertex in <i>FRINGE</i> priority-queue. The priority-queue orders the vertices by the minimum weight of the edges of the vertex. And, in loop, pop a vertex from the priority-queue and put the minimum weighted edge of the vertex into the MST edge set. (All vertices of the given graph belong to MST, so the ouput is the set of edges.) The next process in the loop is that all adjacent vertices of the vertex, the destination of latest inserted edge,  insert into <i>FRINGE</i> priority-queue. <i>Prim's algorithm</i> concentrate the information of vertices. Though it control the edges, consider vertices first. <br/>
+	 > &nbsp;&nbsp;The algorithm needs several datastructure, <i>priority-queue</i>. And, The input is a graph. I use my [heap implementation](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Priority_Queue/01_Heap) for priority-queue and [adjacency list representation of graph](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList) for the input graph.
+	 > &nbsp;&nbsp;There are a two main implementations. One is that implementing the priority-queue as <i>unordered_array</i>. Anoter is the implementation using <i>Heap</i>. Since <i>oredered_array</i> has no advantage, it is excluded.
+	 > - Time complexity: (discuss in theory, not aout my implementation) <br/>&nbsp;&nbsp; In the first implementation, The algorithm runs in <i>O(V|<sup>2</sup>) time</i>, where <i>V</i> is the set of vertices. The dominative operation is searching the vertex, which has the minimum weighted incident edge from a vertex of <i>FRINGE</i>. It runs in <i>O(|V|)</i> time by each iteration. So, the time complexity is <i>O(|V|)</i>.<br/>
+	 > &nbsp;&nbsp;The second implementation, using <i>Heap</i>. The searching operation runs in <i>O(log n)</i> time. And, since each edges can be considered from source and destination, the keys that mean the minimum weight of all edges from a vertex can be updated. <i>DecreasKey</i> of <i>Heap</i> runs in <i>O(log n)</i> time. So, the total time complexity of updating keys is <i>O(|E|log n)</i>, where <i>E</i> is the set of edges. Since the number of vertices of a connected graph is <i>O(|E|)</i>,  $$using\ unordered\_array=O(|V|^2)$$ $$using\ heap=O(|V| log |V| + |E|log |V|) = O(|E| log |V|)$$
+	 > - Space complexity: <br/>&nbsp;&nbsp; Regardless how to implement <i>FRINGE</i> priority-queue, the priority-queue has <i>O(|V|)</i> elements. $$O(|V|)$$
+
 <br/><br/>
 
 
+<p id = "Kruskal_Algorithm"></p>
+
+2. <b> Kruskal's Algorithm</b>
+	 > - Contributor: unsik6
+	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	 > - Language used to implement: C++
+	 > - Abstract:<br/>&nbsp;&nbsp;<i>Kruskal's algorithm</i> is the algorithm to find MST. Unlike <i>Prim's algorithm</i>, <i>Kruskal's algorithm</i> focuses on the information of edges. The main idea of <i>Kruskal's algorithm</i> is that we can construct MST if we select the minimum weighted edge at each moment. So, at first, <i>Kruskal's algorithm</i> puts all edges into <i>REMAINING</i> priority-queue. In loop, pop the minimum weighted edge from the priority-queue, and if the edge doesn't make a cylce in the tree we have constructed, put it in the tree. After loop, we can get the MST. If we use <i>Disjoint Set</i>, we can easily check whether the edge selected makes a cycle. Make <i>Disjoint Set</i> using all vertices. And, in loop, check the source and the destination of the edge selected are in the same set. If they are not in the same set, they have not been connected. Then, unify the sets the vertices belong. Else, they are already connected, so just skip the edge.
+	  > &nbsp;&nbsp;The algorithm needs several datastructure, <i>priority-queue</i>. And, The input is a graph. I use my [heap implementation](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Priority_Queue/01_Heap) for priority-queue and [adjacency list representation of graph](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList) for the input graph. Also, I use my [disjoint set implementation](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/03_Set/01_Disjoint_Set).
+	 > &nbsp;&nbsp;There are a two main implementations. One is that implementing the <i>REMAINING</i> priority-queue as <i>sorted_array</i>. Anoter is the implementation using <i>Heap</i>.
+	 > - Time complexity: (discuss in theory, not aout my implementation) <br/>&nbsp;&nbsp; The implementations above don't affect the time complexity of this algorithms. The dominative operations of this algorithm are <i>build the priority-queue</i>, <i>pop the minimum weighted edge from REMAINING</i>(<i>pop from the priority-queue</i>). The first operation runs in <i>O(|E|log |E|)</i> time(sorting array) or <i>O(|E|)</i> time(heap). The second operation runs once in each iteration, and the iteration runs <i>O(|V|)</i> times. So, The total time complexity of the second operation is <i>O(|E|)</i>(sorting array) or <i> O(|E|log |E|)<i>(heap). Total time complexity of this algorithm is $$O(|E|log |E|)$$
+	 > &nbsp;&nbsp;The number of edges is <i>O(|V|<sup>2</sup>)</i>, since the input graph is a connectted, undirected graph. So, the time complexity of <i>Kruskal's algorithm</i> is same with <i>Prim's algorithm</i>. $$O(|E|log|E|)=O(|E|log|V|^2)=O(|E|log|V|)$$
+	 > - Space complexity: <br/>&nbsp;&nbsp; Regardless how to implement <i>REMAINING</i> priority-queue, the priority-queue has <i>O(|E|)</i> elements. And, disjoint set has <i>O(|V|)</i> elements. So, $$O(|V|||E|)$$
+<br/><br/>
 
 
 
@@ -105,13 +125,13 @@
 
 <p id = "RB_TREE"></p>
 
-1. [Red-Black Tree](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/01_Binary_Search_Tree/01_Red_Black_Tree)
- > - Contributor: unsik6
- > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
- > - Language used to implement: C++
- > - Abstract:<br/>&nbsp;&nbsp; Red-Black Tree is one of the balenced binary search tree. Since the height of this tree is <i>O(log n)</i> when <i>n</i> is the number of the node that has a key, The queries including 'search', 'predecessor', 'successor', 'minimum(maximum)', 'insert' and 'delete' can run in <i>O(h) = O(log n)</i> time. The height of a general binary search tree is <i>O(n)</i>. Moreover, Red-Black Tree is more efficeint than AVL Tree, also one of the balenced binary search tree. In AVL Tree, the process to satisfy the balanced property in the insertion of deletion runs recursively in units of one level. But, The process, which has the same purpose, of Red-Black Tree runs recursively in units of two levels. <br/>&nbsp;&nbsp;There is Red-Black Tree class implemented using template in the "RB_Tree.h" of this repository. The node of the class has an element variable declared using template. And when a node is deleted, My Red-Black Tree uses the successor of the node which will be deleted. However,you can use the predecessor of the node that will be deleted like the pseucode of CLRS. And, you can see how Red-Black Tree works in [here](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)(using predecessor)!
- > - Time complexity: <br/>&nbsp;&nbsp;All queries can run in <i>O(h) = O(log n)</i> time. $$The\ time\ complexity\ of\ all\ queries=O(log n)$$
- > - Space complexity: <br/>&nbsp;&nbsp;All leaves of Red-Black Tree is NIL. I implements all NIL distinctly, but they can be implemented as an integrated NIL since all operation of Red-Black Tree don't call or reference the member of NIL. $$O(n)$$
+1. [<b>Red-Black Tree</b>](https://github.com/unsik6/Algrithms_Codes/tree/main/02_Data_Structures/01_Binary_Search_Tree/01_Red_Black_Tree)
+	 > - Contributor: unsik6
+	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	 > - Language used to implement: C++
+	 > - Abstract:<br/>&nbsp;&nbsp; Red-Black Tree is one of the balenced binary search tree. Since the height of this tree is <i>O(log n)</i> when <i>n</i> is the number of the node that has a key, The queries including 'search', 'predecessor', 'successor', 'minimum(maximum)', 'insert' and 'delete' can run in <i>O(h) = O(log n)</i> time. The height of a general binary search tree is <i>O(n)</i>. Moreover, Red-Black Tree is more efficeint than AVL Tree, also one of the balenced binary search tree. In AVL Tree, the process to satisfy the balanced property in the insertion of deletion runs recursively in units of one level. But, The process, which has the same purpose, of Red-Black Tree runs recursively in units of two levels. <br/>&nbsp;&nbsp;There is Red-Black Tree class implemented using template in the "RB_Tree.h" of this repository. The node of the class has an element variable declared using template. And when a node is deleted, My Red-Black Tree uses the successor of the node which will be deleted. However,you can use the predecessor of the node that will be deleted like the pseucode of CLRS. And, you can see how Red-Black Tree works in [here](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)(using predecessor)!
+	 > - Time complexity: <br/>&nbsp;&nbsp;All queries can run in <i>O(h) = O(log n)</i> time. $$The\ time\ complexity\ of\ all\ queries=O(log n)$$
+	 > - Space complexity: <br/>&nbsp;&nbsp;All leaves of Red-Black Tree is NIL. I implements all NIL distinctly, but they can be implemented as an integrated NIL since all operation of Red-Black Tree don't call or reference the member of NIL. $$O(n)$$
 
 
 <br/><br/>
@@ -121,13 +141,13 @@
 
 <p id = "Heap"></p>
 
-1. [Heap](https://github.com/unsik6/Algorithms_Codes/blob/main/02_Data_Structures/02_Priority_Queue/01_Heap/Heap.h)
-> - Contributor: unsik6
- > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
- > - Language used to implement: C++
- > - Abstract:<br/>&nbsp;&nbsp; Heap is the one of the famous data structure. Heap is the left-complete binary tree. The main property of heap is <i>par.key() <= children.key(), where the heap is Min-Heap</i>, If the heap is Max-Heap, the property is reversed. It is outstanding to implement Priority queue. Heap keeps the optimal value(minimum or maximum) at the root of heap. Since, the time complexity of <i>insert</i> and <i>removeOptimalValue(with getOptimalValue)</i> is <i>O(log n)</i>, where <i>n</i> is the number of elements, heap is used to sort in <i>O(nlog n) time</i>.
- > - Time complexity: <br/>&nbsp;&nbsp;$$Build\ Heap\ =O(n)$$ &nbsp;&nbsp;Since heap is the left-complete binary tree, the height of heap is <i>O(log n)</i>. So, $$Insert\ and\ removeOptimalValue =O(log n)$$
- > - Space complexity: (implementation: array)<br/>&nbsp;&nbsp; Since heap is the left-complete binary tree, heap don't need empty space, altough the heap is implemented as array. So, $$O(n)$$
+1. [<b>Heap</b>](https://github.com/unsik6/Algorithms_Codes/blob/main/02_Data_Structures/02_Priority_Queue/01_Heap/Heap.h)
+	> - Contributor: unsik6
+	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	 > - Language used to implement: C++
+	 > - Abstract:<br/>&nbsp;&nbsp; Heap is the one of the famous data structure. Heap is the left-complete binary tree. The main property of heap is <i>par.key() <= children.key(), where the heap is Min-Heap</i>, If the heap is Max-Heap, the property is reversed. It is outstanding to implement Priority queue. Heap keeps the optimal value(minimum or maximum) at the root of heap. Since, the time complexity of <i>insert</i> and <i>removeOptimalValue(with getOptimalValue)</i> is <i>O(log n)</i>, where <i>n</i> is the number of elements, heap is used to sort in <i>O(nlog n) time</i>.
+	 > - Time complexity: <br/>&nbsp;&nbsp;$$Build\ Heap\ =O(n)$$ &nbsp;&nbsp;Since heap is the left-complete binary tree, the height of heap is <i>O(log n)</i>. So, $$Insert\ and\ removeOptimalValue =O(log n)$$
+	 > - Space complexity: (implementation: array)<br/>&nbsp;&nbsp; Since heap is the left-complete binary tree, heap don't need empty space, altough the heap is implemented as array. So, $$O(n)$$
 
 <br/><br/>
 
@@ -135,24 +155,25 @@
 
 <p id = "DisjointSet"></p>
 
-1. [DisjointSet](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/03_Set/01_Disjoint_Set)
-> - Contributor: unsik6
- > - Reference: [TECHIE DELIGT</>](https://www.techiedelight.com/ko/disjoint-set-data-structure-union-find-algorithm/)
- > - Language used to implement: C++
- > - Abstract:<br/>&nbsp;&nbsp; Disjoint Set(Union-Find Set) is a data structure implemented as a forest. Disjoint Set has sets that have the representative number. So, as I did, Disjoint Set can be implemented using the unordered_map<key, representative number of the set to which the key belongs>. Disjoint Set has two main operation, <i>Find</i> and <i>Union</i>. <i>Find</i> is passed a key and returns the representative of the set to wich the key belongs. <i>Union</i> is passed two keys. If the keys belong to the same set, it merges the sets.
- > - Time complexity: <br/>&nbsp;&nbsp; The time complexity of <i>Find</i> and <i>Union</i> is <i>O(n)</i>, if implemented as naive algorithm, where <i>n</i> is the number of elements. But, using <i>Path compression</i> and <i>Union by rank</i>, the time complexity is <i>amortized O(1)</i>. So, $$Find\ and\ Union =O(log n)$$
- > - Space complexity: (implementation: unorodered_set)<br/>&nbsp;&nbsp; It just need the pair, key and representative, by each elements. And, if appling <i>Path compression</i> and <i> Union by rank</i>, we need the pair, <representativ, height of the tree representing the set> by each set. The number of sets is less than the number of elements. So, $$O(n)$$
+1. [<b>DisjointSet</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/03_Set/01_Disjoint_Set)
+	> - Contributor: unsik6
+	 > - Reference: [TECHIE DELIGT</>](https://www.techiedelight.com/ko/disjoint-set-data-structure-union-find-algorithm/)
+	 > - Language used to implement: C++
+	 > - Abstract:<br/>&nbsp;&nbsp; Disjoint Set(Union-Find Set) is a data structure implemented as a forest. Disjoint Set has sets that have the representative number. So, as I did, Disjoint Set can be implemented using the unordered_map<key, representative number of the set to which the key belongs>. Disjoint Set has two main operation, <i>Find</i> and <i>Union</i>. <i>Find</i> is passed a key and returns the representative of the set to wich the key belongs. <i>Union</i> is passed two keys. If the keys belong to the same set, it merges the sets.
+	 > - Time complexity: <br/>&nbsp;&nbsp; The time complexity of <i>Find</i> and <i>Union</i> is <i>O(n)</i>, if implemented as naive algorithm, where <i>n</i> is the number of elements. But, using <i>Path compression</i> and <i>Union by rank</i>, the time complexity is <i>amortized O(1)</i>. So, $$Find\ and\ Union =O(log n)$$
+	 > - Space complexity: (implementation: unorodered_set)<br/>&nbsp;&nbsp; It just need the pair, key and representative, by each elements. And, if appling <i>Path compression</i> and <i> Union by rank</i>, we need the pair, <representativ, height of the tree representing the set> by each set. The number of sets is less than the number of elements. So, $$O(n)$$
 
+<br/><br/>
 
 ## Graph
 <p id = "Graph_AdjacencyList"></p>
 
-1. [Adjacency List representation](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList)
-> - Contributor: unsik6
- > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
- > - Language used to implement: C++
- > - Abstract:<br/>&nbsp;&nbsp; Adjacency List is the one of the representations of graph. The idea of this representation is storing the edges from each vector in same linked list. This representation needs less space than <i>Adjacency Matrix representation</i>.<br/>&nbsp;&nbsp; I implement that <i>std::vector<std::list<Edge*>*></i>. <i>Edge</i> is the custom class that has the pointers pointing the source vertex and the destination vertex and a weight. I implement Adjacency List as template class that need two type defined by user. The first type is the type of the element of vertices and the second type is the type of the weight of edges.
- > - Time complexity: !!! This time complexity is not about Adjacency List ADT. !!!<br/>&nbsp;&nbsp; <i>Insert vertex</i> needs that the two array is inserted each one element, so the operation runs in <i>amortized O(1)</i> time. <i>delete vertex</i> and <i>find vertex</i> by the element of vertex runs in <i>O(|V|)</i>, where <i>V</i> is the set of vertices. The operations need to find the vertex having the element we input.  <i>insert edge</i> by a weight and two elements of vertices, source vertex and destination vertex, runs in <i>O(|V|)</i> time. The operation need to find the index of  the source vertex. <i>delete edge</i> by the same parameters runs in <i>O(|V|+|E|)</i> time, where <i>E</i> is the set of edges. The operation need to visit adjacency lists of all vertices and edges. <i>find edge</i> by the same parameters runs in <i>O(degree of source vertex)</i>.
- > - Space complexity: !!! This time complexity is not about Adjacency List ADT. !!!<br/>&nbsp;&nbsp; I added one more array(<i>std::vector<Vertex*></i>) having pointers of all vertices. This array needs <i>O(|V|)</i> space. Adjacency lists of all vertices have pointers of all edges. And all adjacency lists are stored in same array. So, we need <i>O(|V| + |E|)</i> space. Since we don't discuss about the number of elements of vertex and edge, total space complexity is <i>O(|V| + |E|)</i>.
+1. [<b>Adjacency List representation</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList)
+	> - Contributor: unsik6
+	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	 > - Language used to implement: C++
+	 > - Abstract:<br/>&nbsp;&nbsp; Adjacency List is the one of the representations of graph. The idea of this representation is storing the edges from each vector in same linked list. This representation needs less space than <i>Adjacency Matrix representation</i>.<br/>&nbsp;&nbsp; I implement that <i>std::vector<std::list<Edge*>*></i>. <i>Edge</i> is the custom class that has the pointers pointing the source vertex and the destination vertex and a weight. I implement Adjacency List as template class that need two type defined by user. The first type is the type of the element of vertices and the second type is the type of the weight of edges.
+	 > - Time complexity: !!! This time complexity is not about Adjacency List ADT. !!!<br/>&nbsp;&nbsp; <i>Insert vertex</i> needs that the two array is inserted each one element, so the operation runs in <i>amortized O(1)</i> time. <i>delete vertex</i> and <i>find vertex</i> by the element of vertex runs in <i>O(|V|)</i>, where <i>V</i> is the set of vertices. The operations need to find the vertex having the element we input.  <i>insert edge</i> by a weight and two elements of vertices, source vertex and destination vertex, runs in <i>O(|V|)</i> time. The operation need to find the index of  the source vertex. <i>delete edge</i> by the same parameters runs in <i>O(|V|+|E|)</i> time, where <i>E</i> is the set of edges. The operation need to visit adjacency lists of all vertices and edges. <i>find edge</i> by the same parameters runs in <i>O(degree of source vertex)</i>.
+	 > - Space complexity: !!! This time complexity is not about Adjacency List ADT. !!!<br/>&nbsp;&nbsp; I added one more array(<i>std::vector<Vertex*></i>) having pointers of all vertices. This array needs <i>O(|V|)</i> space. Adjacency lists of all vertices have pointers of all edges. And all adjacency lists are stored in same array. So, we need <i>O(|V| + |E|)</i> space. Since we don't discuss about the number of elements of vertex and edge, total space complexity is <i>O(|V| + |E|)</i>.
 
-<br/>
+<br/><br/>
