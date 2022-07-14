@@ -22,11 +22,12 @@ public:
 	~Heap();
 
 	int getSize() { return m_size; }
+	T* getArr() { return m_arr; }
 
 	T getOptimal();
-	void insert(T _e);
+	void insert(T& _e);
 	T removeOpt();
-	void updateKey(T _target, T _revisedElem);
+	void updateKey(T _target, T& _revisedElem);
 
 	void printAll();
 };
@@ -38,7 +39,7 @@ template<typename T>
 Heap<T>::Heap(int _cap, bool _isMin) { m_arr = new T[_cap + 1]; m_cap = _cap; m_isMinHeap = _isMin; }
 
 template<typename T>
-Heap<T>::~Heap() { delete[] m_arr; }
+Heap<T>::~Heap() { if (m_arr != nullptr) delete[] m_arr; }
 
 template<typename T>
 void Heap<T>::swapByIDX(int _a, int _b)
@@ -133,7 +134,7 @@ T Heap<T>::getOptimal()
 }
 
 template<typename T>
-void Heap<T>::insert(T _e)
+void Heap<T>::insert(T& _e)
 {
 	if (m_cap <= m_size)
 	{
@@ -161,23 +162,30 @@ T Heap<T>::removeOpt()
 }
 
 template<typename T>
-void Heap<T>::updateKey(T _target, T _revisedElem)
+void Heap<T>::updateKey(T _target, T& _revisedElem)
 {
 	int targetIdx = -1;
-	for (int i = 0; i < m_size; i++)
+	for (int i = 1; i <= m_size; i++)
 	{
-		if (m_arr[i] == _target) targetIdx = i; break;
+		if (m_arr[i] == _target)
+		{
+			targetIdx = i;
+			break;
+		}
 	}
+	
+	// Not FoundException
+	if (targetIdx == -1)return;
 	m_arr[targetIdx] = _revisedElem;
 	if (m_isMinHeap)
 	{
-		if (_target < _revisedElem) upHeap(targetIdx);
-		else downHeap(targetIdx);
+		if (_target < _revisedElem) downHeap(targetIdx);
+		else upHeap(targetIdx);
 	}
 	else
 	{
-		if (_target < _revisedElem) downHeap(targetIdx);
-		else upHeap(targetIdx);
+		if (_target < _revisedElem) upHeap(targetIdx);
+		else downHeap(targetIdx);
 	}
 }
 

@@ -27,6 +27,7 @@ public:
 		ET m_wt;
 
 	public:
+		Edge() { m_src = m_dst = nullptr; m_wt = NULL; }
 		Edge(Vertex* _src, Vertex* _dst, ET _wt) { m_src = _src; m_dst = _dst; m_wt = _wt; }
 		bool operator <(const Edge& _a)
 		{
