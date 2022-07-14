@@ -10,3 +10,23 @@
 1 4 12
 2 1 13
 1 2 14
+
+***OUTPUT with INPUT***
+Input the number of vertices: 5
+Input the number of Edges: 5
+Input the element of vertex 0: 0
+Input the element of vertex 1: 1
+Input the element of vertex 2: 2
+Input the element of vertex 3: 3
+Input the element of vertex 4: 4
+Input the src, dst, weight of edge 0: 4 2 10
+Input the src, dst, weight of edge 1: 1 3 11
+Input the src, dst, weight of edge 2: 1 4 12
+Input the src, dst, weight of edge 3: 2 1 13
+Input the src, dst, weight of edge 4: 1 2 14
+Vertex And Edges :
+vertex 0(0) :
+vertex 1(1) : (dst: 3, Weight: 11) (dst: 4, Weight: 12) (dst: 2, Weight: 14)
+vertex 2(2) : (dst: 1, Weight: 13)
+vertex 3(3) :
+vertex 4(4) : (dst: 2, Weight: 10)
