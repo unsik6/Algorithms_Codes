@@ -17,7 +17,7 @@ public:
 		Vertex(VT _e = NULL) { m_elem = _e; }
 
 		VT getElem() { return m_elem; }
-		void setID(VT _e) { m_elem = _e; }
+		void setElem(VT _e) { m_elem = _e; }
 	};
 
 	class Edge
@@ -33,10 +33,21 @@ public:
 		{
 			return this->m_wt < _a.m_wt;
 		}
+		void operator =(const Edge& _a)
+		{
+			Vertex* copySrc = new Vertex(_a.m_src->getElem());
+			Vertex* copyDst = new Vertex(_a.m_dst->getElem());
+			this->m_src = copySrc;
+			this->m_dst = copyDst;
+			this->m_wt = _a.m_wt;
+		}
 
 		Vertex* getSrc() { return m_src; }
+		void setSrc(Vertex* _src) { m_src = _src; }
 		Vertex* getDst() { return m_dst; }
+		void setDst(Vertex* _dst) { m_dst = _dst; }
 		ET getWeight() { return m_wt; }
+		void setWeight(ET _wt) { m_wt = _wt; }
 	};
 
 private:
@@ -52,9 +63,10 @@ public:
 
 	size_t getVerticesNum() { return m_vertices.size(); }
 
-	// vertex Function
+	// Get the graph information
 	Vertex* vertexPtrByRankinVertices(int _idx);
 	list<Edge*>* listPtrByRankInAL(int _idx);
+	vector<Vertex*>* getVertices() { return &m_vertices; };
 
 	// Vertex Function
 	void insertVertex(VT _vElem);
@@ -82,9 +94,14 @@ Graph_AdjacencyList<VT, ET>::~Graph_AdjacencyList()
 			m_adjacencyList[i]->pop_front();
 			delete tmp;
 		}
-		delete m_adjacencyList[i];
-		delete m_vertices[i];
+		if(m_adjacencyList[i] != nullptr) delete m_adjacencyList[i];
+		if(m_vertices[i] != nullptr) delete m_vertices[i];
+
+		m_vertices[i] = nullptr;
+		m_adjacencyList[i] = nullptr;
 	}
+	m_vertices.clear();
+	m_adjacencyList.clear();
 }
 template<typename VT, typename ET>
 typename Graph_AdjacencyList<VT, ET>::Vertex* Graph_AdjacencyList<VT, ET>::vertexPtrByRankinVertices(int _idx)

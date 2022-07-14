@@ -53,7 +53,7 @@ template<typename T>
 void Heap<T>::upHeap(int _startIdx)
 {
 	int curIdx = _startIdx;
-	while (curIdx > 0)
+	while (curIdx / 2 > 0)
 	{
 		// This is MinHeap.
 		if (m_isMinHeap)
@@ -104,7 +104,7 @@ void Heap<T>::downHeap(int _startIdx)
 				opt = m_arr[curIdx * 2];
 				optIdx = curIdx * 2;
 			}
-			if (m_arr[optIdx] < m_arr[curIdx * 2 + 1])
+			if (m_arr[curIdx] < m_arr[curIdx * 2 + 1])
 			{
 				opt = m_arr[curIdx * 2 + 1];
 				optIdx = curIdx * 2 + 1;

@@ -1,10 +1,12 @@
 #pragma once
 #include <iostream>
 #include "Heap.h"
+#include "DisjointSet.h"
 #include "Graph_AdjacencyList.h"
 
 namespace MST
 {
+	// Prim
 	enum class primVertexFlag { UNSEEN, FRINGE, TREE };
 
 	template<typename VT, typename ET>
@@ -145,6 +147,69 @@ namespace MST
 			cout << "(src: "
 				<< mst[i]->getSrc()->getElem() << ", dst: " << mst[i]->getDst()->getElem()
 				<< ", Weight : " << mst[i]->getWeight() << ") ";
+		}
+	}
+
+
+
+	// Kruskal
+	template<typename VT, typename ET>
+	typename Graph_AdjacencyList<VT, ET>::Edge* MST_Kruskal(Graph_AdjacencyList<VT, ET>* _graph)
+	{
+		int vertexNum = (int)_graph->getVerticesNum();
+
+		// To return
+		int retIdx = 0;
+		typename Graph_AdjacencyList<VT, ET>::Edge* retEdges = new typename Graph_AdjacencyList<VT, ET>::Edge[vertexNum - 1];
+
+		// Set the min-heap of Edges
+		int edgeNum = 0;
+		for (int i = 0; i < vertexNum; i++)
+		{
+			edgeNum += _graph->listPtrByRankInAL(i)->size();
+		}
+		Heap<typename Graph_AdjacencyList<VT, ET>::Edge> REMAINING_Edges(edgeNum, true);
+		for (int i = 0; i < vertexNum; i++)
+		{
+			for (typename Graph_AdjacencyList<VT, ET>::Edge* edgePtr : *_graph->listPtrByRankInAL(i))
+			{
+				REMAINING_Edges.insert(*edgePtr);
+			}
+		}
+		// Set the disjointSet of vertices
+		vector<VT> VTVec;
+		for (int i = 0; i < vertexNum; i++)
+			VTVec.push_back(_graph->getVertices()->at(i)->getElem());
+		DisjointSet<VT> vertexCycleTable(&VTVec);
+
+		// loop
+		while (REMAINING_Edges.getSize() > 0 || retIdx < vertexNum - 1)
+		{
+			typename Graph_AdjacencyList<VT, ET>::Edge minEdge = REMAINING_Edges.removeOpt();
+			typename Graph_AdjacencyList<VT, ET>::Vertex* src = minEdge.getSrc();
+			typename Graph_AdjacencyList<VT, ET>::Vertex* dst = minEdge.getDst();
+
+			if (vertexCycleTable.find(src->getElem()) == vertexCycleTable.find(dst->getElem()))
+				continue;
+			else
+			{
+				vertexCycleTable.unionSets(src->getElem(), dst->getElem());
+				retEdges[retIdx++] = minEdge;
+			}
+		}
+
+		return retEdges;
+	}
+
+	template<typename VT, typename ET>
+	void printMST_Kruskal(Graph_AdjacencyList<VT, ET>* _graph)
+	{
+		typename Graph_AdjacencyList<VT, ET>::Edge* mst = MST_Kruskal(_graph);
+		for (int i = 0; i < _graph->getVerticesNum() - 1; i++)
+		{
+			cout << "(src: "
+				<< mst[i].getSrc()->getElem() << ", dst: " << mst[i].getDst()->getElem()
+				<< ", Weight : " << mst[i].getWeight() << ") ";
 		}
 	}
 };

@@ -26,7 +26,7 @@ public:
 	void makeSet(vector<T>* _elemVec);
 
 	// find() returns the representative number of the set to which the input key belons.
-	int find(T _key);
+	T find(T _key);
 
 	// unionSets() unifies the two set to that each input key belongs.
 	void unionSets(T _key1, T _key2);
@@ -69,7 +69,7 @@ void DisjointSet<T>::makeSet(vector<T>* _elemVec)
 }
 
 template <typename T>
-int DisjointSet<T>::find(T _key)
+T DisjointSet<T>::find(T _key)
 {
 	// compress the path
 	if (m_parent[_key] != _key)
@@ -91,17 +91,17 @@ void DisjointSet<T>::unionSets(T _key1, T _key2)
 	}
 
 	// Add the tree that has smaller height to another. It makes all trees have their height as small as possible.
-	if (m_rank[_key1] > m_rank[_key2])
+	if (m_rank[repNum1] < m_rank[repNum2])
 	{
-		m_parent[_key2] = repNum1;
+		m_parent[repNum1] = repNum2;
 	}
 	else
 	{
-		m_parent[_key1] = repNum2;
+		m_parent[repNum2] = repNum1;
 		// If the sizes of the two sets are same, unify the sets to any one and plus 1 to the dominate set.
-		if (m_rank[_key1] == m_rank[_key2])
+		if (m_rank[repNum1] == m_rank[repNum2])
 		{
-			m_rank[_key1]++;
+			m_rank[repNum1] += m_rank[repNum2] + 1;
 		}
 	}
 }
