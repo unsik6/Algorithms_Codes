@@ -30,6 +30,10 @@ int main()
 	}
 
 	graph.print();
+
+
+	MST::printMST_Prim<char, int>(&graph, nullptr);
+
 	MST::printMST_Kruskal<char, int>(&graph);
 
 }
