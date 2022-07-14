@@ -1,6 +1,7 @@
 
 
 
+
 # Algorithms_Codes
 
 # Outline
@@ -16,13 +17,17 @@
     <td><center><b>Name</b></center></td>
   </tr>
   <tr>
-    <td rowspan= 2><center>Algorithms</center> </td>
+    <td rowspan= 3><center>Algorithms</center> </td>
     <td><center>Pattern Matching</center></td>
     <td><center><a href = "#AC_Automata">Aho-Corasick Automata</a></center></td>
   </tr>
   <tr>
     <td><center>2D Pattern Matching</center></td>
     <td><center><a href = "#BIRD_2D">BIRD Algorithm</a></center></td>
+  </tr>
+  <tr>
+    <td><center>MST(Graph Algorithms)</center></td>
+    <td><center><a href = "#Prim_Algorithm">Prim Algorithm</a></center></td>
   </tr>
   <tr>
 	  <td rowspan= 4><center>Data Structure</center></td>
@@ -44,9 +49,8 @@
 </table>
 
 # Algorithms
-&nbsp;&nbsp;Implementations of Algorithms using C++.
 ## Pattern Matching
-&nbsp;&nbsp;Pattern matching problem is the problem that finds multiple or single pattern in multiple of single given text.
+- Pattern matching problem is the problem that finds multiple or single pattern in multiple of single given text.
 
 <p id = "AC_Automata"></p>
 
@@ -69,10 +73,31 @@
  > - Contributor: unsik6
  > - Reference: R.S.Bird, "TWO DIMENSIONAL PATTERN MATCHING", IPL(1977), 168-170
  > - Language used to implement: C++
- > - Abstract: Two dimensional pattern matching algorithm of R. S. Bird uses Aho-Corasick automata and KMP pattern Matching algorithm. The rows of pattern(<i>m X m </i>) is considered multiple patterns. So, as Aho-Corasick automata is applied to row matching, Bird algorithm finds all rows that occur in a position of text(<i>n X n</i>). In two dimensional pattern matching, It can be siad that the patterns was found by finding all the rows of pattern in order. It can be computation using KMP algorithm.
+ > - Abstract: <br/>&nbsp;&nbsp;Two dimensional pattern matching algorithm of R. S. Bird uses Aho-Corasick automata and KMP pattern Matching algorithm. The rows of pattern(<i>m X m </i>) is considered multiple patterns. So, as Aho-Corasick automata is applied to row matching, Bird algorithm finds all rows that occur in a position of text(<i>n X n</i>). In two dimensional pattern matching, It can be siad that the patterns was found by finding all the rows of pattern in order. It can be computation using KMP algorithm.
  > - Time complexity: (implementation: array) <br/>&nbsp;&nbsp; One of preprocessing to construct an AC automata by all rows of pattern needs <i>O(m<sup>2</sup>)</i> time. In the original paper, Other preprocessing, labeling all rows of pattern, was introduced it needs same time. but it can run in <i>O(m)</i> time using an AC automata already constructed. Also, It can run in the preprocessing to construct Output Func of an AC automata. The rest of preprocessing is to construct a KMP failure function using the labels of rows of pattern, and It runs in time in <i>O(m<sup>2</sup>)</i>.<br/>&nbsp;&nbsp;The prcessing to find all location of pattern in text run in  <i>O(n<sup>2</sup>)</i> time, since there are <i>n</i> column and KMP algorithm in each column needs <i>O(n)</i> time. And row matching needs <i>O(n<sup>2</sup>)</i> time, since Time complexity of the pattern matching using AC automata is linear. So, $$O(m^2 + m + m^2 + n^2 + n^2)$$ $$Total\ running\ time=O(n^2+m^2)$$
  > - Space complexity: (implementation: array) <br/>&nbsp;&nbsp; There are an AC automata, which haves at most <i>m<sup>2</sup></i> nodes, the failure function of the AC automata that also have the same number of elements becuase it is implemented as array, the output function, which have <i>m<sup>2</sup></i> elements, and the KMP failure function, in column matching process, that have <i>m</i> elements. And we need the array that have <i>n</i> elements, to keep how many rows of pattern matched before using KMP algorithm in column matching. So, the space complexity of this algorithm is $$O(n+m^2)$$
-<br/>
+<br/><br/>
+
+## MST (Graph Algorithm)
+
+- Minimum Spanning Tree(MST) problem is one of the famous problems. The problem is that finding a spanning tree with the minimum weight of a given connected, undirected graph. It is no matter the given graph is weighted or not. If the given graph is unweighted, we can solve the problem considering the weights of all edges are same. A spanning tree for a connected, undirected graph is an undirected tree, a subgraph which includes all vertices of the given graph. The weight of a spanning tree is the sum of the weight of all edges of itself. If a spanning tree has the least weight than othes, the spanning tree is MST.
+
+<p id = "Prim_Algorithm"></p>
+
+1. [Prim Algorithm](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/03_MST(Graph_Algorithms)/01_Prim_algorithm)
+ > - Contributor: unsik6
+ > - Reference: R.S.Bird, "TWO DIMENSIONAL PATTERN MATCHING", IPL(1977), 168-170
+ > - Language used to implement: C++
+ > - Abstract:<br/>&nbsp;&nbsp; <i>Prim algorithm</i> is the algorithm to find MST. The idea of prim algorithm is like BFS. We insert the root vertex in <i>FRINGE</i> priority-queue. The priority-queue orders the vertices by the minimum weight of the edges of the vertex. And, in loop, pop a vertex from the priority-queue and put the minimum weighted edge of the vertex into the MST edge set. (All vertices of the given graph belong to MST, so the ouput is the set of edges.) The next process in the loop is that all adjacent vertices of the vertex, the destination of latest inserted edge,  insert into <i>FRINGE</i> priority-queue. <i>Prim algorithm</i> concentrate the information of vertices. Though it control the edges, consider vertices first. <br/>
+  > &nbsp;&nbsp;The algorithm needs several datastructure, <i>Heap</i>. And, The input is a graph. I use my [heap implementation](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Priority_Queue/01_Heap) and [adjacency list representation of graph](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList).
+ > &nbsp;&nbsp;There are a two main implementations. One is that implementing the priority-queue as <i>unordered_array</i>. Anoter is the implementation using <i>Heap</i>. Since <i>oredered_array</i> has no advantage, it is excluded.
+ > - Time complexity: (discuss in theory, not aout my implementation) <br/>&nbsp;&nbsp; In the first implementation, The algorithm runs in <i>O(V|<sup>2</sup>) time</i>, where <i>V</i> is the set of vertices. The dominative operation is searching the vertex, which has the minimum weighted incident edge from a vertex of <i>FRINGE</i>. It runs in <i>O(|V|)</i> time by each iteration. So, the time complexity is <i>O(|V|)</i>.<br/>
+ > &nbsp;&nbsp;The second implementation, using <i>Heap</i>. The searching operation runs in <i>O(log n)</i> time. And, since each edges can be considered from source and destination, the keys that mean the minimum weight of all edges from a vertex can be updated. <i>DecreasKey</i> of <i>Heap</i> runs in <i>O(log n)</i> time. So, the total time complexity of updating keys is <i>O(|E|log n)</i>, where <i>E</i> is the set of edges.  $$using\ unordered_array=O(|V|^2)$$ $$using\ heap=O(|V| log n + |E|log n) = O(|E| log n)$$
+ > - Space complexity: <br/>&nbsp;&nbsp; Regardless how to implement <i>FRINGE</i> priority-queue, the priority-queue has <i>O(|V|)</i> elements. $$O(|V|)$$
+<br/><br/>
+
+
+
 
 
 # Data Structures
