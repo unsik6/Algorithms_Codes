@@ -116,6 +116,8 @@
 	 > - Time complexity: (discuss in theory, not aout my implementation) <br/>&nbsp;&nbsp; The implementations above don't affect the time complexity of this algorithms. The dominative operations of this algorithm are <i>build the priority-queue</i>, <i>pop the minimum weighted edge from REMAINING</i>(<i>pop from the priority-queue</i>). The first operation runs in <i>O(|E|log |E|)</i> time(sorting array) or <i>O(|E|)</i> time(heap). The second operation runs once in each iteration, and the iteration runs <i>O(|V|)</i> times. So, The total time complexity of the second operation is <i>O(|E|)</i>(sorting array) or <i> O(|E|log |E|)<i>(heap). Total time complexity of this algorithm is $$O(|E|log |E|)$$
 	 > &nbsp;&nbsp;The number of edges is <i>O(|V|<sup>2</sup>)</i>, since the input graph is a connectted, undirected graph. So, the time complexity of <i>Kruskal's algorithm</i> is same with <i>Prim's algorithm</i>. $$O(|E|log|E|)=O(|E|log|V|^2)=O(|E|log|V|)$$
 	 > - Space complexity: <br/>&nbsp;&nbsp; Regardless how to implement <i>REMAINING</i> priority-queue, the priority-queue has <i>O(|E|)</i> elements. And, disjoint set has <i>O(|V|)</i> elements. So, $$O(|V|||E|)$$
+
+
 <br/><br/>
 
 
