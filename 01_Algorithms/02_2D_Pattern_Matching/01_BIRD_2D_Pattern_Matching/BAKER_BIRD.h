@@ -1,7 +1,7 @@
 #pragma once
 #include "AC_Automata.h"
 
-class BIRD_2D
+class BAKER_BIRD
 {
 	int m_txtSize = 0; int m_patSize = 0;
 	string* m_txt = nullptr;
@@ -12,7 +12,7 @@ class BIRD_2D
 	int* m_kmpFArray = nullptr;
 
 public:
-	BIRD_2D(string* _txt, int _tSize, string* _pat, int _pSize)
+	BAKER_BIRD(string* _txt, int _tSize, string* _pat, int _pSize)
 	{
 		m_txt = _txt;
 		m_pats = _pat;
@@ -25,7 +25,7 @@ public:
 		labelingPatternRow();
 		constructKMPFailure();
 	}
-	~BIRD_2D()
+	~BAKER_BIRD()
 	{
 		delete[] m_kmpFArray;
 		delete[] m_arrLabelOfPatRow;

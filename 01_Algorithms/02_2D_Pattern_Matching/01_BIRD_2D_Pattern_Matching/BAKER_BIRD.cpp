@@ -1,6 +1,6 @@
-#include "BIRD_2D.h"
+#include "BAKER_BIRD.h"
 
-void BIRD_2D::labelingPatternRow()
+void BAKER_BIRD::labelingPatternRow()
 {
 	vector<vector<int>*>* outputsPtr = m_ac->getOutputs();
 	for (int i = 0; i < outputsPtr->size(); i++)
@@ -17,7 +17,7 @@ void BIRD_2D::labelingPatternRow()
 	}
 }
 
-void BIRD_2D::constructAC()
+void BAKER_BIRD::constructAC()
 {
 	// change string array to string vector
 	vector<string> tmpPats;
@@ -30,7 +30,7 @@ void BIRD_2D::constructAC()
 	m_ac = new AC_Automata(&tmpPats);
 }
 
-void BIRD_2D::constructKMPFailure()
+void BAKER_BIRD::constructKMPFailure()
 {
 	m_kmpFArray[0] = -1;
 	int i = 1, j = 0;
@@ -54,7 +54,7 @@ void BIRD_2D::constructKMPFailure()
 	}
 }
 
-bool BIRD_2D::isTerminal(int _state, int _rowLabel)
+bool BAKER_BIRD::isTerminal(int _state, int _rowLabel)
 {
 	vector<vector<int>*>* outputsPtr = m_ac->getOutputs();
 	for (int i = 0; i < outputsPtr->at(_state)->size(); i++)
@@ -65,7 +65,7 @@ bool BIRD_2D::isTerminal(int _state, int _rowLabel)
 	return false;
 }
 
-void BIRD_2D::patternMatching()
+void BAKER_BIRD::patternMatching()
 {
 	cout << "pattern Matching";
 	vector<vector<int>*>* outputsPtr = m_ac->getOutputs();
@@ -106,7 +106,7 @@ void BIRD_2D::patternMatching()
 	cout << '\n';
 }
 
-void BIRD_2D::checkPrint()
+void BAKER_BIRD::checkPrint()
 {
 	m_ac->printForCheck();
 	cout << "\n---------------\nLabels of each row of the pattern\n";
