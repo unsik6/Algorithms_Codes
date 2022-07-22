@@ -106,14 +106,14 @@ namespace MST
 						if (verticesFlags[i] == primVertexFlag::UNSEEN)
 						{
 							verticesFlags[i] = primVertexFlag::FRINGE;
-							lightestEdgeAndVertex<VT, ET> adj{ i, edgePtr->getWeight(), edgePtr };
-							fringesHeap.insert(adj);
+							lightestEdgeAndVertex<VT, ET> new_adj{ i, edgePtr->getWeight(), edgePtr };
+							fringesHeap.insert(new_adj);
 						}
 						// decrease lightest weight of a fringe vertex
 						else if (verticesFlags[i] == primVertexFlag::FRINGE)
 						{
 							lightestEdgeAndVertex<VT, ET> ori{ i };
-							lightestEdgeAndVertex<VT, ET> adj{ i, edgePtr->getWeight(), edgePtr };
+							lightestEdgeAndVertex<VT, ET> new_adj{ i, edgePtr->getWeight(), edgePtr };
 							for (int j = 1; j <= fringesHeap.getSize(); j++)
 							{
 								if (fringesHeap.getArr()[j] == ori)
@@ -123,8 +123,8 @@ namespace MST
 								}
 									
 							}
-							if (adj < ori)
-								fringesHeap.updateKey(ori, adj);
+							if (new_adj < ori)
+								fringesHeap.updateKey(ori, new_adj);
 						}
 
 						break;
@@ -134,6 +134,8 @@ namespace MST
 
 			if (retIdx == vertexNum) break;
 		}
+
+		delete verticesFlags;
 
 		return retEdges;
 	}
