@@ -2,6 +2,7 @@
 
 
 
+
 # Algorithms_Codes
 
 # Outline
@@ -17,7 +18,7 @@
     <td><center><b>Name</b></center></td>
   </tr>
   <tr>
-    <td rowspan= 3><center>Algorithms</center> </td>
+    <td rowspan= 4><center>Algorithms</center> </td>
     <td><center>Pattern Matching</center></td>
     <td><center><a href = "#AC_Automata">Aho-Corasick Automata</a></center></td>
   </tr>
@@ -26,8 +27,11 @@
     <td><center><a href = "#BIRD_2D">BAKER-BIRD Algorithm</a></center></td>
   </tr>
   <tr>
-    <td><center>Graph Algorithms</center></td>
+    <td rowspan= 2><center>Graph Algorithms</center></td>
     <td><center><a href = "#MST">MST</a><br/>(<a href = "#Prim_Algorithm">Prim's Algorithm</a>, <a href = "#Kruskal_Algorithm">Kruskal's Algorithm</a>)</center></td>
+  </tr>
+  <tr>
+	  <td><center><a href = "#ShortestPath">Shortest Path</a><br/>(<a href = "#Dijkstra">Dijkstra's Algorithm</a>)</center></td>
   </tr>
   <tr>
 	  <td rowspan= 4><center>Data Structure</center></td>
@@ -83,9 +87,9 @@
 
 <p id = "MST"></p>
 
-[<b>MST</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/03_Graph_algorithms/01_MST)
+### [MST](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/03_Graph_algorithms/01_MST)
 
-- Minimum Spanning Tree(MST) problem is one of the famous problems. The problem is that finding a spanning tree with the minimum weight of a given connected, undirected graph. It is no matter the given graph is weighted or not. If the given graph is unweighted, we can solve the problem considering the weights of all edges are same. A spanning tree for a connected, undirected graph is an undirected tree, a subgraph which includes all vertices of the given graph. The weight of a spanning tree is the sum of the weight of all edges of itself. If a spanning tree has the least weight than othes, the spanning tree is MST.
+- Minimum Spanning Tree(MST) problem is one of the famous problems. The problem is finding a spanning tree with the minimum weight of a given connected, undirected graph. It is no matter the given graph is weighted or not. If the given graph is unweighted, we can solve the problem considering the weights of all edges are same. A spanning tree for a connected, undirected graph is an undirected tree, a subgraph which includes all vertices of the given graph. The weight of a spanning tree is the sum of the weight of all edges of itself. If a spanning tree has the least weight than othes, the spanning tree is MST.
 - Here are two MST algorithms, Prim's and Kruskal's. The algorithms are implemented in one namespace <i>MST</i>,
 - They return different datatype. So, If you want to test the algorithm, NOT use the function named the name of algorithms. please use the function whose name starts with <i>print</i>.
 
@@ -120,7 +124,34 @@
 
 
 <br/><br/>
+<p id = "ShortestPath"></p>
 
+### [Shortest Path](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/03_Graph_algorithms/02_ShortestPath)
+
+- Shortest Path problem is one of the famous graph problems. The probelm is finding a minimum-weight path from a source vertex(or all vertices) to a destination vertex(or all vertices). Generally, it looks like the problems not depending on some properties of a given graph, such as (un)directed, acyclic. But some algorithms to solve these probelms restrict input.
+- There are four types of shotest path problem.
+	> 1. Single-Source Shortest Paths (SSSP): finding the shortest paths from a given specified vertex(source vertex) to all vertices.
+	> 2. Single-Destination Shortest Paths (SDSP): finding the shortest paths from all vertices to a given specified vertex(destinateion vertex). This problem equals SSSP. Change all direction of edges of a given graph.(If the graph is undirected, it is not needed.) Input a given destination vertex into SSSP as a source, and output the path reversed directions (distances is same).
+	> 3. Single-Pair Shortest Path (SPSP): finding the shortest path from a given specified vertex(source vertex) to a given specified vertex(destination vertex). This problem equals SSSP, because we get the shortest path that we want by expanding the shortest paths of each vertex. So, we have to check all shortest paths from the source vertex to all vertices in the worst case.
+	> 4. All-Pair Shortest Path (APSP): finding the shortest paths from all vertices to all vertices.
+- The algorithms are implemented in one namespace <i>ShortestPath</i>,
+-   They return different datatype. So, If you want to test the algorithm, NOT use the function named the name of algorithms. please use the function whose name starts with  _print_.
+
+<p id = "Dijkstra"></p>
+
+1. <b> Dijkstra's Algorithm</b>
+	> - Contributor: unsik6
+	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	 > - Language used to implement: C++
+	 > - Abstract:<br/>&nbsp;&nbsp; <i>Dijkstra's algorithm</i> is one of the algorithm to solve Single-Source Shortest Path (SSSP) problem. Its mechanism equals <a href = "#Prim_Algorithm"><i>Prim's</i></a>. Unlike Prim’s, this algorithm considers the distance from a source vertex we have updated, when selecting a new <i>TREE</i> vertex. If the new <i>TREE</i> vertex selected, we insert the adjacent vertices to <i>FRINGE</i> priority-queue and update the distance from a source vertex of the <i>FRINGE</i> vertices already existing. If the distance of a adjacent vertex of a new <i>TREE</i> vertex already definded is longer than the new distance(the distance of the  new <i>TREE</i> vertex + the weight of edge from the new <i>TREE</i> vertex to the adjacent <i>FRINGE</i> vertex), update the distance of the adjacent <i>FRINGE</i> vertex to the new distance. If the distance of an adjacent vertex has not defined, it means the vertex is <i>UNSEEN</i>, so insert the vertex into <i>FRINGE</i> priority-queue and update the distance of the vertex to the new distance. If all distances of all vertices was initialized infinte, this process can work in same mechanism.<br/>
+	 > &nbsp;&nbsp;<i>Dijkstra's algorithm</i> works well only when all edges of a given graph have nonnegative weight. Because the distances of vertices are fixed when the vertices became <i>TREE</i>, the algorithm can not update the distance of a <i>TREE</i> vertex  when the new distance decrease by a negative edge. You know that the distances of vertices only increase from a distance of a <i>TREE</i> vertex in this algorithm.<br/>
+	 > &nbsp;&nbsp;The algorithm needs several datastructure, <i>priority-queue</i>. And, The input is a graph. I use my [heap implementation](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Priority_Queue/01_Heap) for priority-queue and [adjacency list representation of graph](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList) for the input graph.
+	 > &nbsp;&nbsp;There are a two main implementations. One is that implementing the priority-queue as <i>unordered_array</i>. Anoter is the implementation using <i>Heap</i>. Since <i>oredered_array</i> has no advantage, it is excluded.
+	 > - Time complexity: (discuss in theory, not aout my implementation) <br/>&nbsp;&nbsp; In the first implementation, The algorithm runs in <i>O(V|<sup>2</sup>) time</i>, where <i>V</i> is the set of vertices. The dominative operation is searching the vertex, which has the minimum weighted incident edge from a vertex of <i>FRINGE</i>. It runs in <i>O(|V|)</i> time by each iteration. So, the time complexity is <i>O(|V|)</i>.<br/>
+	 > &nbsp;&nbsp;The second implementation, using <i>Heap</i>. The searching operation runs in <i>O(log n)</i> time. And, since each edges can be considered from source and destination, the keys that mean the minimum weight of all edges from a vertex can be updated. <i>DecreasKey</i> of <i>Heap</i> runs in <i>O(log n)</i> time. So, the total time complexity of updating keys is <i>O(|E|log n)</i>, where <i>E</i> is the set of edges. Since the number of vertices of a connected graph is <i>O(|E|)</i>,  $$using\ unordered\_array=O(|V|^2)$$ $$using\ heap=O(|V| log |V| + |E|log |V|) = O(|E| log |V|)$$ &nbsp;&nbsp;And, the number of vertices on the shortest path can't be more than the number of vertex of a given graph. So, printing the path runs in <i>O(|V|)</i> time.
+	 > - Space complexity: <br/>&nbsp;&nbsp; Regardless how to implement <i>FRINGE</i> priority-queue, the priority-queue has <i>O(|V|)</i> elements. $$O(|V|)$$
+
+<br/><br/>
 
 
 # Data Structures
