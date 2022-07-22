@@ -1,0 +1,125 @@
+9
+30
+A
+B
+C
+D
+E
+F
+G
+H
+I
+A B 2
+B A 2
+H D 1
+D H 1
+I E 3
+E I 3
+F I 1
+I F 1
+C B 4
+B C 4
+G H 5
+H G 5
+A G 5
+G A 5
+I H 4
+H I 4
+E D 1
+D E 1
+C H 5
+H C 5
+G B 6
+B G 6
+A F 9
+F A 9
+F E 6
+E F 6
+G I 2
+I G 2
+C D 2
+D C 2
+A
+
+***OUTPUT with INPUT***
+Input the number of vertices: 9
+Input the number of Edges: 30
+Input the element of vertex 0: A
+Input the element of vertex 1: B
+Input the element of vertex 2: C
+Input the element of vertex 3: D
+Input the element of vertex 4: E
+Input the element of vertex 5: F
+Input the element of vertex 6: G
+Input the element of vertex 7: H
+Input the element of vertex 8: I
+Input the src, dst, weight of edge 0: A B 2
+Input the src, dst, weight of edge 1: B A 2
+Input the src, dst, weight of edge 2: H D 1
+Input the src, dst, weight of edge 3: D H 1
+Input the src, dst, weight of edge 4: I E 3
+Input the src, dst, weight of edge 5: E I 3
+Input the src, dst, weight of edge 6: F I 1
+Input the src, dst, weight of edge 7: I F 1
+Input the src, dst, weight of edge 8: C B 4
+Input the src, dst, weight of edge 9: B C 4
+Input the src, dst, weight of edge 10: G H 5
+Input the src, dst, weight of edge 11: H G 5
+Input the src, dst, weight of edge 12: A G 5
+Input the src, dst, weight of edge 13: G A 5
+Input the src, dst, weight of edge 14: I H 4
+Input the src, dst, weight of edge 15: H I 4
+Input the src, dst, weight of edge 16: E D 1
+Input the src, dst, weight of edge 17: D E 1
+Input the src, dst, weight of edge 18: C H 5
+Input the src, dst, weight of edge 19: H C 5
+Input the src, dst, weight of edge 20: G B 6
+Input the src, dst, weight of edge 21: B G 6
+Input the src, dst, weight of edge 22: A F 9
+Input the src, dst, weight of edge 23: F A 9
+Input the src, dst, weight of edge 24: F E 6
+Input the src, dst, weight of edge 25: E F 6
+Input the src, dst, weight of edge 26: G I 2
+Input the src, dst, weight of edge 27: I G 2
+Input the src, dst, weight of edge 28: C D 2
+Input the src, dst, weight of edge 29: D C 2
+Vertex And Edges :
+vertex 0(A) : (dst: B, Weight: 2) (dst: G, Weight: 5) (dst: F, Weight: 9)
+vertex 1(B) : (dst: A, Weight: 2) (dst: C, Weight: 4) (dst: G, Weight: 6)
+vertex 2(C) : (dst: B, Weight: 4) (dst: H, Weight: 5) (dst: D, Weight: 2)
+vertex 3(D) : (dst: H, Weight: 1) (dst: E, Weight: 1) (dst: C, Weight: 2)
+vertex 4(E) : (dst: I, Weight: 3) (dst: D, Weight: 1) (dst: F, Weight: 6)
+vertex 5(F) : (dst: I, Weight: 1) (dst: A, Weight: 9) (dst: E, Weight: 6)
+vertex 6(G) : (dst: H, Weight: 5) (dst: A, Weight: 5) (dst: B, Weight: 6) (dst: I, Weight: 2)
+vertex 7(H) : (dst: D, Weight: 1) (dst: G, Weight: 5) (dst: I, Weight: 4) (dst: C, Weight: 5)
+vertex 8(I) : (dst: E, Weight: 3) (dst: F, Weight: 1) (dst: H, Weight: 4) (dst: G, Weight: 2)
+
+What is an element of source? A
+Distance and Path from A
+A To A
+Distance: 0
+Path: A
+A To B
+Distance: 2
+Path: A - B
+A To C
+Distance: 6
+Path: A - B - C
+A To D
+Distance: 8
+Path: A - B - C - D
+A To E
+Distance: 9
+Path: A - B - C - D - E
+A To F
+Distance: 8
+Path: A - G - I - F
+A To G
+Distance: 5
+Path: A - G
+A To H
+Distance: 9
+Path: A - B - C - D - H
+A To I
+Distance: 7
+Path: A - G - I
