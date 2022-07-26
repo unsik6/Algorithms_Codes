@@ -18,9 +18,12 @@
     <td><center><b>Name</b></center></td>
   </tr>
   <tr>
-    <td rowspan= 4><center>Algorithms</center> </td>
-    <td><center>Pattern Matching</center></td>
+    <td rowspan= 5><center>Algorithms</center> </td>
+    <td rowspan = 2><center>Pattern Matching</center></td>
     <td><center><a href = "#AC_Automata">Aho-Corasick Automata</a></center></td>
+  </tr>
+  <tr>
+	  <td><center><a href = "#Rabin_Karp">Rabin-Karp algorithm</a></center></td>
   </tr>
   <tr>
     <td><center>2D Pattern Matching</center></td>
@@ -66,7 +69,18 @@
 	> - Time complexity: (implementation: array) <br/>&nbsp;&nbsp; preprocessing by all patterns to construct the automata, including the trie, failure func and output func, needs time linear to sum the length of all patterns. And, Searching patterns in a given text needs time linear to the length of the text. If the sum of the length of all patterns is <i>m</i>, the alphabet used in the text is constant, and the length of the text is <i>n</i>, then the time complexity of this algorithm is $$O(m  + n)$$<br/>
 	> - Space complexity: (implementation: array) <br/>&nbsp;&nbsp; The number of nodes and edges of the automata is at most the sum of the length of patterns. And, the failure function can be stored as a linear array. If the patterns consist of only one character and their length are differnet from each other, the output function returns all patterns whose length is shorter than the new pattern founded. $$O(m^2)$$
 
+<br/>
 
+<p id = "Rabin_Karp"></p>
+
+2. [<b>Rabin-Karp</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_Pattern_Matching/02_Rabin-Karp)
+	> - Contributor: StoneIron02
+	> - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	> - Language used to implement: C++
+	> - Abstract:<br/>&nbsp;&nbsp; Rabin-Karp Algorithm is one of the pattern matching algorithms to find all locations of pattern in the given text. This algorithm separates text into substrings that have the length of the pattern and converts pattern and substrings into numbers. After that, compare each number by using modulo.<br/><br/>
+	> - Time complexity: <br/>&nbsp;&nbsp; Let the the length of pattern is <i>m</i>, and the length of text is <i>n</i>. It takes <i>O(m)</i> time to preprocess the first substring of the pattern and text. It takes <i>O(n-m)</i> time to compute the number of the next substring. If each number of pattern and substring is the same, we should compare the original string to find valid shifts. That takes <i>O(m)*O(the sum of valid shifts and spurious hits)</i>. So, worst case is $$O((n-m+1)m)$$ and expected time, if the number of valid shifts are <i>O(1)</i> and q is more than m, is $$O(n)$$<br/>
+	> - Space complexity: <br/>&nbsp;&nbsp; Equals the sum of the length of pattern and text. $$O(n+m)$$
+	
 <br/><br/>
 
 ## 2D Pattern Matching
