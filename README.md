@@ -3,6 +3,7 @@
 
 
 
+
 # Algorithms_Codes
 
 # Outline
@@ -34,7 +35,7 @@
     <td><center><a href = "#MST">MST</a><br/>(<a href = "#Prim_Algorithm">Prim's Algorithm</a>, <a href = "#Kruskal_Algorithm">Kruskal's Algorithm</a>)</center></td>
   </tr>
   <tr>
-	  <td><center><a href = "#ShortestPath">Shortest Path</a><br/>(<a href = "#Dijkstra">Dijkstra's Algorithm</a>)</center></td>
+	  <td><center><a href = "#ShortestPath">Shortest Path</a><br/>(<a href = "#Dijkstra">Dijkstra's Algorithm</a>, <a href = "#Bellman-Ford">Bellman-Ford's Algorithm</a>)</center></td>
   </tr>
   <tr>
 	  <td rowspan= 4><center>Data Structure</center></td>
@@ -151,19 +152,63 @@
 - The algorithms are implemented in one namespace <i>ShortestPath</i>,
 -   They return different datatype. So, If you want to test the algorithm, NOT use the function named the name of algorithms. please use the function whose name starts with  _print_.
 
+<br/><br/>
+
+<table>
+  <tr>
+    <td><center><b>Problem</b></center></td>
+    <td><center><b>Algorithms</b></center></td>
+  </tr>
+  <tr>
+    <td rowspan= 2><center>Single-Source Shortest Paths(SSSP)</center> </td>
+    <td><center><a href = "#Dijkstra">Dijkstra's Algorithm</a></center></td>
+  </tr>
+  <tr>
+	  <td><center><a href = "#Bellman-Ford">Bellman-Ford's Algorithm</a></center></td>
+  </tr>
+  <tr>
+    <td rowspan=1><center>Single-Destination Shortest Paths (SDSP)</center></td>
+    <td><center> </td>
+  </tr>
+  <tr>
+    <td rowspan= 1><center>Single-Pair Shortest Path (SPSP)</center></td>
+    <td><center></center></td>
+  </tr>
+  <tr>
+	  <td rowspan= 1><center>All-Pair Shortest Path (APSP)</center></td>
+	  <td><center></center></td>
+  </tr>
+</table>
+
+<br/><br/>
+
 <p id = "Dijkstra"></p>
 
 1. <b> Dijkstra's Algorithm</b>
 	> - Contributor: unsik6
 	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	 > - Language used to implement: C++
-	 > - Abstract:<br/>&nbsp;&nbsp; <i>Dijkstra's algorithm</i> is one of the algorithm to solve Single-Source Shortest Path (SSSP) problem. Its mechanism equals <a href = "#Prim_Algorithm"><i>Prim's</i></a>. Unlike Prim’s, this algorithm considers the distance from a source vertex we have updated, when selecting a new <i>TREE</i> vertex. If the new <i>TREE</i> vertex selected, we insert the adjacent vertices to <i>FRINGE</i> priority-queue and update the distance from a source vertex of the <i>FRINGE</i> vertices already existing. If the distance of a adjacent vertex of a new <i>TREE</i> vertex already definded is longer than the new distance(the distance of the  new <i>TREE</i> vertex + the weight of edge from the new <i>TREE</i> vertex to the adjacent <i>FRINGE</i> vertex), update the distance of the adjacent <i>FRINGE</i> vertex to the new distance. If the distance of an adjacent vertex has not defined, it means the vertex is <i>UNSEEN</i>, so insert the vertex into <i>FRINGE</i> priority-queue and update the distance of the vertex to the new distance. If all distances of all vertices was initialized infinte, this process can work in same mechanism.<br/>
+	 > - Abstract:<br/>&nbsp;&nbsp; <i>Dijkstra's algorithm</i> is one of the algorithm to solve <u>Single-Source Shortest Path (SSSP) problem</u>. Its mechanism equals <a href = "#Prim_Algorithm"><i>Prim's</i></a>. Unlike Prim’s, this algorithm considers the distance from a source vertex we have updated, when selecting a new <i>TREE</i> vertex. If the new <i>TREE</i> vertex selected, we insert the adjacent vertices to <i>FRINGE</i> priority-queue and update the distance from a source vertex of the <i>FRINGE</i> vertices already existing. If the distance of a adjacent vertex of a new <i>TREE</i> vertex already definded is longer than the new distance(the distance of the  new <i>TREE</i> vertex + the weight of edge from the new <i>TREE</i> vertex to the adjacent <i>FRINGE</i> vertex), update the distance of the adjacent <i>FRINGE</i> vertex to the new distance. If the distance of an adjacent vertex has not defined, it means the vertex is <i>UNSEEN</i>, so insert the vertex into <i>FRINGE</i> priority-queue and update the distance of the vertex to the new distance. If all distances of all vertices was initialized infinte, this process can work in same mechanism.<br/>
 	 > &nbsp;&nbsp;<i>Dijkstra's algorithm</i> works well only when all edges of a given graph have nonnegative weight. Because the distances of vertices are fixed when the vertices became <i>TREE</i>, the algorithm can not update the distance of a <i>TREE</i> vertex  when the new distance decrease by a negative edge. You know that the distances of vertices only increase from a distance of a <i>TREE</i> vertex in this algorithm.<br/>
 	 > &nbsp;&nbsp;The algorithm needs several datastructure, <i>priority-queue</i>. And, The input is a graph. I use my [heap implementation](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Priority_Queue/01_Heap) for priority-queue and [adjacency list representation of graph](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList) for the input graph.
 	 > &nbsp;&nbsp;There are a two main implementations. One is that implementing the priority-queue as <i>unordered_array</i>. Anoter is the implementation using <i>Heap</i>. Since <i>oredered_array</i> has no advantage, it is excluded.<br/><br/>
 	 > - Time complexity: (discuss in theory, not aout my implementation) <br/>&nbsp;&nbsp; In the first implementation, The algorithm runs in <i>O(V|<sup>2</sup>) time</i>, where <i>V</i> is the set of vertices. The dominative operation is searching the vertex, which has the minimum weighted incident edge from a vertex of <i>FRINGE</i>. It runs in <i>O(|V|)</i> time by each iteration. So, the time complexity is <i>O(|V|)</i>.<br/>
 	 > &nbsp;&nbsp;The second implementation, using <i>Heap</i>. The searching operation runs in <i>O(log n)</i> time. And, since each edges can be considered from source and destination, the keys that mean the minimum weight of all edges from a vertex can be updated. <i>DecreasKey</i> of <i>Heap</i> runs in <i>O(log n)</i> time. So, the total time complexity of updating keys is <i>O(|E|log n)</i>, where <i>E</i> is the set of edges. Since the number of vertices of a connected graph is <i>O(|E|)</i>,  $$using\ unordered\_array=O(|V|^2)$$ $$using\ heap=O(|V| log |V| + |E|log |V|) = O(|E| log |V|)$$ &nbsp;&nbsp;And, the number of vertices on the shortest path can't be more than the number of vertex of a given graph. So, printing the path runs in <i>O(|V|)</i> time.
 	 > - Space complexity: <br/>&nbsp;&nbsp; Regardless how to implement <i>FRINGE</i> priority-queue, the priority-queue has <i>O(|V|)</i> elements. $$O(|V|)$$
+
+<br/>
+
+<p id = "Bellman-Ford"></p>
+
+1. <b> Bellman-Ford's algorithm</b>
+	> - Contributor: unsik6
+	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	 > - Language used to implement: C++
+	 > - Abstract:<br/>&nbsp;&nbsp; <i>Bellman-Ford's algorithm</i> is one of the algorithm to solve <u>Single-Source Shortest Path (SSSP) problem</u>.  A given graph is a directed, weighted graph.  Unlike <i>Dijkstra's algorithm</i>, moreover, a given graph can have negative weighted edges. But if there are negative weighted cycle, this algorithm can't work well, since the paths that the part of is in negative weighted cycle get less weight more and more. So, the path can not indicate the 'shortest' path.<br/>
+	 &nbsp;&nbsp;<i>Bellman-Ford's algorithm</i> uses the property about the shortest path. Since the shortest path has to be a simple path, the maximum number of vertices of path is <i>|V|</i>. So, except a source vertex, update the distances of vertices <i>|V| - 1</i> times using all edges. This algorithm use <i>relaxation</i> like <i>Dijkstra's algorithm</i>.<br/>
+	 > &nbsp;&nbsp;The input is a graph. I use my  [adjacency list representation of graph](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList) for the input graph.<br/><br/>
+	 > - Time complexity: (discuss in theory, not aout my implementation) <br/>&nbsp;&nbsp; This algorithm iterates updating all distances of all vertices(except source vertex) <i>|V| - 1</i> times. Since, updating the distances uses all edges, <i>|E|</i> iterations run in each outer iteration. So, the time complexity of this algorithm is $$O(|V||E|)$$<br/>
+	 > - Space complexity: <br/>&nbsp;&nbsp; There are arrays storing all distances of vertices and parent vertex(previous vertex in the shortest path) of each vertix. You don't have to use both and just use arrays about what you want to ouput. Since each element of arrays indicates the information of each vertex. So, the  each array has <i>|V|</i> elements.  $$O(|V|)$$
 
 <br/><br/>
 
