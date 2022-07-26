@@ -5,29 +5,29 @@ using namespace std;
 
 
 /// <summary>
-/// Rabin-Karp 알고리즘을 수행한다.
-/// 알고리즘의 가장 기본적인 형태만 수행하도록 구성되었으며, 입력 가능한 알파벳 집합 Σ은 0~9 사이의 숫자로 제한한다.
-/// 만약, convert(char) 함수를 다른 Σ에 대하여 확장한다면 더 많은 문자열에 대하여 다룰 수 있을 것이다.
+/// Rabin-Karp Algorithm.
+/// It is configured to perform only the most basic form of the algorithm, and the inputable set of alphabets Σ is limited to numbers between 0 and 9.
+/// If we extend the function convert(char) to another Σ, we will be able to deal with more strings.
 /// </summary>
 class Rabin_Karp {
 private:
-	int d; /// 기수
-	int q; /// 나누는 수
+	int d; /// radix
+	int q; /// modulus
 
 	/// <summary>
-	/// 텍스트의 s-시프트와 패턴이 실제로 일치하는지 확인한다.
+	/// Verify that the s-shift of the text and pattern actually match.
 	/// </summary>
-	/// <param name="pattern">패턴</param>
-	/// <param name="text">텍스트</param>
-	/// <param name="s">시프트</param>
-	/// <returns>텍스트의 s-시프트와 패턴의 실제 일치 여부</returns>
+	/// <param name="pattern">pattern</param>
+	/// <param name="text">text</param>
+	/// <param name="s">shift</param>
+	/// <returns>Whether the s-shift of the text matches the pattern.</returns>
 	bool equals(const string& pattern, const string& text, int s);
 
 	/// <summary>
-	/// 입력된 문자를 대응하는 숫자로 변환한다.
+	/// The input character is converted to a corresponding number.
 	/// </summary>
-	/// <param name="c">문자</param>
-	/// <returns>문자에 대응하는 숫자</returns>
+	/// <param name="c">character</param>
+	/// <returns>The number corresponding to a character.</returns>
 	const int convert(const char& c);
 public:
 	Rabin_Karp(int d = 10, int q = 13) : d(d), q(q) {
@@ -37,8 +37,9 @@ public:
 	}
 
 	/// <summary>
-	/// 패턴매칭을 실시한다.
+	/// Pattern matching.
 	/// </summary>
-	/// <param name="text">텍스트</param>
+	/// <param name="pattern">pattern</param>
+	/// <param name="text">text</param>
 	void patternMatching(const string& pattern, const string& text);
 };

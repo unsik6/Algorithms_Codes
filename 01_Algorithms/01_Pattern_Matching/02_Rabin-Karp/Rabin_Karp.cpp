@@ -15,13 +15,13 @@ const int Rabin_Karp::convert(const char& c) {
 }
 
 void Rabin_Karp::patternMatching(const string& pattern, const string& text) {
-	int h = 1; /// 점화식 연산의 가중치
+	int h = 1; // preprocess
 	for (int i = 0; i < pattern.length() - 1; i++)
 		h *= d;
 	h = h % q;
 
-	int p = 0; /// 패턴에 대응하는 숫자
-	int t = 0; /// 텍스트의 현재 시프트에 대응하는 숫자
+	int p = 0; /// number of patten
+	int t = 0; /// number of s-shift text
 	for (int i = 0; i < pattern.length(); i++) {
 		p = (d * p + convert(pattern[i])) % q;
 		t = (d * t + convert(text[i])) % q;
