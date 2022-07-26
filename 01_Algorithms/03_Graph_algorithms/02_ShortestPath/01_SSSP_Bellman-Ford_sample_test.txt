@@ -1,0 +1,121 @@
+///// Test 1 /////
+5
+10
+s
+t
+x
+z
+y
+s t 6
+s y 7
+t x 5
+x t -2
+t y 8
+y x -3
+y z 9
+t z -4
+z x 7
+z s 2
+s
+
+***OUTPUT with INPUT***
+Input the number of vertices: 5
+Input the number of Edges: 10
+Input the element of vertex 0: s
+Input the element of vertex 1: t
+Input the element of vertex 2: x
+Input the element of vertex 3: z
+Input the element of vertex 4: y
+Input the src, dst, weight of edge 0: s t 6
+Input the src, dst, weight of edge 1: s y 7
+Input the src, dst, weight of edge 2: t x 5
+Input the src, dst, weight of edge 3: x t -2
+Input the src, dst, weight of edge 4: t y 8
+Input the src, dst, weight of edge 5: y x -3
+Input the src, dst, weight of edge 6: y z 9
+Input the src, dst, weight of edge 7: t z -4
+Input the src, dst, weight of edge 8: z x 7
+Input the src, dst, weight of edge 9: z s 2
+Vertex And Edges :
+vertex 0(s) : (dst: t, Weight: 6) (dst: y, Weight: 7)
+vertex 1(t) : (dst: x, Weight: 5) (dst: y, Weight: 8) (dst: z, Weight: -4)
+vertex 2(x) : (dst: t, Weight: -2)
+vertex 3(z) : (dst: x, Weight: 7) (dst: s, Weight: 2)
+vertex 4(y) : (dst: x, Weight: -3) (dst: z, Weight: 9)
+
+What is an element of source? s
+Distance and Path from s
+s To s
+Distance: 0
+Path: s
+s To t
+Distance: 2
+Path: s - y - x - t
+s To x
+Distance: 4
+Path: s - y - x
+s To z
+Distance: -2
+Path: s - y - x - t - z
+s To y
+Distance: 7
+Path: s - y
+
+///// Test 2 /////
+8
+11
+s
+a
+b
+c
+d
+e
+f
+g
+s a 3
+s c 5
+s e 2
+a b -4
+b g 4
+c d 6
+d c -3
+d g 8
+e f 3
+f e -6
+f g 7
+s
+
+***OUTPUT with INPUT***
+Input the number of vertices: 8
+Input the number of Edges: 11
+Input the element of vertex 0: s
+Input the element of vertex 1: a
+Input the element of vertex 2: b
+Input the element of vertex 3: c
+Input the element of vertex 4: d
+Input the element of vertex 5: e
+Input the element of vertex 6: f
+Input the element of vertex 7: g
+Input the src, dst, weight of edge 0: s a 3
+Input the src, dst, weight of edge 1: s c 5
+Input the src, dst, weight of edge 2: s e 2
+Input the src, dst, weight of edge 3: a b -4
+Input the src, dst, weight of edge 4: b g 4
+Input the src, dst, weight of edge 5: c d 6
+Input the src, dst, weight of edge 6: d c -3
+Input the src, dst, weight of edge 7: d g 8
+Input the src, dst, weight of edge 8: e f 3
+Input the src, dst, weight of edge 9: f e -6
+Input the src, dst, weight of edge 10: f g 7
+Vertex And Edges :
+vertex 0(s) : (dst: a, Weight: 3) (dst: c, Weight: 5) (dst: e, Weight: 2)
+vertex 1(a) : (dst: b, Weight: -4)
+vertex 2(b) : (dst: g, Weight: 4)
+vertex 3(c) : (dst: d, Weight: 6)
+vertex 4(d) : (dst: c, Weight: -3) (dst: g, Weight: 8)
+vertex 5(e) : (dst: f, Weight: 3)
+vertex 6(f) : (dst: e, Weight: -6) (dst: g, Weight: 7)
+vertex 7(g) :
+
+What is an element of source? s
+ERROR

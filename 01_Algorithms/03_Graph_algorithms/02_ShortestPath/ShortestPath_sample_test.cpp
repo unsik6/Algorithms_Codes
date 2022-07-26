@@ -39,5 +39,10 @@ int main()
 	char srcElem;
 	cin >> srcElem;
 
+	// on/off below functions using annotation
+	// Dijkstra
 	ShortestPath::printSSSP_Dijkstra<char, int>(&graph, &srcElem);
+
+	// Bellman-Ford
+	ShortestPath::printSSSP_BF<char, int>(&graph, &srcElem);
 }
