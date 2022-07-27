@@ -21,14 +21,14 @@
   </tr>
   <tr>
     <td rowspan= 5><center>Algorithms</center> </td>
-    <td rowspan = 2><center>Pattern Matching</center></td>
+    <td rowspan = 2><center>String Matching</center></td>
     <td><center><a href = "#AC_Automata">Aho-Corasick Automata</a></center></td>
   </tr>
   <tr>
 	  <td><center><a href = "#Rabin_Karp">Rabin-Karp algorithm</a></center></td>
   </tr>
   <tr>
-    <td><center>2D Pattern Matching</center></td>
+    <td><center>2D String Matching</center></td>
     <td><center><a href = "#BIRD_2D">BAKER-BIRD Algorithm</a></center></td>
   </tr>
   <tr>
