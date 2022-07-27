@@ -344,4 +344,225 @@ namespace ShortestPath
 			cout << '\n';
 		}
 	}
+
+	// Floyd-Warshall Algorithm
+
+	// D is the numeric type
+	template<typename D>
+	struct FW_ret
+	{
+		int verticesNum;
+		D** distances;
+		bool** isNotINF;
+		vector<int>** SPs;
+
+		FW_ret(int _vNum)
+		{
+			this->verticesNum = _vNum;
+			this->distances = new D * [verticesNum];
+			this->isNotINF = new bool* [verticesNum];
+			this->SPs = new vector<int>* [verticesNum];
+			for (int i = 0; i < verticesNum; i++)
+			{
+				this->distances[i] = new D[verticesNum]{ 0 };
+				this->isNotINF[i] = new bool[verticesNum] {false};
+				this->isNotINF[i][i] = true;	// (V_i -> V_i) is just 0;
+				this->SPs[i] = new vector<int>[verticesNum];
+				// all path from i to i consist of only i.
+				SPs[i][i].push_back(i);
+					
+			}
+		}
+		~FW_ret()
+		{
+			for (int i = 0; i < verticesNum; i++)
+			{
+				delete[] distances[i];
+				delete[] isNotINF[i];
+				delete[] SPs[i];
+			}
+			delete[] distances;
+			delete[] isNotINF;
+			delete[] SPs;
+		}
+	};
+
+	// D is the numeric type
+	template<typename VT, typename ET, typename D>
+	FW_ret<D>* APSP_FW(Graph_AdjacencyList<VT, ET>* _graph)
+	{
+		int verticesNum = _graph->getVerticesNum();
+
+		FW_ret<D>* retStruct = new FW_ret<D>(verticesNum);
+		
+		// fill out the first matrix using a given graph
+		for (int i = 0; i < verticesNum; i++)
+		{
+			for (typename Graph_AdjacencyList<VT, ET>::Edge* edge : *_graph->listPtrByRankInAL(i))
+			{
+				typename Graph_AdjacencyList<VT, ET>::Vertex* dstV = edge->getDst();
+				int dstVIdx = -1;
+				for (int v = 0; v < verticesNum; v++)
+				{
+					if (_graph->getVertices()->at(v) == dstV)
+					{
+						dstVIdx = v;
+						break;
+					}
+				}
+				// ERROR : There is wrong edge
+				if (dstVIdx == -1)
+					return nullptr;
+
+				if (!retStruct->isNotINF[i][dstVIdx] || retStruct->distances[i][dstVIdx] > edge->getWeight())
+				{
+					retStruct->distances[i][dstVIdx] = edge->getWeight();
+				}
+				retStruct->isNotINF[i][dstVIdx] = true;
+				retStruct->SPs[i][dstVIdx].push_back(i);
+				retStruct->SPs[i][dstVIdx].push_back(dstVIdx);
+			}
+		}
+
+		// iterations
+		for (int k = 0; k < verticesNum; k++)
+		{
+			for (int i = 0; i < verticesNum; i++)
+			{
+				// (V_i -> V_i -> V_j) don't run.
+				if (k == i)
+					continue;
+				for (int j = 0; j < verticesNum; j++)
+				{
+					// (V_i -> V_k -> V_i) don't run.
+					// (V_i -> V_j -> V_j) don't run.
+					if (j == i || j == k)
+						continue;
+					// There is no path from i to k, so we can't use V_k as the waypoint
+					if (!retStruct->isNotINF[i][k])
+						continue;
+
+					if (retStruct->isNotINF[k][j])
+					{
+						D newDistance = retStruct->distances[i][k] + retStruct->distances[k][j];
+
+						// i to j already exist => (V_i -> V_k -> V_j) < (V_i->V_j).
+						// OR i to j is not exist => (V_i -> V_k -> V_j) is the shortest path.
+						if ((retStruct->isNotINF[i][j] && newDistance < retStruct->distances[i][j])
+							|| !retStruct->isNotINF[i][j])
+						{
+							// new path is defined.
+							retStruct->distances[i][j] = newDistance;
+
+							// Checking INF and rebuilding path process
+							if (!retStruct->isNotINF[i][j])
+							{
+								// Path from i to j is defined.
+								retStruct->isNotINF[i][j] = true;
+							}
+							retStruct->SPs[i][j].clear();
+							for (int waypoint : retStruct->SPs[i][k])
+							{
+								retStruct->SPs[i][j].push_back(waypoint);
+							}
+							retStruct->SPs[i][j].pop_back();
+							for (int waypoint : retStruct->SPs[k][j])
+								retStruct->SPs[i][j].push_back(waypoint);
+						}
+					}
+				}
+			}
+		}
+
+		// negative cycle check
+		// same with bellman ford but need to ceck for all vertex as source vertex.
+		for (int k = 0; k < verticesNum; k++)
+		{
+			for (int j = 0; j < verticesNum; j++)
+			{
+				for (typename Graph_AdjacencyList<VT, ET>::Edge* edgePtr : *_graph->listPtrByRankInAL(j))
+				{
+					typename Graph_AdjacencyList<VT, ET>::Vertex* src = edgePtr->getSrc();
+					typename Graph_AdjacencyList<VT, ET>::Vertex* dst = edgePtr->getDst();
+
+					int srcIdx = -1, dstIdx = -1;
+
+					for (int i = 0; i < verticesNum; i++)
+					{
+						if (_graph->getVertices()->at(i) == src)
+							srcIdx = i;
+						else if (_graph->getVertices()->at(i) == dst)
+							dstIdx = i;
+						if (srcIdx != -1 && dstIdx != -1) break;
+					}
+
+					// ERROR: This is not correct edge.
+					if (srcIdx == -1 || dstIdx == -1) return nullptr;
+
+					// If newD is less than dst.D => negative cycle
+					// if distance[srcIdx] == infinite, then skip
+					if (!retStruct->isNotINF[k][srcIdx])
+						continue;
+					else
+					{
+						int newD = retStruct->distances[k][srcIdx] + edgePtr->getWeight();
+
+						// if dstIdx is infinite,
+						if (!retStruct->isNotINF[k][dstIdx])
+						{
+							return nullptr;
+						}
+						else if (newD < retStruct->distances[k][dstIdx])
+						{
+							return nullptr;
+						}
+					}
+				}
+			}
+		}
+		
+		return retStruct;
+	}
+
+	template<typename VT, typename ET, typename D>
+	void print_APSP_FW(Graph_AdjacencyList<VT, ET>* _graph)
+	{
+		FW_ret<D>* ret = APSP_FW<VT, ET, D>(_graph);
+		if (ret == nullptr)
+		{
+			cerr << "ERROR : Their is no return\n";
+			delete ret;
+			return;
+		}
+
+		cout << "The shortest paths by Floyd-Warshall\n";
+		for (int i = 0; i < ret->verticesNum; i++)
+		{
+			cout << '[' << i << "] Source = " << _graph->vertexPtrByRankinVertices(i)->getElem() << '\n';
+			for (int j = 0; j < ret->verticesNum; j++)
+			{
+				cout << _graph->vertexPtrByRankinVertices(i)->getElem() << " to " << _graph->vertexPtrByRankinVertices(j)->getElem() << " : ";
+				if (!ret->isNotINF[i][j])
+				{
+					cout << "NO PATH\n";
+					continue;
+				}
+				else
+				{
+					cout << "Distance = " << ret->distances[i][j] << '\n';
+					cout << "Path = ";
+					for (int k = 0; k < ret->SPs[i][j].size(); k++)
+					{
+						cout << _graph->vertexPtrByRankinVertices(ret->SPs[i][j][k])->getElem();
+						if (k < ret->SPs[i][j].size() - 1)
+							cout << " - ";
+					}
+					cout << '\n';
+				}
+			}
+			cout << '\n';
+		}
+
+		delete ret;
+	}
 }

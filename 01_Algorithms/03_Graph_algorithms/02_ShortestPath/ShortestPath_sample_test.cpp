@@ -35,14 +35,25 @@ int main()
 
 	graph.print();
 
+
+	// on/off below functions using annotation
+
+	// SSSP
+	/*
 	cout << "What is an element of source? ";
 	char srcElem;
 	cin >> srcElem;
 
-	// on/off below functions using annotation
 	// Dijkstra
 	ShortestPath::printSSSP_Dijkstra<char, int>(&graph, &srcElem);
 
 	// Bellman-Ford
 	ShortestPath::printSSSP_BF<char, int>(&graph, &srcElem);
+	*/
+
+	// APSP
+	/*
+	// Floyd-Warshall
+	ShortestPath::print_APSP_FW<char, int, int>(&graph);
+	*/
 }
