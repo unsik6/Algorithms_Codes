@@ -146,7 +146,7 @@ namespace MST
 		typename Graph_AdjacencyList<VT, ET>::Edge** mst = MST_Prim(_graph, _rootElem);
 		for (int i = 0; i < _graph->getVerticesNum() - 1; i++)
 		{
-			cout << "(src: "
+			std::cout << "(src: "
 				<< mst[i]->getSrc()->getElem() << ", dst: " << mst[i]->getDst()->getElem()
 				<< ", Weight : " << mst[i]->getWeight() << ") ";
 		}
@@ -179,7 +179,7 @@ namespace MST
 			}
 		}
 		// Set the disjointSet of vertices
-		vector<VT> VTVec;
+		std::vector<VT> VTVec;
 		for (int i = 0; i < vertexNum; i++)
 			VTVec.push_back(_graph->getVertices()->at(i)->getElem());
 		DisjointSet<VT> vertexCycleTable(&VTVec);
@@ -209,7 +209,7 @@ namespace MST
 		typename Graph_AdjacencyList<VT, ET>::Edge* mst = MST_Kruskal(_graph);
 		for (int i = 0; i < _graph->getVerticesNum() - 1; i++)
 		{
-			cout << "(src: "
+			std::cout << "(src: "
 				<< mst[i].getSrc()->getElem() << ", dst: " << mst[i].getDst()->getElem()
 				<< ", Weight : " << mst[i].getWeight() << ") ";
 		}

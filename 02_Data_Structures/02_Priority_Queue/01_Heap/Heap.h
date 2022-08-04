@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-using namespace std;
 
 template<typename T>
 class Heap
@@ -126,7 +125,7 @@ T Heap<T>::getOptimal()
 {
 	if (m_size == 0)
 	{
-		cerr << "EMPTY EXCEPTION\n" << endl;
+		std::cerr << "EMPTY EXCEPTION\n" << std::endl;
 		return NULL;
 	}
 	else
@@ -138,7 +137,7 @@ void Heap<T>::insert(T& _e)
 {
 	if (m_cap <= m_size)
 	{
-		cerr << "FULL EXCEPTION\n" << endl;
+		std::cerr << "FULL EXCEPTION\n" << std::endl;
 	}
 
 	m_arr[++m_size] = _e;
@@ -150,7 +149,7 @@ T Heap<T>::removeOpt()
 {
 	if (m_size == 0)
 	{
-		cerr << "EMPTY EXCEPTION\n" << endl;
+		std::cerr << "EMPTY EXCEPTION\n" << std::endl;
 		return m_arr[0];	// return trash.
 	}
 
@@ -194,7 +193,7 @@ void Heap<T>::printAll()
 {
 	for (int i = 1; i <= m_size; i++)
 	{
-		cout << m_arr[i] << ' ';
+		std::cout << m_arr[i] << ' ';
 	}
-	cout << '\n';
+	std::cout << '\n';
 }

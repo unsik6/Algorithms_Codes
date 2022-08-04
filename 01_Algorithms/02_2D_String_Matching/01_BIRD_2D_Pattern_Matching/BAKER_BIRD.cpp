@@ -1,5 +1,7 @@
 #include "BAKER_BIRD.h"
 
+using namespace std;
+
 void BAKER_BIRD::labelingPatternRow()
 {
 	vector<vector<int>*>* outputsPtr = m_ac->getOutputs();

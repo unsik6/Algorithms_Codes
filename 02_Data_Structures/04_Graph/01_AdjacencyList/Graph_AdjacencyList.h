@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <list>
-using namespace std;
 
 template<typename VT, typename ET>
 class Graph_AdjacencyList
@@ -52,10 +51,10 @@ public:
 
 private:
 	// just keep the information of vertices
-	vector<Vertex*> m_vertices;
+	std::vector<Vertex*> m_vertices;
 
 	// adjacencyList
-	vector<list<Edge*>*> m_adjacencyList;
+	std::vector<std::list<Edge*>*> m_adjacencyList;
 	
 public:
 	Graph_AdjacencyList() {}
@@ -65,8 +64,8 @@ public:
 
 	// Get the graph information
 	Vertex* vertexPtrByRankinVertices(int _idx);
-	list<Edge*>* listPtrByRankInAL(int _idx);
-	vector<Vertex*>* getVertices() { return &m_vertices; };
+	std::list<Edge*>* listPtrByRankInAL(int _idx);
+	std::vector<Vertex*>* getVertices() { return &m_vertices; };
 
 	// Vertex Function
 	void insertVertex(VT _vElem);
@@ -111,7 +110,7 @@ typename Graph_AdjacencyList<VT, ET>::Vertex* Graph_AdjacencyList<VT, ET>::verte
 
 
 template<typename VT, typename ET>
-list<typename Graph_AdjacencyList<VT, ET>::Edge*>* Graph_AdjacencyList<VT, ET>::listPtrByRankInAL(int _idx)
+std::list<typename Graph_AdjacencyList<VT, ET>::Edge*>* Graph_AdjacencyList<VT, ET>::listPtrByRankInAL(int _idx)
 {
 	return m_adjacencyList[_idx];
 }
@@ -120,7 +119,7 @@ template<typename VT, typename ET>
 void Graph_AdjacencyList<VT, ET>::insertVertex(VT _velem)
 {
 	m_vertices.push_back(new Vertex(_velem));
-	m_adjacencyList.push_back(new list<Edge*>);
+	m_adjacencyList.push_back(new std::list<Edge*>);
 }
 
 template<typename VT, typename ET>
@@ -306,18 +305,18 @@ typename Graph_AdjacencyList<VT, ET>::Edge* Graph_AdjacencyList<VT, ET>::findEdg
 template<typename VT, typename ET>
 void Graph_AdjacencyList<VT, ET>::print()
 {
-	cout << "Vertex And Edges : \n";
+	std::cout << "Vertex And Edges : \n";
 	for (int i = 0; i < m_vertices.size(); i++)
 	{
-		cout << "vertex " << i << "(" << m_vertices[i]->getElem() << ") : ";
+		std::cout << "vertex " << i << "(" << m_vertices[i]->getElem() << ") : ";
 		for (Edge* edge : *m_adjacencyList[i])
 		{
-			cout << "(dst: " << edge->getDst()->getElem() << ", Weight: " << edge->getWeight() << ") ";
+			std::cout << "(dst: " << edge->getDst()->getElem() << ", Weight: " << edge->getWeight() << ") ";
 		}
 
-		cout << '\n';
+		std::cout << '\n';
 	}
-	cout << '\n';
+	std::cout << '\n';
 
 	
 }

@@ -152,13 +152,13 @@ namespace ShortestPath
 		int* distances = SSSP_Dijkstra(_graph, _srcElem, true);
 		int* path = SSSP_Dijkstra(_graph, _srcElem, false);
 
-		stack<int> pathStack;
+		std::stack<int> pathStack;
 
-		cout << "Distance and Path from " << *_srcElem << '\n';
+		std::cout << "Distance and Path from " << *_srcElem << '\n';
 		for (int i = 0; i < _graph->getVerticesNum(); i++)
 		{
-			cout << *_srcElem << " To " << _graph->getVertices()->at(i)->getElem() << '\n';
-			cout << "Distance: " << distances[i] << "\nPath: ";
+			std::cout << *_srcElem << " To " << _graph->getVertices()->at(i)->getElem() << '\n';
+			std::cout << "Distance: " << distances[i] << "\nPath: ";
 			pathStack.push(i);
 			while (true)
 			{
@@ -169,14 +169,14 @@ namespace ShortestPath
 			}
 			while (true)
 			{
-				cout << _graph->getVertices()->at(pathStack.top())->getElem();
+				std::cout << _graph->getVertices()->at(pathStack.top())->getElem();
 				pathStack.pop();
 
 				if (pathStack.empty())
 					break;
-				else cout << " - ";
+				else std::cout << " - ";
 			}
-			cout << '\n';
+			std::cout << '\n';
 		}
 	}
 
@@ -312,18 +312,18 @@ namespace ShortestPath
 		int* distances = SSSP_BF(_graph, _srcElem, true);
 		int* path = SSSP_BF(_graph, _srcElem, false);
 
-		stack<int> pathStack;
+		std::stack<int> pathStack;
 		if (distances == nullptr || path == nullptr)
 		{
-			cout << "ERROR\n";
+			std::cout << "ERROR\n";
 			return;
 		}
 
-		cout << "Distance and Path from " << *_srcElem << '\n';
+		std::cout << "Distance and Path from " << *_srcElem << '\n';
 		for (int i = 0; i < _graph->getVerticesNum(); i++)
 		{
-			cout << *_srcElem << " To " << _graph->getVertices()->at(i)->getElem() << '\n';
-			cout << "Distance: " << distances[i] << "\nPath: ";
+			std::cout << *_srcElem << " To " << _graph->getVertices()->at(i)->getElem() << '\n';
+			std::cout << "Distance: " << distances[i] << "\nPath: ";
 			pathStack.push(i);
 			while (true)
 			{
@@ -334,14 +334,14 @@ namespace ShortestPath
 			}
 			while (true)
 			{
-				cout << _graph->getVertices()->at(pathStack.top())->getElem();
+				std::cout << _graph->getVertices()->at(pathStack.top())->getElem();
 				pathStack.pop();
 
 				if (pathStack.empty())
 					break;
-				else cout << " - ";
+				else std::cout << " - ";
 			}
-			cout << '\n';
+			std::cout << '\n';
 		}
 	}
 
@@ -354,20 +354,20 @@ namespace ShortestPath
 		int verticesNum;
 		D** distances;
 		bool** isNotINF;
-		vector<int>** SPs;
+		std::vector<int>** SPs;
 
 		FW_ret(int _vNum)
 		{
 			this->verticesNum = _vNum;
 			this->distances = new D * [verticesNum];
 			this->isNotINF = new bool* [verticesNum];
-			this->SPs = new vector<int>* [verticesNum];
+			this->SPs = new std::vector<int>* [verticesNum];
 			for (int i = 0; i < verticesNum; i++)
 			{
 				this->distances[i] = new D[verticesNum]{ 0 };
 				this->isNotINF[i] = new bool[verticesNum] {false};
 				this->isNotINF[i][i] = true;	// (V_i -> V_i) is just 0;
-				this->SPs[i] = new vector<int>[verticesNum];
+				this->SPs[i] = new std::vector<int>[verticesNum];
 				// all path from i to i consist of only i.
 				SPs[i][i].push_back(i);
 					
@@ -530,37 +530,37 @@ namespace ShortestPath
 		FW_ret<D>* ret = APSP_FW<VT, ET, D>(_graph);
 		if (ret == nullptr)
 		{
-			cerr << "ERROR : Their is no return\n";
+			std::cerr << "ERROR : Their is no return\n";
 			delete ret;
 			return;
 		}
 
-		cout << "The shortest paths by Floyd-Warshall\n";
+		std::cout << "The shortest paths by Floyd-Warshall\n";
 		for (int i = 0; i < ret->verticesNum; i++)
 		{
-			cout << '[' << i << "] Source = " << _graph->vertexPtrByRankinVertices(i)->getElem() << '\n';
+			std::cout << '[' << i << "] Source = " << _graph->vertexPtrByRankinVertices(i)->getElem() << '\n';
 			for (int j = 0; j < ret->verticesNum; j++)
 			{
-				cout << _graph->vertexPtrByRankinVertices(i)->getElem() << " to " << _graph->vertexPtrByRankinVertices(j)->getElem() << " : ";
+				std::cout << _graph->vertexPtrByRankinVertices(i)->getElem() << " to " << _graph->vertexPtrByRankinVertices(j)->getElem() << " : ";
 				if (!ret->isNotINF[i][j])
 				{
-					cout << "NO PATH\n";
+					std::cout << "NO PATH\n";
 					continue;
 				}
 				else
 				{
-					cout << "Distance = " << ret->distances[i][j] << '\n';
-					cout << "Path = ";
+					std::cout << "Distance = " << ret->distances[i][j] << '\n';
+					std::cout << "Path = ";
 					for (int k = 0; k < ret->SPs[i][j].size(); k++)
 					{
-						cout << _graph->vertexPtrByRankinVertices(ret->SPs[i][j][k])->getElem();
+						std::cout << _graph->vertexPtrByRankinVertices(ret->SPs[i][j][k])->getElem();
 						if (k < ret->SPs[i][j].size() - 1)
-							cout << " - ";
+							std::cout << " - ";
 					}
-					cout << '\n';
+					std::cout << '\n';
 				}
 			}
-			cout << '\n';
+			std::cout << '\n';
 		}
 
 		delete ret;

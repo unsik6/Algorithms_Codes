@@ -1,5 +1,7 @@
 #include "AC_Automata.h"
 
+using namespace std;
+
 int AC_Automata::gotoFunc(int _state, int _symbol)	// return value -2(error), -1(fail), else(state)
 {
 	if (_state >= m_automaton.size() || _state < 0)

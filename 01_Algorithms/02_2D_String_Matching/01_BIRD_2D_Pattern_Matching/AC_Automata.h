@@ -4,32 +4,32 @@
 #include <list>
 #include <queue>
 #include <string>
-using namespace std;
 
 class AC_Automata
 {
+protected:
 	struct edgePair
 	{
 		int symbol;
 		int dstState;
 	};
 
-	vector<list<edgePair*>*> m_automaton;
-	vector<vector<int>*> m_outputs;	// ouputs[state] = pattern rows
+	std::vector<std::list<edgePair*>*> m_automaton;
+	std::vector<std::vector<int>*> m_outputs;	// ouputs[state] = pattern rows
 	int* m_failure;
 
 	int m_patternNum = 0;
-	string* m_patterns;	// This string array is only for restoring patterns.
+	std::string* m_patterns;	// This string array is only for restoring patterns.
 
 public:
 	AC_Automata()
 	{
-		m_automaton.push_back(new list<edgePair*>);
-		m_outputs.push_back(new vector<int>);
+		m_automaton.push_back(new std::list<edgePair*>);
+		m_outputs.push_back(new std::vector<int>);
 		m_patterns = nullptr;
 		m_failure = nullptr;
 	}
-	AC_Automata(vector<string>* _patArr) : AC_Automata()
+	AC_Automata(std::vector<std::string>* _patArr) : AC_Automata()
 	{
 		construct(_patArr);
 	}
@@ -50,13 +50,15 @@ public:
 
 	// construct(pattern strings)
 	// construct Automata, Failure Array(Func), OutputArray(Func)
-	void construct(vector<string>*);
+	void construct(std::vector<std::string>*);
 
 	// patternMatching(text)
 	// Find all location of all patterns that occurs in text
-	void patternMatching(string);
+	void patternMatching(std::string);
 
 	// Check all datastructre to check the AC automata is build correctly
 	void printForCheck();
-};
 
+	std::vector<std::vector<int>*>* getOutputs() { return &m_outputs; }
+	int failureFunc(int _state) { return m_failure[_state]; }
+};

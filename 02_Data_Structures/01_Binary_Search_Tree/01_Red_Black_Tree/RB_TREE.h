@@ -1,6 +1,5 @@
 #pragma
 #include <iostream>
-using namespace std;
 
 template <typename T>
 class RB_TREE
@@ -519,11 +518,11 @@ public:
 	{
 		if (!_r->getLeft()->isNIL())
 			checkPrintByInOrderTraversal(_r->getLeft());
-		cout << _r->getElem() << '/' << (_r->getRB() ? "R" : "B") << '/' << _r->getDepth() << '/';
+		std::cout << _r->getElem() << '/' << (_r->getRB() ? "R" : "B") << '/' << _r->getDepth() << '/';
 		if(_r != m_root)
-			cout << _r->getPar()->getElem() << ' ';
+			std::cout << _r->getPar()->getElem() << ' ';
 		else
-			cout << "NIL ";
+			std::cout << "NIL ";
 		if (!_r->getRight()->isNIL())
 			checkPrintByInOrderTraversal(_r->getRight());
 	}

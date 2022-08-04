@@ -2,28 +2,27 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
-using namespace std;
 
 template <typename T>
 class DisjointSet
 {
 private:
 	// m_parent stores the representative number of the set to which T belongs.
-	unordered_map<T, T> m_parent;
+	std::unordered_map<T, T> m_parent;
 
 	// m_rank stores the height of the tree (implementation of set).
-	unordered_map<T, int> m_rank;
+	std::unordered_map<T, int> m_rank;
 
 public:
 	DisjointSet() {}
 	DisjointSet(T* _elemArr, size_t _size);	// _elemArr is the array of elements, _size is the size of _elemArr.
-	DisjointSet(vector<T>* _elemVec);	// _elemArr is the std::vector of elements
+	DisjointSet(std::vector<T>* _elemVec);	// _elemArr is the std::vector of elements
 	~DisjointSet() {}
 
 
 	// makeSet() makes sets that include each elements of the input.
 	void makeSet(T* _elemArr, size_t _size);
-	void makeSet(vector<T>* _elemVec);
+	void makeSet(std::vector<T>* _elemVec);
 
 	// find() returns the representative number of the set to which the input key belons.
 	T find(T _key);
@@ -41,7 +40,7 @@ DisjointSet<T>::DisjointSet(T* _elemArr, size_t _size)
 }
 
 template <typename T>
-DisjointSet<T>::DisjointSet(vector<T>* _elemVec)
+DisjointSet<T>::DisjointSet(std::vector<T>* _elemVec)
 {
 	makeSet(_elemVec);
 }
@@ -59,7 +58,7 @@ void DisjointSet<T>::makeSet(T* _elemArr, size_t _size)
 
 
 template <typename T>
-void DisjointSet<T>::makeSet(vector<T>* _elemVec)
+void DisjointSet<T>::makeSet(std::vector<T>* _elemVec)
 {
 	for (int i = 0; i < _elemVec->size(); i++)
 	{
@@ -111,7 +110,7 @@ void DisjointSet<T>::print()
 {
 	for (auto e : m_parent)
 	{
-		cout << e.first << ' ' << e.second << '\n';
+		std::cout << e.first << ' ' << e.second << '\n';
 	}
 }
 

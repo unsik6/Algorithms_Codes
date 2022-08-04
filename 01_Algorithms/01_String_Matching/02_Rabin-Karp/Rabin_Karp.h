@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <string>
-using namespace std;
 
 
 /// <summary>
@@ -21,7 +20,7 @@ private:
 	/// <param name="text">text</param>
 	/// <param name="s">shift</param>
 	/// <returns>Whether the s-shift of the text matches the pattern.</returns>
-	bool equals(const string& pattern, const string& text, int s);
+	bool equals(const std::string& pattern, const std::string& text, int s);
 
 	/// <summary>
 	/// The input character is converted to a corresponding number.
@@ -41,5 +40,5 @@ public:
 	/// </summary>
 	/// <param name="pattern">pattern</param>
 	/// <param name="text">text</param>
-	void patternMatching(const string& pattern, const string& text);
+	void patternMatching(const std::string& pattern, const std::string& text);
 };

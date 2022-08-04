@@ -4,15 +4,15 @@
 class BAKER_BIRD
 {
 	int m_txtSize = 0; int m_patSize = 0;
-	string* m_txt = nullptr;
-	string* m_pats = nullptr;
+	std::string* m_txt = nullptr;
+	std::string* m_pats = nullptr;
 
 	AC_Automata* m_ac = nullptr;
 	int* m_arrLabelOfPatRow = nullptr;
 	int* m_kmpFArray = nullptr;
 
 public:
-	BAKER_BIRD(string* _txt, int _tSize, string* _pat, int _pSize)
+	BAKER_BIRD(std::string* _txt, int _tSize, std::string* _pat, int _pSize)
 	{
 		m_txt = _txt;
 		m_pats = _pat;
