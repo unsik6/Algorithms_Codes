@@ -1,0 +1,15 @@
+79 14
+dsfefkmpyukqekmpykmqwrqfkmpyukqekqfettkmpyukqekmpykmpyukqekmpykmefewgkmpyuefweq
+kmpyukqekmpykm
+
+***OUTPUT with INPUT***
+Text Length, Pattern Length: 79 14
+text: dsfefkmpyukqekmpykmqwrqfkmpyukqekqfettkmpyukqekmpykmpyukqekmpykmefewgkmpyuefweq
+pattern: kmpyukqekmpykm
+Char Array Test
+Pattern occurrence : 5 38 50
+FAILURE : 0 0 0 0 0 1 0 0 1 2 3 4 1 2
+
+String Array Test
+Pattern occurrence : 5 38 50
+FAILURE : 0 0 0 0 0 1 0 0 1 2 3 4 1 2
