@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 # Algorithms_Codes
 
 # Outline
@@ -20,9 +14,12 @@
     <td><center><b>Name</b></center></td>
   </tr>
   <tr>
-    <td rowspan= 5><center>Algorithms</center> </td>
-    <td rowspan = 2><center>String Matching</center></td>
+    <td rowspan= 6><center>Algorithms</center> </td>
+    <td rowspan = 3><center>String Matching</center></td>
     <td><center><a href = "#AC_Automata">Aho-Corasick Automata</a></center></td>
+  </tr>
+  <tr>
+      <td><center><a href = "#KMP_SM">KMP algorithm</a></center></td>
   </tr>
   <tr>
 	  <td><center><a href = "#Rabin_Karp">Rabin-Karp algorithm</a></center></td>
@@ -75,14 +72,26 @@
 
 <p id = "Rabin_Karp"></p>
 
-2. [<b>Rabin-Karp</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/02_Rabin-Karp)
+2. [<b>Rabin-Karp algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/02_Rabin-Karp)
 	> - Contributor: StoneIron02
 	> - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	> - Language used to implement: C++
 	> - Abstract:<br/>&nbsp;&nbsp; Rabin-Karp Algorithm is one of the pattern matching algorithms to find all locations of pattern in the given text. This algorithm separates text into substrings that have the length of the pattern and converts pattern and substrings into numbers. After that, compare each number by using modulo.<br/><br/>
 	> - Time complexity: <br/>&nbsp;&nbsp; Let the the length of pattern is <i>m</i>, and the length of text is <i>n</i>. It takes <i>O(m)</i> time to preprocess the first substring of the pattern and text. It takes <i>O(n-m)</i> time to compute the number of the next substring. If each number of pattern and substring is the same, we should compare the original string to find valid shifts. That takes <i>O(m)*O(the sum of valid shifts and spurious hits)</i>. So, worst case is $$O((n-m+1)m)$$ and expected time, if the number of valid shifts are <i>O(1)</i> and q is more than m, is $$O(n)$$<br/>
 	> - Space complexity: <br/>&nbsp;&nbsp; Equals the sum of the length of pattern and text. $$O(n+m)$$
-	
+
+<br/>
+
+<p id = "KMP_SM"></p>
+
+2. [<b>KMP algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/03_KMP)
+	> - Contributor: unsik6
+	> - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	> - Language used to implement: C++
+	> - Abstract:<br/>&nbsp;&nbsp; <i>KMP algorithm</i> is most famous string matching algorithm. This algorithm is referenced by many algorithms, papers and etc. This algorithm finds all occurrences of a given pattern string in a given text string. The main property used in this algorithm is appeared in <i>Failure function(array)</i>. If we meet a mismatch when comparing a character of a text and one of a pattern, we can skip shifts as many as the length of the longest prefix which equals to a suffix of the prefix, of pattern, already matched with a substring of text. <br/><br/>
+	> - Time complexity: <br/>&nbsp;&nbsp; There are one preprocessing phase to construct <i>Failure array</i> and one text scanning phase. <i>Failure array</i> is constructed with a pattern, using dynamic programming in time linear to a length of a pattern. And, using simliar way, a text scanning runs in time linear to the length of a text. In two phase, we scan each character of pattern(a text) only twice. $$O(n+m)$$
+	> - Space complexity: <br/>&nbsp;&nbsp; We only need the space for <i>Failure array</i>. So, $$O(m)$$
+
 <br/><br/>
 
 ## 2D Pattern Matching
