@@ -114,6 +114,19 @@
 	> - Time complexity: <br/>&nbsp;&nbsp; Actually, the time complexity of this algorithm is <i>O(n * m)</i> in the worst case, where <i>n</i> is the length of a text and <i>m</i> is the length of a pattern. But, Boyer and Moore experimentally proved that their algorithm runs in linear time. $$O(nm)$$$$O(n + m)\ in\ average\ case$$
 	> - Space complexity: <br/>&nbsp;&nbsp; We need <i>BC</i> array and <i>GS</i> array. Since <i>BC</i> array stores the rightmost occurrnce of each character in pattern, the number of elements equals the size of alphabet. And <i>GS</i> array stores the distances that the pointer in text moves when a mismatch occurs forall positions in a pattern. So, $$O(|\Sigma| + m)$$
 
+<br/>
+
+<p id = "BMH_SM"></p>
+
+5. [<b>Boyer-Moore-Horspool algorithm (BMH)</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/05_BMH_BMVariant)
+	> - Contributor: unsik6
+	> - Reference: R. Nigel Horspool, "Practical Fast Searching in Strings", Software-Practice and Experience(1980) 10 501-506
+	> - Language used to implement: C++
+	> - Abstract:<br/>&nbsp;&nbsp; <i>Boyer-Moore-Horspool(BMH) algorithm</i> is a variant of [<i>Boyer-Moore algorithm</i>](https://github.com/unsik6/Algorithms_Codes#BM_SM). The main idea of this algorithm is not using <i>Good Suffix</i> heuristic of <i>BM algorithm</i> since the case applying <i>Good Suffix</i> heuristic is very rare in real data although the time of preprocessing to constructing <i>GS</i> array is huge. So, this algorithm is more efficient to strings, consisted of a big alphabet, such as English texts, since this algorithm uses only <i>Bad Character</i> heuristic. If the input strings have more bigger alphabet, the case applying BC heuristic occurs more.
+	<br/><br/>
+	> - Time complexity: <br/>&nbsp;&nbsp;Time complexity of this algorithm equals one of <i>BM algorithm</i>. But, real running time is different by input strings. [This paper written by M,Crochemore and T.Lecroq](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.297.4160&rep=rep1&type=pdf) suggested the result of experiments about comparing the running times of variants and original algorithm of <i>BM algorithm</i>.  $$O(nm)$$$$O(n + m)\ in\ average\ case$$
+	> - Space complexity: <br/>&nbsp;&nbsp; We need only <i>BC</i> array. So, $$O(|\Sigma|)$$
+
 <br/><br/>
 
 ## 2D Pattern Matching
