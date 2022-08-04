@@ -21,14 +21,14 @@
   </tr>
   <tr>
     <td rowspan= 5><center>Algorithms</center> </td>
-    <td rowspan = 2><center>Pattern Matching</center></td>
+    <td rowspan = 2><center>String Matching</center></td>
     <td><center><a href = "#AC_Automata">Aho-Corasick Automata</a></center></td>
   </tr>
   <tr>
 	  <td><center><a href = "#Rabin_Karp">Rabin-Karp algorithm</a></center></td>
   </tr>
   <tr>
-    <td><center>2D Pattern Matching</center></td>
+    <td><center>2D String Matching</center></td>
     <td><center><a href = "#BIRD_2D">BAKER-BIRD Algorithm</a></center></td>
   </tr>
   <tr>
@@ -236,7 +236,7 @@
 
 <p id = "RB_TREE"></p>
 
-1. [<b>Red-Black Tree</b>](https://github.com/unsik6/Algrithms_Codes/tree/main/02_Data_Structures/01_Binary_Search_Tree/01_Red_Black_Tree)
+1. [<b>Red-Black Tree</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/01_Binary_Search_Tree/01_Red_Black_Tree)
 	 > - Contributor: unsik6
 	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	 > - Language used to implement: C++
