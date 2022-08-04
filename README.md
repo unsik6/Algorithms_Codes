@@ -14,15 +14,21 @@
     <td><center><b>Name</b></center></td>
   </tr>
   <tr>
-    <td rowspan= 6><center>Algorithms</center> </td>
-    <td rowspan = 3><center>String Matching</center></td>
+    <td rowspan= 8><center>Algorithms</center> </td>
+    <td rowspan = 5><center>String Matching</center></td>
     <td><center><a href = "#AC_Automata">Aho-Corasick Automata</a></center></td>
   </tr>
   <tr>
-      <td><center><a href = "#KMP_SM">KMP algorithm</a></center></td>
+	  <td><center><a href = "#Rabin_Karp">Rabin-Karp algorithm</a></center></td>
   </tr>
   <tr>
-	  <td><center><a href = "#Rabin_Karp">Rabin-Karp algorithm</a></center></td>
+      <td><center><a href = "#KMP_SM">Knuth–Morris–Pratt algorithm (KMP)</a></center></td>
+  </tr>
+    <tr>
+      <td><center><a href = "#BM_SM">Boyer-Moore algorithm (BM)</a></center></td>
+  </tr>
+    <tr>
+      <td><center><a href = "#BMH_SM">Boyer-Moore-Horspool algorithm (BMH)</a></center></td>
   </tr>
   <tr>
     <td><center>2D String Matching</center></td>
@@ -84,13 +90,29 @@
 
 <p id = "KMP_SM"></p>
 
-2. [<b>KMP algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/03_KMP)
+3. [<b>Knuth-Morris-Pratt algorithm (KMP)</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/03_KMP)
 	> - Contributor: unsik6
 	> - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	> - Language used to implement: C++
-	> - Abstract:<br/>&nbsp;&nbsp; <i>KMP algorithm</i> is most famous string matching algorithm. This algorithm is referenced by many algorithms, papers and etc. This algorithm finds all occurrences of a given pattern string in a given text string. The main property used in this algorithm is appeared in <i>Failure function(array)</i>. If we meet a mismatch when comparing a character of a text and one of a pattern, we can skip shifts as many as the length of the longest prefix which equals to a suffix of the prefix, of pattern, already matched with a substring of text. <br/><br/>
-	> - Time complexity: <br/>&nbsp;&nbsp; There are one preprocessing phase to construct <i>Failure array</i> and one text scanning phase. <i>Failure array</i> is constructed with a pattern, using dynamic programming in time linear to a length of a pattern. And, using simliar way, a text scanning runs in time linear to the length of a text. In two phase, we scan each character of pattern(a text) only twice. $$O(n+m)$$
+	> - Abstract:<br/>&nbsp;&nbsp; <i>Knuth-Morris-Pratt(KMP) algorithm</i> is most famous string matching algorithm. This algorithm is referenced by many algorithms, papers and etc. This algorithm finds all occurrences of a given pattern string in a given text string. The main property used in this algorithm is appeared in <i>Failure function(array)</i>. If we meet a mismatch when comparing a character of a text and one of a pattern, we can skip shifts as many as the length of the longest prefix which equals to a suffix of the prefix, of pattern, already matched with a substring of text. <br/><br/>
+	> - Time complexity: <br/>&nbsp;&nbsp; There are one preprocessing phase to construct <i>Failure array</i> and one text scanning phase. <i>Failure array</i> is constructed with a pattern, using dynamic programming in time linear to a length of a pattern. And, using simliar way, a text scanning runs in time linear to the length of a text. In two phase, we scan each character of pattern(a text) only twice. So, where <i>n</i> is the length of a text and <i>m</i> is the length of a pattern, total time complexity is $$O(n+m)$$
 	> - Space complexity: <br/>&nbsp;&nbsp; We only need the space for <i>Failure array</i>. So, $$O(m)$$
+
+<br/>
+
+<p id = "BM_SM"></p>
+
+4. [<b>Boyer-Moore algorithm (BM)</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/04_BM_original)
+	> - Contributor: unsik6
+	> - Reference: Robert S. Boyer and J Strother Moore, "A Fast String Searching Algorithm", ACM(1977) 20 (10) 762-772
+	> - Language used to implement: C++
+	> - Abstract:<br/>&nbsp;&nbsp; <i>Boyer-Moore(BM) algorithm</i> is most famous practical string matching algorithm. This algorithm is not only referenced by many algorithms, papers and etc but also often appied to some programs using string algorithm. This algorithm finds all occurrences of a given pattern string in a given text string. The special idea of <i>BM algorithm</i> is scanning the text backward. There are two heuristics using the information proposed by backward text scanning, <i>Bad Character(BC)</i> heuristic and <i>Good Suffix(GS)</i> heuristic. (Actually, these heuristics were called <i>delta<sub>1</sub></i> and <i>delta<sub>2</sub></i> in the paper written by Boyer and Moore. the heuristics were named after the paper was published.)
+	> <br/>&nbsp;&nbsp; <i>BC</i> heuristic uses the character which mismatch with a character of pattern. If a mismatch occurs, we know that the shift aligning the mismatched character of text with the rightmost occurrence of the mismatched character of a text in a pattern is the nearest shift among possibly vaild shifts. So, skip the shifts already assured to be invaild.
+	> <br/>&nbsp;&nbsp;But <i>BC</i> heuristic is not enough. If the rightmost occurrence of the mismatched character of a text in pattern is right of the poistion where the mismatch occurs in poistion, the pattern moves to left by <i>BC</i> heuristic. In the case, we use <i>GS</i> heuristic. <i>GS</i> heuristic uses the information about the suffix of a pattern already matched with a substring of text. We align the matched substring of a text with the rightmost reoccurrence of the matched suffix of pattern. But since we already know the mismatched character, the reoccurrence which the previous character of doesn't equal the previous of the mismatched suffix of pattern is aligned. Moreover, if the suffix of the matched suffix of a pattern is a prefix of a pattern, the prefix of a pattern is aligned with the suffix of the matched substring of a text.
+	> <br/>&nbsp;&nbsp;So, When mismatch occurs, the pointer of the character which will be scanned next in a text is moved as many as the minimum between the distance by <i>BC</i> heuristic and one by <i>GS</i> heuristc and the pointer of the character which will be scanned next in a pattern is initialized to the last position of a pattern.
+	<br/><br/>
+	> - Time complexity: <br/>&nbsp;&nbsp; Actually, the time complexity of this algorithm is <i>O(n * m)</i> in the worst case, where <i>n</i> is the length of a text and <i>m</i> is the length of a pattern. But, Boyer and Moore experimentally proved that their algorithm runs in linear time. $$O(nm)$$$$O(n + m)\ in\ average\ case$$
+	> - Space complexity: <br/>&nbsp;&nbsp; We need <i>BC</i> array and <i>GS</i> array. Since <i>BC</i> array stores the rightmost occurrnce of each character in pattern, the number of elements equals the size of alphabet. And <i>GS</i> array stores the distances that the pointer in text moves when a mismatch occurs forall positions in a pattern. So, $$O(|\Sigma| + m)$$
 
 <br/><br/>
 
