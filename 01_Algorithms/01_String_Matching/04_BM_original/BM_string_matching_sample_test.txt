@@ -1,0 +1,47 @@
+///// TEST 1 /////
+30 9
+CGTGCCTATACCCACTTACCCCTTACTTAC
+CTTACTTAC
+
+***OUTPUT with INPUT***
+Text Length, Pattern Length: 30 9
+text: CGTGCCTATACCCACTTACCCCTTACTTAC
+pattern: CTTACTTAC
+Char Array Test
+Pattern occurrence : 21
+Bad Character Table:
+(A, 1), (C, 0), (T, 2),
+Good Suffix Table
+12 11 10 9 12 11 10 9 1
+
+
+String Array Test
+Pattern occurrence : 21
+Bad Character Table:
+(A, 1), (C, 0), (T, 2),
+Good Suffix Table
+12 11 10 9 12 11 10 9 1
+
+///// TEST 2 /////
+79 14
+dsfefkmpyukqekmpykmqwrqfkmpyukqekqfettkmpyukqekmpykmpyukqekmpykmefewgkmpyuefweq
+kmpyukqekmpykm
+
+***OUTPUT with INPUT***
+Text Length, Pattern Length: 79 14
+text: dsfefkmpyukqekmpykmqwrqfkmpyukqekqfettkmpyukqekmpykmpyukqekmpykmefewgkmpyuefweq
+pattern: kmpyukqekmpykm
+Char Array Test
+Pattern occurrence : 5 38 50
+Bad Character Table:
+(e, 6), (k, 1), (m, 0), (p, 3), (q, 7), (u, 9), (y, 2),
+Good Suffix Table
+25 24 23 22 21 20 19 18 17 16 15 6 15 1
+
+
+String Array Test
+Pattern occurrence : 5 38 50
+Bad Character Table:
+(e, 6), (k, 1), (m, 0), (p, 3), (q, 7), (u, 9), (y, 2),
+Good Suffix Table
+25 24 23 22 21 20 19 18 17 16 15 6 15 1
