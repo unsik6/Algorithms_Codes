@@ -63,7 +63,7 @@
 
 <p id = "AC_Automata"></p>
 
-1. [<b>Aho-Corasick Automata</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_Pattern_Matching/01_Aho-Corasick_Automata)
+1. [<b>Aho-Corasick Automata</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/01_Aho-Corasick_Automata)
 	> - Contributor: unsik6
 	> - Reference: Alfred V. Aho and Margaret J. Corasick, "Efficient String Matching: An Aid to Bibliographic Search", ACM(1975) 18 (6) 333-340
 	> - Language used to implement: C++
@@ -75,7 +75,7 @@
 
 <p id = "Rabin_Karp"></p>
 
-2. [<b>Rabin-Karp</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_Pattern_Matching/02_Rabin-Karp)
+2. [<b>Rabin-Karp</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/02_Rabin-Karp)
 	> - Contributor: StoneIron02
 	> - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	> - Language used to implement: C++
@@ -89,7 +89,7 @@
 
 <p id = "BIRD_2D"></p>
 
-1. [<b>BAKER-BIRD Algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/02_2D_Pattern_Matching/01_BIRD_2D_Pattern_Matching)
+1. [<b>BAKER-BIRD Algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/02_2D_String_Matching/01_BIRD_2D_Pattern_Matching)
 	 > - Contributor: unsik6
 	 > - Reference: R.S.Bird, "TWO DIMENSIONAL PATTERN MATCHING", IPL(1977), 168-170 & THEODORE P. BAKER, "A Technique for extending rapid exact-match string matching to arrays of more than one dimension", SIAM J. Comput. (1978), 533-541
 	 > - Language used to implement: C++
