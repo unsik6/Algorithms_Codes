@@ -1,4 +1,5 @@
 
+
 # Algorithms_Codes
 
 # Outline
@@ -11,14 +12,13 @@
   <tr>
     <td > </td>
     <td><center><b>Category</b></center></td>
+   <td><center><b>Subcategory</b></center></td>
     <td><center><b>Name</b></center></td>
   </tr>
   <tr>
-    <td rowspan= 8><center>Algorithms</center> </td>
-    <td rowspan = 5><center>String Matching</center></td>
-    <td><center><a href = "#AC_Automata">Aho-Corasick Automata</a></center></td>
-  </tr>
-  <tr>
+	  <td rowspan= 11><center>Algorithms</center> </td>
+     <td rowspan = 6><center>String Algorithms</center></td>
+      <td rowspan = 5><center>String Matching</center></td>
 	  <td><center><a href = "#Rabin_Karp">Rabin-Karp algorithm</a></center></td>
   </tr>
   <tr>
@@ -30,55 +30,64 @@
     <tr>
       <td><center><a href = "#BMH_SM">Boyer-Moore-Horspool algorithm (BMH)</a></center></td>
   </tr>
+    <tr>
+	    <td><center><a href = "#AC_Automata">Aho-Corasick Automata</a></center></td>
+  </tr>
   <tr>
-    <td><center>2D String Matching</center></td>
+	<td rowspan = 1><center>2D String Matching</center></td>
     <td><center><a href = "#BIRD_2D">BAKER-BIRD Algorithm</a></center></td>
   </tr>
   <tr>
-    <td rowspan= 2><center>Graph Algorithms</center></td>
-    <td><center><a href = "#MST">MST</a><br/>(<a href = "#Prim_Algorithm">Prim's Algorithm</a>, <a href = "#Kruskal_Algorithm">Kruskal's Algorithm</a>)</center></td>
+    <td rowspan= 5><center>Graph Algorithms</center></td>
+    <td rowspan = 2><center><a href = "#MST">MST</a></center></td>
+    <td><center> <a href = "#Prim_Algorithm">Prim's Algorithm</a></center></td>
+  </tr>
+    <tr>
+    <td><center> <a href = "#Kruskal_Algorithm">Kruskal's Algorithm</a></center></td>
   </tr>
   <tr>
-	  <td><center><a href = "#ShortestPath">Shortest Path</a><br/>(<a href = "#Dijkstra">Dijkstra's Algorithm</a>, <a href = "#Bellman-Ford">Bellman-Ford's Algorithm</a>,<br/> <a href = "#Floyd-Warshall">Floyd-Warshall's Algorithm</a>)</center></td>
+    <td rowspan = 3><center><a href = "#ShortestPath">Shortest Path</a></center></td>
+    <td><center> <a href = "#Dijkstra">Dijkstra's Algorithm</a></center></td>
   </tr>
   <tr>
-	  <td rowspan= 4><center>Data Structure</center></td>
-	  <td><center>Binary Search Tree</center></td>
+      <td><center> <a href = "#Bellman-Ford">Bellman-Ford's Algorithm</a></center></td>
+  </tr>
+  <tr>
+      <td><center> <a href = "#Floyd-Warshall">Floyd-Warshall's Algorithm</a></center></td>
+  </tr>
+  <tr>
+	  <td rowspan= 4><center>Data Structures</center></td>
+	  <td rowspan= 1><center>Linear Data Structures</center></td>
+  	  <td rowspan = 1><center>Priority_Queue</center></td>
+	  <td><center><a href = "#Heap">Heap</a></center></td>
+  </tr>
+  <tr>
+  	  <td rowspan= 2><center>Hierarchical Data Structures</center></td>
+	  <td rowspan = 1><center>Binary Search Tree</center></td>
 	  <td><center><a href = "#RB_TREE">Red-Black Tree</a></center></td>
   </tr>
   <tr>
-	  <td><center>Priority_Queue</center></td>
-	  <td><center><a href = "#Heap">Heap</a></center></td>
-  </tr>
-    <tr>
-	  <td><center>Set</center></td>
-	  <td><center><a href = "#DisjointSet">DisjointSet</a></center></td>
-  </tr>
+	  <td rowspan = 1><center>Set</center></td>
+	 <td><center><a href = "#DisjointSet">DisjointSet</a></center></td>
   <tr>
-	  <td><center>Graph</center></td>
+	  <td rowspan = 1><center>Graphs</center></td>
+  	  <td rowspan = 1><center>Graph<br/>Representations</center></td>
 	  <td><center><a href = "#Graph_AdjacencyList">Adjacency List representation</a></center></td>
   </tr>
 </table>
 
-# Algorithms
-## Pattern Matching
-- Pattern matching problem is the problem that finds multiple or single pattern in multiple of single given text.
-
-<p id = "AC_Automata"></p>
-
-1. [<b>Aho-Corasick Automata</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/01_Aho-Corasick_Automata)
-	> - Contributor: unsik6
-	> - Reference: Alfred V. Aho and Margaret J. Corasick, "Efficient String Matching: An Aid to Bibliographic Search", ACM(1975) 18 (6) 333-340
-	> - Language used to implement: C++
-	> - Abstract:<br/>&nbsp;&nbsp; Aho-Corasck Automata is the deterministic automata to find all location of multiple patterns in a given text. Preprocessing patterns constructs the automata looked like a trie. Next, put a given text, the string in which we want to find patterns, in the automata.<br/><br/>
-	> - Time complexity: (implementation: array) <br/>&nbsp;&nbsp; preprocessing by all patterns to construct the automata, including the trie, failure func and output func, needs time linear to sum the length of all patterns. And, Searching patterns in a given text needs time linear to the length of the text. If the sum of the length of all patterns is <i>m</i>, the alphabet used in the text is constant, and the length of the text is <i>n</i>, then the time complexity of this algorithm is $$O(m  + n)$$<br/>
-	> - Space complexity: (implementation: array) <br/>&nbsp;&nbsp; The number of nodes and edges of the automata is at most the sum of the length of patterns. And, the failure function can be stored as a linear array. If the patterns consist of only one character and their length are differnet from each other, the output function returns all patterns whose length is shorter than the new pattern founded. $$O(m^2)$$
-
 <br/>
+
+# Algorithms
+# String Algorithms
+
+## [1] String Matching
+
+- String matching problem is the problem that finds multiple or single pattern in multiple of single given text.
 
 <p id = "Rabin_Karp"></p>
 
-2. [<b>Rabin-Karp algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/02_Rabin-Karp)
+1. [<b>Rabin-Karp algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String%20Algorithms/01_String_Matching/01_Rabin-Karp)
 	> - Contributor: StoneIron02
 	> - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	> - Language used to implement: C++
@@ -90,7 +99,7 @@
 
 <p id = "KMP_SM"></p>
 
-3. [<b>Knuth-Morris-Pratt algorithm (KMP)</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/03_KMP)
+2. [<b>Knuth-Morris-Pratt algorithm (KMP)</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String%20Algorithms/01_String_Matching/02_KMP)
 	> - Contributor: unsik6
 	> - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	> - Language used to implement: C++
@@ -102,7 +111,7 @@
 
 <p id = "BM_SM"></p>
 
-4. [<b>Boyer-Moore algorithm (BM)</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/04_BM_original)
+3. [<b>Boyer-Moore algorithm (BM)</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String%20Algorithms/01_String_Matching/03_BM_original)
 	> - Contributor: unsik6
 	> - Reference: Robert S. Boyer and J Strother Moore, "A Fast String Searching Algorithm", ACM(1977) 20 (10) 762-772
 	> - Language used to implement: C++
@@ -118,7 +127,7 @@
 
 <p id = "BMH_SM"></p>
 
-5. [<b>Boyer-Moore-Horspool algorithm (BMH)</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String_Matching/05_BMH_BMVariant)
+4. [<b>Boyer-Moore-Horspool algorithm (BMH)</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String%20Algorithms/01_String_Matching/04_BMH_BMVariant)
 	> - Contributor: unsik6
 	> - Reference: R. Nigel Horspool, "Practical Fast Searching in Strings", Software-Practice and Experience(1980) 10 501-506
 	> - Language used to implement: C++
@@ -127,13 +136,25 @@
 	> - Time complexity: <br/>&nbsp;&nbsp;Time complexity of this algorithm equals one of <i>BM algorithm</i>. But, real running time is different by input strings. [This paper written by M,Crochemore and T.Lecroq](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.297.4160&rep=rep1&type=pdf) suggested the result of experiments about comparing the running times of variants and original algorithm of <i>BM algorithm</i>.  $$O(nm)$$$$O(n + m)\ in\ average\ case$$
 	> - Space complexity: <br/>&nbsp;&nbsp; We need only <i>BC</i> array. So, $$O(|\Sigma|)$$
 
+<br/>
+
+<p id = "AC_Automata"></p>
+
+5. [<b>Aho-Corasick Automata</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String%20Algorithms/01_String_Matching/05_Aho-Corasick_Automata)
+	> - Contributor: unsik6
+	> - Reference: Alfred V. Aho and Margaret J. Corasick, "Efficient String Matching: An Aid to Bibliographic Search", ACM(1975) 18 (6) 333-340
+	> - Language used to implement: C++
+	> - Abstract:<br/>&nbsp;&nbsp; Aho-Corasck Automata is the deterministic automata to find all location of multiple patterns in a given text. Preprocessing patterns constructs the automata looked like a trie. Next, put a given text, the string in which we want to find patterns, in the automata.<br/><br/>
+	> - Time complexity: (implementation: array) <br/>&nbsp;&nbsp; preprocessing by all patterns to construct the automata, including the trie, failure func and output func, needs time linear to sum the length of all patterns. And, Searching patterns in a given text needs time linear to the length of the text. If the sum of the length of all patterns is <i>m</i>, the alphabet used in the text is constant, and the length of the text is <i>n</i>, then the time complexity of this algorithm is $$O(m  + n)$$<br/>
+	> - Space complexity: (implementation: array) <br/>&nbsp;&nbsp; The number of nodes and edges of the automata is at most the sum of the length of patterns. And, the failure function can be stored as a linear array. If the patterns consist of only one character and their length are differnet from each other, the output function returns all patterns whose length is shorter than the new pattern founded. $$O(m^2)$$
+
 <br/><br/>
 
-## 2D Pattern Matching
+## [2] 2D String Matching
 
 <p id = "BIRD_2D"></p>
 
-1. [<b>BAKER-BIRD Algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/02_2D_String_Matching/01_BIRD_2D_Pattern_Matching)
+1. [<b>BAKER-BIRD Algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String%20Algorithms/02_2D_String_Matching/01_BIRD_2D_Pattern_Matching)
 	 > - Contributor: unsik6
 	 > - Reference: R.S.Bird, "TWO DIMENSIONAL PATTERN MATCHING", IPL(1977), 168-170 & THEODORE P. BAKER, "A Technique for extending rapid exact-match string matching to arrays of more than one dimension", SIAM J. Comput. (1978), 533-541
 	 > - Language used to implement: C++
@@ -143,11 +164,11 @@
 	 > - Space complexity: (implementation: array) <br/>&nbsp;&nbsp; There are an AC automata, which haves at most <i>m<sup>2</sup></i> nodes, the failure function of the AC automata that also have the same number of elements becuase it is implemented as array, the output function, which have <i>m<sup>2</sup></i> elements, and the KMP failure function, in column matching process, that have <i>m</i> elements. And we need the array that have <i>n</i> elements, to keep how many rows of pattern matched before using KMP algorithm in column matching. So, the space complexity of this algorithm is $$O(n+m^2)$$
 <br/><br/>
 
-## Graph Algorithm
+# Graph Algorithms
 
 <p id = "MST"></p>
 
-### [MST](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/03_Graph_algorithms/01_MST)
+## [1] [MST](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/02_Graph_algorithms/01_MST)
 
 - Minimum Spanning Tree(MST) problem is one of the famous problems. The problem is finding a spanning tree with the minimum weight of a given connected, undirected graph. It is no matter the given graph is weighted or not. If the given graph is unweighted, we can solve the problem considering the weights of all edges are same. A spanning tree for a connected, undirected graph is an undirected tree, a subgraph which includes all vertices of the given graph. The weight of a spanning tree is the sum of the weight of all edges of itself. If a spanning tree has the least weight than othes, the spanning tree is MST.
 - Here are two MST algorithms, Prim's and Kruskal's. The algorithms are implemented in one namespace <i>MST</i>,
@@ -186,7 +207,7 @@
 <br/><br/>
 <p id = "ShortestPath"></p>
 
-### [Shortest Path](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/03_Graph_algorithms/02_ShortestPath)
+## [2] [Shortest Path](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/02_Graph_algorithms/02_ShortestPath)
 
 - Shortest Path problem is one of the famous graph problems. The probelm is finding a minimum-weight path from a source vertex(or all vertices) to a destination vertex(or all vertices). Generally, it looks like the problems not depending on some properties of a given graph, such as (un)directed, acyclic. But some algorithms to solve these probelms restrict input.
 - There are four types of shotest path problem.
@@ -273,14 +294,34 @@
 
 
 # Data Structures
-## Binary Search Tree
+
+# Linear Data Structure
+
+## [1] Priority Queue
+
+
+<p id = "Heap"></p>
+
+1. [<b>Heap</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/01_Linear_Data_Structure/01_Priority_Queue/01_Heap)
+	> - Contributor: unsik6
+	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	 > - Language used to implement: C++
+	 > - Abstract:<br/>&nbsp;&nbsp; Heap is the one of the famous data structure. Heap is the left-complete binary tree. The main property of heap is <i>par.key() <= children.key(), where the heap is Min-Heap</i>, If the heap is Max-Heap, the property is reversed. It is outstanding to implement Priority queue. Heap keeps the optimal value(minimum or maximum) at the root of heap. Since, the time complexity of <i>insert</i> and <i>removeOptimalValue(with getOptimalValue)</i> is <i>O(log n)</i>, where <i>n</i> is the number of elements, heap is used to sort in <i>O(nlog n) time</i>.<br/><br/>
+	 > - Time complexity:$$Build\ Heap\ =O(n)$$ &nbsp;&nbsp;Since heap is the left-complete binary tree, the height of heap is <i>O(log n)</i>. So, $$Insert\ and\ removeOptimalValue =O(log n)$$
+	 > - Space complexity: (implementation: array)<br/>&nbsp;&nbsp; Since heap is the left-complete binary tree, heap don't need empty space, altough the heap is implemented as array. So, $$O(n)$$
+
+<br/><br/>
+
+# Hierarchical Data Structures
+
+## [1] Binary Search Tree
 
 - Binary Search Tree(BST) is an useful datastructure. Its main property is the node property, <i>left_child.element <= parent.element < right_child.element</i>. It is no matter if the equality relationship with the <i>parent</i> is established with the <i>left_child</i> or <i>right_child</i>.
 - In a Balanced BST, the difference between the height of the left subtree and the height of the right subtree of all nodes is not big. Therefore, the some queries of a general BST runs in <i>O(n)</i> time, where <i>n</i> is the number of nodes, the same queries of a balanced BST are more efficient.
 
 <p id = "RB_TREE"></p>
 
-1. [<b>Red-Black Tree</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/01_Binary_Search_Tree/01_Red_Black_Tree)
+1. [<b>Red-Black Tree</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Hierarchical_Data_Structure/01_Binary_Search_Tree/01_Red_Black_Tree)
 	 > - Contributor: unsik6
 	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	 > - Language used to implement: C++
@@ -291,26 +332,13 @@
 
 <br/><br/>
 
-## Priority Queue
 
 
-<p id = "Heap"></p>
-
-1. [<b>Heap</b>](https://github.com/unsik6/Algorithms_Codes/blob/main/02_Data_Structures/02_Priority_Queue/01_Heap/Heap.h)
-	> - Contributor: unsik6
-	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
-	 > - Language used to implement: C++
-	 > - Abstract:<br/>&nbsp;&nbsp; Heap is the one of the famous data structure. Heap is the left-complete binary tree. The main property of heap is <i>par.key() <= children.key(), where the heap is Min-Heap</i>, If the heap is Max-Heap, the property is reversed. It is outstanding to implement Priority queue. Heap keeps the optimal value(minimum or maximum) at the root of heap. Since, the time complexity of <i>insert</i> and <i>removeOptimalValue(with getOptimalValue)</i> is <i>O(log n)</i>, where <i>n</i> is the number of elements, heap is used to sort in <i>O(nlog n) time</i>.<br/><br/>
-	 > - Time complexity:$$Build\ Heap\ =O(n)$$ &nbsp;&nbsp;Since heap is the left-complete binary tree, the height of heap is <i>O(log n)</i>. So, $$Insert\ and\ removeOptimalValue =O(log n)$$
-	 > - Space complexity: (implementation: array)<br/>&nbsp;&nbsp; Since heap is the left-complete binary tree, heap don't need empty space, altough the heap is implemented as array. So, $$O(n)$$
-
-<br/><br/>
-
-## Set
+## [2] Set
 
 <p id = "DisjointSet"></p>
 
-1. [<b>DisjointSet</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/03_Set/01_Disjoint_Set)
+1. [<b>DisjointSet</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Hierarchical_Data_Structure/02_Set/01_Disjoint_Set)
 	> - Contributor: unsik6
 	 > - Reference: [TECHIE DELIGT</>](https://www.techiedelight.com/ko/disjoint-set-data-structure-union-find-algorithm/)
 	 > - Language used to implement: C++
@@ -320,10 +348,13 @@
 
 <br/><br/>
 
-## Graph
+# Graph
+
+## [1] Graph Representations
+
 <p id = "Graph_AdjacencyList"></p>
 
-1. [<b>Adjacency List representation</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_AdjacencyList)
+1. [<b>Adjacency List representation</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/04_Graph/01_Representations/01_AdjacencyList)
 	> - Contributor: unsik6
 	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	 > - Language used to implement: C++
