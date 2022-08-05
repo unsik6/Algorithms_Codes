@@ -16,8 +16,8 @@
     <td><center><b>Name</b></center></td>
   </tr>
   <tr>
-	  <td rowspan= 11><center>Algorithms</center> </td>
-     <td rowspan = 6><center>String Algorithms</center></td>
+	  <td rowspan= 12><center>Algorithms</center> </td>
+     <td rowspan = 7><center>String Algorithms</center></td>
       <td rowspan = 5><center>String Matching</center></td>
 	  <td><center><a href = "#Rabin_Karp">Rabin-Karp algorithm</a></center></td>
   </tr>
@@ -36,6 +36,10 @@
   <tr>
 	<td rowspan = 1><center>2D String Matching</center></td>
     <td><center><a href = "#BIRD_2D">BAKER-BIRD Algorithm</a></center></td>
+  </tr>
+  <tr>
+	  <td rowspan = 1><center>String Distance</center></td>
+	  <td><center><a href = "#WED">(Weighted) Edit Distance algorithm</a></center></td>
   </tr>
   <tr>
     <td rowspan= 5><center>Graph Algorithms</center></td>
@@ -162,6 +166,28 @@
 	 > <br/>&nbsp;&nbsp; Baker also published a paper introducing two dimensional pattern matching. He use only M-P algorithm and it's automaton. He extended M-P automaton for row matching, but that is almost same with Aho-Corasick automaton. And in column matching, Baker use M-P automaton(M-P algorithm equals KMP). So, generally, Baker's algorithm and Bird's algorithm are combined and called 'Baker-Bird algorithm'.<br/><br/>
 	 > - Time complexity: (implementation: array) <br/>&nbsp;&nbsp; One of preprocessing to construct an AC automata by all rows of pattern needs <i>O(m<sup>2</sup>)</i> time. In the original paper, Other preprocessing, labeling all rows of pattern, was introduced it needs same time. but it can run in <i>O(m)</i> time using an AC automata already constructed. Also, It can run in the preprocessing to construct Output Func of an AC automata. The rest of preprocessing is to construct a KMP failure function using the labels of rows of pattern, and It runs in time in <i>O(m<sup>2</sup>)</i>.<br/>&nbsp;&nbsp;The prcessing to find all location of pattern in text run in  <i>O(n<sup>2</sup>)</i> time, since there are <i>n</i> column and KMP algorithm in each column needs <i>O(n)</i> time. And row matching needs <i>O(n<sup>2</sup>)</i> time, since Time complexity of the pattern matching using AC automata is linear. So, $$O(m^2 + m + m^2 + n^2 + n^2)$$ $$Total\ running\ time=O(n^2+m^2)$$<br/>
 	 > - Space complexity: (implementation: array) <br/>&nbsp;&nbsp; There are an AC automata, which haves at most <i>m<sup>2</sup></i> nodes, the failure function of the AC automata that also have the same number of elements becuase it is implemented as array, the output function, which have <i>m<sup>2</sup></i> elements, and the KMP failure function, in column matching process, that have <i>m</i> elements. And we need the array that have <i>n</i> elements, to keep how many rows of pattern matched before using KMP algorithm in column matching. So, the space complexity of this algorithm is $$O(n+m^2)$$
+
+<br/><br/>
+
+## [3] String Distance
+
+- String distance means how much differenct between strings are. So, If string distance between two strings is more shorter, the two strings are more simliar.
+- There are many measures of string distance. We can check the difference between strings in a lot of way. 'How many operations are needed to make a text from pattern', 'How long common substring of two strings is', ... Some of them are named '~ distance', but some of them don't look like that, such as <i>LCS(the Longest Common Subsequence)</i>.
+
+<p id = "WED"></p>
+
+1. [<b>(Weighted) Edit Distance algorithm</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String%20Algorithms/01_String_Matching/01_Rabin-Karp)
+	> - Contributor: unsik6
+	> - Reference: [Venki and et al., 'Edit distance | DP-5', GeeksforGeeks](https://www.geeksforgeeks.org/edit-distance-dp-5/)
+	> - Language used to implement: C++
+	> - Abstract:<br/>&nbsp;&nbsp; <i>'Edit distance'</i> means how many operations are need to transform a pattern to a text. The operations are also given as input. In common, <i>INSERT</i>, <i>DELETE</i>, <i>REPLACE</i> are used. If you don't need to use the operation for the transformation, there is the position where a charcter of a text and a character of a pattern are matching. <i>Edit distance</i> is the minimum of the sum of cost of all operation which run to transform from a pattern to a text.<br/>
+	> - <b>Basic edit distance algorithm</b> defines costs of all operation as 1. So, if match position occurs, there is no cost, and if you can use <i>REPLACE</i> by aligning a character of a text and a character of a pattern, it is more efficient than deleting the character of a pattern and inserting the character of a text.
+	> - But the costs of operations are not always 1 and equal each other. So, there is <b>Weighted edit distance algorithm</b>. This algrithm gets all costs of operations as input. Sometimes, the cost of doing nothing in a matching case also is given. (Acutally, it is not correct that there is some cost of nothing, since doing nothing don’t need any work. But, for example, in some real world problem, doing nothing has more value. So, we can define the cost of doing nothing as negative value to give more value than 0.) <i>Basic edit distance algorithm</i> belongs to <i>Weighted edit distance</i>, since basic algorithm equals weighted edit distance in the case that all costs of operations are given as 1.
+	> - <i>Edit distance algorithm</i> is implementated, using <i>Dynamic Programming</i>, like <i>LCS(the Longest Common Subsequence)</i>. Since it is important that how to align the subsequences of two strings, there are so many cases.
+	> - Time complexity: <br/>&nbsp;&nbsp; This algorithm fills out <i>n</i> x <i>m</i> two dimensional matrix, where <i>n</i> is the length of a text and <i>m</i> is the length of a pattern. It runs simliarly with some of <i>dynamic programming algorithms</i> such as MCM(Matrix Chain Multiplication), LCS, LIS(the Longest Increasing Subsequence). So,  $$O(nm)$$<br/>
+	> - Space complexity: <br/>&nbsp;&nbsp; We need <i>n</i> x <i>m</i> matrix. But we can compute an edit distance using only two rows by toggling the rows.$$O(n+m)$$<br/>
+	> - But if you want to print or know the sequence of operations to transform from a pattern to a text, we need one more matrix of the quadratic size, since we need to keep all optimal solution of all subproblems. And we can construct the sequence by backtracking the matrix. So, we need to know the sequence of operations with, $$O(nm)$$ space.
+
 <br/><br/>
 
 # Graph Algorithms
