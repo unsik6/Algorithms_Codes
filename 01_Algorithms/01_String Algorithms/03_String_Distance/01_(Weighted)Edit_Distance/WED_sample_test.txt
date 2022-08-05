@@ -1,0 +1,192 @@
+/////TEST 1/////
+2 3
+dc
+abc
+1
+1
+5
+-10
+
+***OUTPUT with INPUT***
+Text Length, Pattern Length: 2 3
+text: dc
+pattern: abc
+Weights:
+INSERT: 1
+DELETE: 1
+REPLACE: 5
+MATCHING: -10
+Char Array Test
+***ALL RESULT***
+[Edit Distance]: -7
+[Shortest Path] D D I M
+[Align text and pattern]
+a b   c
+    d c
+
+[Distance DP Matrix]
+1row: 1 2 3 4
+2row: 2 3 4 -7
+
+[Path DP Matrix]
+  ' 'a b c
+ : 0 1 1 1
+d: 0 0 0 0
+c: 0 0 0 3
+
+
+String Array Test
+***ALL RESULT***
+[Edit Distance]: -7
+[Shortest Path] D D I M
+[Align text and pattern]
+a b   c
+    d c
+
+[Distance DP Matrix]
+1row: 1 2 3 4
+2row: 2 3 4 -7
+
+[Path DP Matrix]
+  ' 'a b c
+ : 0 1 1 1
+d: 0 0 0 0
+c: 0 0 0 3
+
+/////TEST 2/////
+6 6
+writer
+tigers
+1
+1
+1
+0
+
+***OUTPUT with INPUT***
+Text Length, Pattern Length: 6 6
+text: writer
+pattern: tigers
+Weights:
+INSERT: 1
+DELETE: 1
+REPLACE: 1
+MATCHING: 0
+Char Array Test
+***ALL RESULT***
+[Edit Distance]: 4
+[Shortest Path] R I M R M M D
+[Align text and pattern]
+t   i g e r s
+w r i t e r
+
+[Distance DP Matrix]
+5row: 5 4 4 4 3 4 5
+6row: 6 5 5 5 4 3 4
+
+[Path DP Matrix]
+  ' 't i g e r s
+ : 0 1 1 1 1 1 1
+w: 0 2 1 1 1 1 1
+r: 0 0 2 1 1 3 1
+i: 0 0 3 1 1 0 2
+t: 0 3 0 2 1 1 0
+e: 0 0 0 0 3 1 1
+r: 0 0 0 0 0 3 1
+
+
+String Array Test
+***ALL RESULT***
+[Edit Distance]: 4
+[Shortest Path] R I M R M M D
+[Align text and pattern]
+t   i g e r s
+w r i t e r
+
+[Distance DP Matrix]
+5row: 5 4 4 4 3 4 5
+6row: 6 5 5 5 4 3 4
+
+[Path DP Matrix]
+  ' 't i g e r s
+ : 0 1 1 1 1 1 1
+w: 0 2 1 1 1 1 1
+r: 0 0 2 1 1 3 1
+i: 0 0 3 1 1 0 2
+t: 0 3 0 2 1 1 0
+e: 0 0 0 0 3 1 1
+r: 0 0 0 0 0 3 1
+
+/////TEST 3//////
+12 5
+CAGATAAGAGAA
+GATAA
+1
+1
+1
+0
+
+***OUTPUT with INPUT***
+Text Length, Pattern Length: 12 5
+text: CAGATAAGAGAA
+pattern: GATAA
+Weights:
+INSERT: 1
+DELETE: 1
+REPLACE: 1
+MATCHING: 0
+Char Array Test
+***ALL RESULT***
+[Edit Distance]: 7
+[Shortest Path] I I M M M I I I I I M M
+[Align text and pattern]
+    G A T           A A
+C A G A T A A G A G A A
+
+[Distance DP Matrix]
+11row: 11 10 9 8 7 6
+12row: 12 11 10 9 8 7
+
+[Path DP Matrix]
+  ' 'G A T A A
+ : 0 1 1 1 1 1
+C: 0 2 1 1 1 1
+A: 0 0 3 1 3 3
+G: 0 3 0 2 1 1
+A: 0 0 3 0 3 3
+T: 0 0 0 3 0 2
+A: 0 0 3 0 3 3
+A: 0 0 3 0 3 3
+G: 0 3 0 0 0 0
+A: 0 0 3 0 3 3
+G: 0 3 0 0 0 0
+A: 0 0 3 0 3 3
+A: 0 0 3 0 3 3
+
+
+String Array Test
+***ALL RESULT***
+[Edit Distance]: 7
+[Shortest Path] I I M M M I I I I I M M
+[Align text and pattern]
+    G A T           A A
+C A G A T A A G A G A A
+
+[Distance DP Matrix]
+11row: 11 10 9 8 7 6
+12row: 12 11 10 9 8 7
+
+[Path DP Matrix]
+  ' 'G A T A A
+ : 0 1 1 1 1 1
+C: 0 2 1 1 1 1
+A: 0 0 3 1 3 3
+G: 0 3 0 2 1 1
+A: 0 0 3 0 3 3
+T: 0 0 0 3 0 2
+A: 0 0 3 0 3 3
+A: 0 0 3 0 3 3
+G: 0 3 0 0 0 0
+A: 0 0 3 0 3 3
+G: 0 3 0 0 0 0
+A: 0 0 3 0 3 3
+A: 0 0 3 0 3 3
