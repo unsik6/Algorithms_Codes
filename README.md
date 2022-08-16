@@ -16,8 +16,8 @@
     <td><center><b>Name</b></center></td>
   </tr>
   <tr>
-	  <td rowspan= 12><center>Algorithms</center> </td>
-     <td rowspan = 7><center>String Algorithms</center></td>
+	  <td rowspan= 13><center>Algorithms</center> </td>
+     <td rowspan = 8><center>String Algorithms</center></td>
       <td rowspan = 5><center>String Matching</center></td>
 	  <td><center><a href = "#Rabin_Karp">Rabin-Karp algorithm</a></center></td>
   </tr>
@@ -38,8 +38,11 @@
     <td><center><a href = "#BIRD_2D">BAKER-BIRD Algorithm</a></center></td>
   </tr>
   <tr>
-	  <td rowspan = 1><center>String Distance</center></td>
+	  <td rowspan = 2><center>String Distance</center></td>
 	  <td><center><a href = "#WED">(Weighted) Edit Distance algorithm</a></center></td>
+  </tr>
+  <tr>
+   <td><center><a href = "#LCS">the Longest Common Subsequence (LCS)</a></center></td>
   </tr>
   <tr>
     <td rowspan= 5><center>Graph Algorithms</center></td>
@@ -186,6 +189,19 @@
 	> - <i>Edit distance algorithm</i> is implementated, using <i>Dynamic Programming</i>, like <i>LCS(the Longest Common Subsequence)</i>. Since it is important that how to align the subsequences of two strings, there are so many cases.
 	> - Time complexity: <br/>&nbsp;&nbsp; This algorithm fills out <i>n</i> x <i>m</i> two dimensional matrix, where <i>n</i> is the length of a text and <i>m</i> is the length of a pattern. It runs simliarly with some of <i>dynamic programming algorithms</i> such as MCM(Matrix Chain Multiplication), LCS, LIS(the Longest Increasing Subsequence). So,  $$O(nm)$$<br/>
 	> - Space complexity: <br/>&nbsp;&nbsp; We need <i>n</i> x <i>m</i> matrix. But we can compute an edit distance using only two rows by toggling the rows.$$O(n+m)$$<br/>
+	> - But if you want to print or know the sequence of operations to transform from a pattern to a text, we need one more matrix of the quadratic size, since we need to keep all optimal solution of all subproblems. And we can construct the sequence by backtracking the matrix. So, we need to know the sequence of operations with, $$O(nm)$$ space.
+
+<br/>
+
+<p id = "LCS"></p>
+
+1. [<b>the Longest Common Subsequence</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String%20Algorithms/03_String_Distance/02_LCS)
+	> - Contributor: unsik6
+	> - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
+	> - Language used to implement: C++
+	> - Abstract:<br/>&nbsp;&nbsp;<i>The Longest Common Subsequence (LCS)</i> is one of the measures of a string distance. If LCS is more longesr, the strings are more similar. LCS is computed by dynamic programming. It is simple.<br/>
+	> - Time complexity: <br/>&nbsp;&nbsp; This algorithm fills out <i>n</i> x <i>m</i> two dimensional matrix, where <i>n</i> is the length of a text and <i>m</i> is the length of a pattern. Sadly, for any positive constant <i>e</i>, there are no <i>O(n<sup>2-e</sup>)-time</i> algorithms to compute the length of LCS if <i>the strong exponential time hypothesis (SETH)</i> is true. So,  $$O(nm)$$<br/>
+	> - Space complexity: <br/>&nbsp;&nbsp; We need <i>n</i> x <i>m</i> matrix. But we can compute the length of LCS using only two rows by toggling the rows. For convenience, I just implement the algorithm using a <i>n</i> by <i>m</i> matrix. $$O(n+m)$$<br/>
 	> - But if you want to print or know the sequence of operations to transform from a pattern to a text, we need one more matrix of the quadratic size, since we need to keep all optimal solution of all subproblems. And we can construct the sequence by backtracking the matrix. So, we need to know the sequence of operations with, $$O(nm)$$ space.
 
 <br/><br/>
