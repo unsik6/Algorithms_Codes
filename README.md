@@ -1,3 +1,6 @@
+
+
+
 # Algorithms_Codes
 
 # Outline
@@ -250,10 +253,7 @@
 	> - Contributor: unsik6
 	> - Reference: [Sakai, Yoshifumi. "Maximal common subsequence algorithms." _Theoretical Computer Science_ 793 (2019): 132-139.](https://www.sciencedirect.com/science/article/pii/S0304397519304074)
 	> - Language used to implement: C++
-	> - Abstract:<br/>&nbsp;&nbsp; Yoshifumi Sakai proposed a (sub)linearithmic-time, linear-space algorithm for finding a maximal common subsequence of two strings and a linear-time algorithm for determining if a common subsequence of two strings is maximal. I think this algorithm uses greedy strategy.
-	> [Outline]
-	> (1) Find a common character from front to back. Choose a character of a string, and find position of same character in another string. Execute this operation alternately on two strings of characters.
-	> (2) If there is no character to find a common character, then remove the suffix that starts with a last common character in both strings. And push the common character in front of MCS. Repeat (1).
+	> - Abstract:<br/>&nbsp;&nbsp; Yoshifumi Sakai proposed a (sub)linearithmic-time, linear-space algorithm for finding a maximal common subsequence of two strings and a linear-time algorithm for determining if a common subsequence of two strings is maximal. I think this algorithm uses greedy strategy.<br/>[Outline]<br/>(1) Find a common character from front to back. Choose a character of a string, and find position of same character in another string. Execute this operation alternately on two strings of characters.<br/>(2) If there is no character to find a common character, then remove the suffix that starts with a last common character in both strings. And push the common character in front of MCS. Repeat (1).<br/>
 	> - Time complexity: <br/>&nbsp;&nbsp; This algorithm use [the data structure of Beame and Fich](https://www.sciencedirect.com/science/article/pii/S0022000002918222). This is <i>O(n)</i>-time constuctible, And Support <i>O(sqrt(log n / log log n))</i>-time queries that find first(resp. last) position where a given character occurs after(resp. before) a given index. In this algorithm, the queries are used <i>O(n)</i> times.  So,  $$O(n \sqrt{\log n / \log \log n})$$<br/>
 	> - Space complexity: <br/>&nbsp;&nbsp; This algorithm stores positions of all found common characters in both strings, and how many times the operation to find a common character is used to find each common character. And, There is <i>O(n)</i> common characters. So,  $$O(n)$$<br/>
 
@@ -265,10 +265,7 @@
 	> - Contributor: unsik6
 	> - Reference: [DongYeop Lee, & Joong Chae Na. (2022), An Improved Algorithm for Finding a Longer Maximal Common Subsequence. Journal of KIISE, 49(7), 507-513.](https://www.dbpia.co.kr/pdf/pdfView.do?nodeId=NODE11100316&googleIPSandBox=false&mark=0&useDate=&ipRange=false&accessgl=Y&language=ko_KR&hasTopBanner=true)
 	> - Language used to implement: C++
-	> - Abstract:<br/>&nbsp;&nbsp; DY Lee & JC Na proposed [the result of experiment](http://manuscriptlink-society-file.s3.amazonaws.com/kips/conference/ack2021/abs/KIPS_C2021B0070.pdf), a MCS computed by <a href = "#Sakai_MCS">Sakai's algorithm</a> is very short than LCS. So, They proposed the strategy that makes the length of MCS comuted by Y.Sakai's algorithm more longer. In Sakai's algorithm, the operation to find a common character are executed alternately on two strings of characters. The strategy is, 
-	> (1) Execute the operation in both strings at the same time.
-	> (2) Compare the maximal numbers of executing the operation to find next common characters by  two common characters found by (1). If the index of a common charcter is <i>i</i> in <i>string1</i> and <i>j</i> in <i>string2</i>, then the maximal number of executing the operation is <i>min(|range in string1| - i, |range in string2| - j)</i>.
-	> (3) Choose the common character, which makes the maximal number of executing the operation more greater, as a character of MCS.
+	> - Abstract:<br/>&nbsp;&nbsp; DY Lee & JC Na proposed [the result of experiment](http://manuscriptlink-society-file.s3.amazonaws.com/kips/conference/ack2021/abs/KIPS_C2021B0070.pdf), a MCS computed by <a href = "#Sakai_MCS">Sakai's algorithm</a> is very short than LCS. So, They proposed the strategy that makes the length of MCS comuted by Y.Sakai's algorithm more longer. In Sakai's algorithm, the operation to find a common character are executed alternately on two strings of characters. The strategy is,<br/>(1) Execute the operation in both strings at the same time.<br/>(2) Compare the maximal numbers of executing the operation to find next common characters by  two common characters found by (1). If the index of a common charcter is <i>i</i> in <i>string1</i> and <i>j</i> in <i>string2</i>, then the maximal number of executing the operation is <i>min(|range in string1| - i, |range in string2| - j)</i>.<br/>(3) Choose the common character, which makes the maximal number of executing the operation more greater, as a character of MCS.
 	> - Time complexity: <br/>&nbsp;&nbsp; In this algorithm, the opeartion to find a common character execute one more per characters.  So,  $$O(n \sqrt{\log n / \log \log n})$$<br/>
 	> - Space complexity: <br/>&nbsp;&nbsp; The space complexity of this algorithm is same with Sakai's. So,  $$O(n)$$<br/>
 
