@@ -5,81 +5,8 @@
 #include <stack>
 #include <vector>
 
-namespace Common_Subsequence
+namespace MCS
 {
-	// the Longest Common Subsequence
-	std::string LCS(std::string _str1, std::string _str2)
-	{
-		int LCSlength = 0, max;
-
-		int len1 = (int)_str1.length();
-		int len2 = (int)_str2.length();
-
-
-		// Optimization: To make less iteration to build the Dynamic Programming matrix.
-		if (len1 > len2)
-		{
-			std::string tmp = _str1; _str1 = _str2; _str2 = tmp;
-			int tmp2 = len1; len1 = len2; len2 = tmp2;
-		}
-
-		// the Dynamic Prograamming Matrix
-		int** matrix = new int* [len1 + 1];
-		for (int i = 0; i < len1 + 1; i++)
-		{
-			matrix[i] = new int[len2 + 1];
-			matrix[i][0] = 0;
-		}
-		for (int j = 0; j < len2 + 1; j++)
-		{
-			matrix[0][j] = 0;
-		}
-
-		// Find LCS Length
-		for (int i = 1; i < len1 + 1; i++)
-		{
-			max = 0;
-			for (int j = 1; j < len2 + 1; j++)
-			{
-				if (_str1[i - 1] == _str2[j - 1])
-				{
-					max = matrix[i - 1][j - 1] + 1;
-					matrix[i][j] = max;
-				}
-				else if (matrix[i][j - 1] >= matrix[i - 1][j])
-					matrix[i][j] = matrix[i][j - 1];
-				else
-					matrix[i][j] = matrix[i - 1][j];
-			}
-			if (LCSlength < max) LCSlength = max;
-		}
-
-		// Find LCS
-		std::string lcs = "";
-		int curLength = LCSlength, preLength = LCSlength - 1, idxOfLCS = LCSlength - 1;
-		int idxJ = len2;
-
-		for (int i = len1; i > 0; i--)
-		{
-			for (int j = idxJ; j > 0; j--)
-			{
-				if (matrix[i][j] == curLength
-					&& matrix[i - 1][j] == preLength
-					&& matrix[i][j - 1] == preLength
-					&& matrix[i - 1][j - 1] == preLength)
-				{
-					curLength--;
-					preLength--;
-					lcs = _str1[i - 1] + lcs;
-					idxJ = j;
-					break;
-				}
-			}
-		}
-
-		return lcs;
-	}
-
 	// The Maximal Common Subsequence algorithms of Yoshifumi Sakai
 	// Sakai, Y. (2019). Maximal common subsequence algorithms. Theoretical Computer Science, 793, 132-139.
 	// https://www.sciencedirect.com/science/article/pii/S0304397519304074
