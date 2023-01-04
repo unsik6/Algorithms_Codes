@@ -220,7 +220,7 @@
 
 ### [Maximal Common Subseqeucne](https://github.com/unsik6/Algorithms_Codes/blob/main/01_Algorithms/01_String%20Algorithms/03_String_Distance/03_MCS/MCS.h)
 ---
-- for any positive constant <i>c</i>, there are no <i>O(n<sup>2-c</sup>)-time</i> algorithms to compute the length of LCS if <i>the strong exponential time hypothesis (SETH)</i> is true.
+- For any positive constant <i>c</i>, there are no <i>O(n<sup>2-c</sup>)-time</i> algorithms to compute the length of LCS if <i>the strong exponential time hypothesis (SETH)</i> is true.
 - So, someone focus on Maximal Common Subsequence(MCS).
 - MCS is common subsequences that is no longer a common subsequence when any character is inserted.
 - This was proposed first by Campbell B. Fraser and Robert W. Irving in 1975[( Fraser, Campbell B., Robert W. Irving, and Martin Middendorf. "Maximal common subsequences and minimal common supersequences." _information and computation_ 124.2 (1996): 145-153.)](https://www.sciencedirect.com/science/article/pii/S0890540196900115). (Actually, They proposed SMCS(Shortest Maximal Common Subsequence).)
