@@ -1,5 +1,6 @@
 
 
+
 # Algorithms_Codes
 
 # Outline
@@ -18,8 +19,8 @@
     <td><center><b>Name</b></center></td>
   </tr>
   <tr>
-	  <td rowspan= 13><center>Algorithms</center> </td>
-     <td rowspan = 8><center>String Algorithms</center></td>
+	  <td rowspan= 16><center>Algorithms</center> </td>
+     <td rowspan = 11><center>String Algorithms</center></td>
       <td rowspan = 5><center>String Matching</center></td>
 	  <td><center><a href = "#Rabin_Karp">Rabin-Karp algorithm</a></center></td>
   </tr>
@@ -40,11 +41,20 @@
     <td><center><a href = "#BIRD_2D">BAKER-BIRD Algorithm</a></center></td>
   </tr>
   <tr>
-	  <td rowspan = 2><center>String Distance</center></td>
+	  <td rowspan = 5><center>String Distance</center></td>
 	  <td><center><a href = "#WED">(Weighted) Edit Distance algorithm</a></center></td>
   </tr>
   <tr>
    <td><center><a href = "#LCS">the Longest Common Subsequence (LCS)</a></center></td>
+  </tr>
+  <tr>
+   <td><center><a href = "#Sakai_MCS">Y. Sakai's Maximal Common Subsequence (MCS)</a></center></td>
+  </tr>
+  <tr>
+   <td><center><a href = "#Lee_MCS">DH Lee & JC Na's MCS</a></center></td>
+  </tr>
+  <tr>
+   <td><center><a href = "#Shin_MCS">HJ Shin & JS Sim's MCS</a></center></td>
   </tr>
   <tr>
     <td rowspan= 5><center>Graph Algorithms</center></td>
@@ -197,14 +207,60 @@
 
 <p id = "LCS"></p>
 
-1. [<b>the Longest Common Subsequence</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String%20Algorithms/03_String_Distance/02_LCS)
+2. [<b>the Longest Common Subsequence</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/01_Algorithms/01_String%20Algorithms/03_String_Distance/02_LCS)
 	> - Contributor: unsik6
 	> - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	> - Language used to implement: C++
-	> - Abstract:<br/>&nbsp;&nbsp;<i>The Longest Common Subsequence (LCS)</i> is one of the measures of a string distance. If LCS is more longesr, the strings are more similar. LCS is computed by dynamic programming. It is simple.<br/>
-	> - Time complexity: <br/>&nbsp;&nbsp; This algorithm fills out <i>n</i> x <i>m</i> two dimensional matrix, where <i>n</i> is the length of a text and <i>m</i> is the length of a pattern. Sadly, for any positive constant <i>e</i>, there are no <i>O(n<sup>2-e</sup>)-time</i> algorithms to compute the length of LCS if <i>the strong exponential time hypothesis (SETH)</i> is true. So,  $$O(nm)$$<br/>
+	> - Abstract:<br/>&nbsp;&nbsp;<i>The Longest Common Subsequence (LCS)</i> is one of the measures of a string distance. If LCS is more longer, the strings are more similar. LCS is computed by dynamic programming. It is simple.<br/>
+	> - Time complexity: <br/>&nbsp;&nbsp; This algorithm fills out <i>n</i> x <i>m</i> two dimensional matrix, where <i>n</i> is the length of a text and <i>m</i> is the length of a pattern. Sadly, for any positive constant <i>c</i>, there are no <i>O(n<sup>2-c</sup>)-time</i> algorithms to compute the length of LCS if <i>the strong exponential time hypothesis (SETH)</i> is true. So,  $$O(nm)$$<br/>
 	> - Space complexity: <br/>&nbsp;&nbsp; We need <i>n</i> x <i>m</i> matrix. But we can compute the length of LCS using only two rows by toggling the rows. For convenience, I just implement the algorithm using a <i>n</i> by <i>m</i> matrix. $$O(n+m)$$<br/>
 	> - But if you want to print or know the sequence of operations to transform from a pattern to a text, we need one more matrix of the quadratic size, since we need to keep all optimal solution of all subproblems. And we can construct the sequence by backtracking the matrix. So, we need to know the sequence of operations with, $$O(nm)$$ space.
+
+<br/>
+
+### [Maximal Common Subseqeucne](https://github.com/unsik6/Algorithms_Codes/blob/main/01_Algorithms/01_String%20Algorithms/03_String_Distance/03_MCS/MCS.h)
+---
+- for any positive constant <i>c</i>, there are no <i>O(n<sup>2-c</sup>)-time</i> algorithms to compute the length of LCS if <i>the strong exponential time hypothesis (SETH)</i> is true.
+- So, someone focus on Maximal Common Subsequence(MCS).
+- MCS is common subsequences that is no longer a common subsequence when any character is inserted.
+- This was proposed first by Campbell B. Fraser and Robert W. Irving in 1975[( Fraser, Campbell B., Robert W. Irving, and Martin Middendorf. "Maximal common subsequences and minimal common supersequences." _information and computation_ 124.2 (1996): 145-153.)](https://www.sciencedirect.com/science/article/pii/S0890540196900115).
+
+<table>
+  <tr>
+    <td><center><b>Problem</b></center></td>
+    <td><center><b>Algorithms</b></center></td>
+  </tr>
+  <tr>
+    <td rowspan= 3><center>Find a MCS of two strings</center> </td>
+    <td><center><a href = "#Sakai_MCS">Y.Sakai's Algorithm</a></center></td>
+  </tr>
+  <tr>
+	  <td><center><a href = "#Lee_MCS">DH Lee & JC Na's Algorithm</a></center></td>
+  </tr>
+    <tr>
+	  <td><center><a href = "#Shin_MCS">HJ Shin & JS Sim's Algorithm</a></center></td>
+  </tr>
+  <tr>
+    <td rowspan=1><center>Find all MCSs of multiple strings</center></td>
+    <td><center> </td>
+  </tr>
+
+<br/>
+
+<p id = "Sakai_MCS"></p>
+
+1. <b>Y. Sakai's MCS</b>
+	> - Contributor: unsik6
+	> - Reference: [Sakai, Yoshifumi. "Maximal common subsequence algorithms." _Theoretical Computer Science_ 793 (2019): 132-139.](https://www.sciencedirect.com/science/article/pii/S0304397519304074)
+	> - Language used to implement: C++
+	> - Abstract:<br/>&nbsp;&nbsp; Yoshifumi Sakai proposed a (sub)linearithmic-time, linear-space algorithm for finding a maximal common subsequence of two strings and a linear-time algorithm for determining if a common subsequence of two strings is maximal. I think this algorithm uses greedy strategy.
+	> [Outline]
+	> (1) Find a common character from front to back. Choose a character of a string, and find position of same character in another string. Execute this operation alternately on two strings of characters.
+	> (2) If there is no character to find a common character, then remove the suffix that starts with a last common character in both strings. And push the common character in front of MCS. Repeat (1).
+	> - Time complexity: <br/>&nbsp;&nbsp; This algorithm use [the data structure of Beame and Fich](https://www.sciencedirect.com/science/article/pii/S0022000002918222). This is <i>O(n)</i>-time constuctible, And Support <i>O(sqrt(log n / log log n))</i>-time queries that find first(resp. last) position where a given character occurs after(resp. before) a given index. In this algorithm, the queries are used <i>O(n)</i> times.  So,  $$O(n \sqrt{\log n / \log \log n})$$<br/>
+	> - Space complexity: <br/>&nbsp;&nbsp; This algorithm stores positions of all found common characters in both strings, and how many times the operation to find a common character is used to find each common character. And, There is <i>O(n)</i> common characters. So,  $$O(n)$$<br/>
+
+<br/>
 
 <br/><br/>
 
