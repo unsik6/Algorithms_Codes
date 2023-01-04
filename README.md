@@ -213,8 +213,7 @@
 	> - Language used to implement: C++
 	> - Abstract:<br/>&nbsp;&nbsp;<i>The Longest Common Subsequence (LCS)</i> is one of the measures of a string distance. If LCS is more longer, the strings are more similar. LCS is computed by dynamic programming. It is simple.<br/>
 	> - Time complexity: <br/>&nbsp;&nbsp; This algorithm fills out <i>n</i> x <i>m</i> two dimensional matrix, where <i>n</i> is the length of a text and <i>m</i> is the length of a pattern. Sadly, for any positive constant <i>c</i>, there are no <i>O(n<sup>2-c</sup>)-time</i> algorithms to compute the length of LCS if <i>the strong exponential time hypothesis (SETH)</i> is true. So,  $$O(nm)$$<br/>
-	> - Space complexity: <br/>&nbsp;&nbsp; We need <i>n</i> x <i>m</i> matrix. But we can compute the length of LCS using only two rows by toggling the rows. For convenience, I just implement the algorithm using a <i>n</i> by <i>m</i> matrix. $$O(n+m)$$<br/>
-	> - But if you want to print or know the sequence of operations to transform from a pattern to a text, we need one more matrix of the quadratic size, since we need to keep all optimal solution of all subproblems. And we can construct the sequence by backtracking the matrix. So, we need to know the sequence of operations with, $$O(nm)$$ space.
+	> - Space complexity: <br/>&nbsp;&nbsp; We need <i>n</i> x <i>m</i> matrix. But we can compute the length of LCS using only two rows by toggling the rows. For convenience, I just implement the algorithm using a <i>n</i> by <i>m</i> matrix. $$O(n+m)$$<br/>&nbsp;&nbsp; But if you want to print or know the sequence of operations to transform from a pattern to a text, we need one more matrix of the quadratic size, since we need to keep all optimal solution of all subproblems. And we can construct the sequence by backtracking the matrix. So, we need to know the sequence of operations with, $$O(nm)$$ space.
 
 <br/>
 
