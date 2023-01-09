@@ -1,6 +1,3 @@
-
-
-
 # Algorithms_Codes
 
 # Outline
@@ -303,7 +300,7 @@
 	 > &nbsp;&nbsp;The algorithm needs several datastructure, <i>priority-queue</i>. And, The input is a graph. I use my <a href = "#Heap">heap implementation</a> for priority-queue and <a href = "#Graph_AdjacencyList">adjacency list representation of graph</a> for the input graph.
 	 > &nbsp;&nbsp;There are a two main implementations. One is that implementing the priority-queue as <i>unordered_array</i>. Anoter is the implementation using <i>Heap</i>. Since <i>oredered_array</i> has no advantage, it is excluded.<br/><br/>
 	 > - Time complexity: (discuss in theory, not aout my implementation) <br/>&nbsp;&nbsp; In the first implementation, The algorithm runs in <i>O(V|<sup>2</sup>) time</i>, where <i>V</i> is the set of vertices. The dominative operation is searching the vertex, which has the minimum weighted incident edge from a vertex of <i>FRINGE</i>. It runs in <i>O(|V|)</i> time by each iteration. So, the time complexity is <i>O(|V|)</i>.<br/>
-	 > &nbsp;&nbsp;The second implementation, using <i>Heap</i>. The searching operation runs in <i>O(log n)</i> time. And, since each edges can be considered from source and destination, the keys that mean the minimum weight of all edges from a vertex can be updated. <i>DecreasKey</i> of <i>Heap</i> runs in <i>O(log n)</i> time. So, the total time complexity of updating keys is <i>O(|E|log n)</i>, where <i>E</i> is the set of edges. Since the number of vertices of a connected graph is <i>O(|E|)</i>,  $$using\ unordered\_array=O(|V|^2)$$ $$using\ heap=O(|V| log |V| + |E|log |V|) = O(|E| log |V|)$$<br/>
+	 > &nbsp;&nbsp;The second implementation, using <i>Heap</i>. The searching operation runs in <i>O(log n)</i> time. And, since each edges can be considered from source and destination, the keys that mean the minimum weight of all edges from a vertex can be updated. <i>DecreasKey</i> of <i>Heap</i> runs in <i>O(log n)</i> time. So, the total time complexity of updating keys is <i>O(|E|log n)</i>, where <i>E</i> is the set of edges. Since the number of vertices of a connected graph is <i>O(|E|)</i>,  $$using\ unordered\ array=O(|V|^2)$$ $$using\ heap=O(|V| log |V| + |E|log |V|) = O(|E| log |V|)$$<br/>
 	 > - Space complexity: <br/>&nbsp;&nbsp; Regardless how to implement <i>FRINGE</i> priority-queue, the priority-queue has <i>O(|V|)</i> elements. $$O(|V|)$$
 
 <br/><br/>
