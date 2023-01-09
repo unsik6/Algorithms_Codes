@@ -243,6 +243,7 @@
     <td rowspan=1><center>Find all MCSs of multiple strings</center></td>
     <td><center> </td>
   </tr>
+</table>
 
 <br/>
 
