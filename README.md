@@ -411,7 +411,7 @@
 
 # Data Structures
 
-# Linear Data Structure
+# Hierarchical Data Structures
 
 ## [1] Priority Queue
 
@@ -428,9 +428,7 @@
 
 <br/><br/>
 
-# Hierarchical Data Structures
-
-## [1] Binary Search Tree
+## [2] Binary Search Tree
 
 - Binary Search Tree(BST) is an useful datastructure. Its main property is the node property, <i>left_child.element <= parent.element < right_child.element</i>. It is no matter if the equality relationship with the <i>parent</i> is established with the <i>left_child</i> or <i>right_child</i>.
 - In a Balanced BST, the difference between the height of the left subtree and the height of the right subtree of all nodes is not big. Therefore, the some queries of a general BST runs in <i>O(n)</i> time, where <i>n</i> is the number of nodes, the same queries of a balanced BST are more efficient.
@@ -450,7 +448,7 @@
 
 
 
-## [2] Set
+## [3] Set
 
 <p id = "DisjointSet"></p>
 
