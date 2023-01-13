@@ -1,4 +1,5 @@
 
+
 # Algorithms_Codes
 
 # Outline
@@ -73,8 +74,12 @@
       <td><center> <a href = "#Floyd-Warshall">Floyd-Warshall's Algorithm</a></center></td>
   </tr>
   <tr>
-	  <td rowspan= 4><center>Data Structures</center></td>
-	  <td rowspan= 3><center>Hierarchical Data Structures</center></td>
+	  <td rowspan= 5><center>Data Structures</center></td>
+	  <td rowspan= 4><center>Hierarchical Data Structures</center></td>
+	  <td rowspan= 1><center>Tree</center></td>
+  	  <td><center><a href = "#GeneralTree">General Tree</a></center></td>
+</tr>
+<tr>
   	  <td rowspan = 1><center>Priority Queue</center></td>
   	  <td><center><a href = "#Heap">Heap</a></center></td>
   </tr>
@@ -413,12 +418,24 @@
 
 # Hierarchical Data Structures
 
-## [1] Priority Queue
+<p id = "Heap"></p>
+
+## [1] Tree
+
+<p id = "GeneralTree"></p>
+
+1. [<b>General Tree</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Hierarchical_Data_Structure/01_General_Tree)
+
+Sorry. This part is currently being prepared.
+
+<br/><br/>
+
+## [2] Priority Queue
 
 
 <p id = "Heap"></p>
 
-1. [<b>Heap</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/01_Linear_Data_Structure/01_Priority_Queue/01_Heap)
+1. [<b>Heap</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Hierarchical_Data_Structure/02_Priority_Queue/01_Heap)
 	> - Contributor: unsik6
 	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	 > - Language used to implement: C++
@@ -428,14 +445,14 @@
 
 <br/><br/>
 
-## [2] Binary Search Tree
+## [3] Binary Search Tree
 
 - Binary Search Tree(BST) is an useful datastructure. Its main property is the node property, <i>left_child.element <= parent.element < right_child.element</i>. It is no matter if the equality relationship with the <i>parent</i> is established with the <i>left_child</i> or <i>right_child</i>.
 - In a Balanced BST, the difference between the height of the left subtree and the height of the right subtree of all nodes is not big. Therefore, the some queries of a general BST runs in <i>O(n)</i> time, where <i>n</i> is the number of nodes, the same queries of a balanced BST are more efficient.
 
 <p id = "RB_TREE"></p>
 
-1. [<b>Red-Black Tree</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Hierarchical_Data_Structure/01_Binary_Search_Tree/01_Red_Black_Tree)
+1. [<b>Red-Black Tree</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Hierarchical_Data_Structure/03_Binary_Search_Tree/01_Red_Black_Tree)
 	 > - Contributor: unsik6
 	 > - Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein, "Introduction to algorithms<sup>3rd</sup>", 2009
 	 > - Language used to implement: C++
@@ -448,11 +465,11 @@
 
 
 
-## [3] Set
+## [4] Set
 
 <p id = "DisjointSet"></p>
 
-1. [<b>DisjointSet</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Hierarchical_Data_Structure/02_Set/01_Disjoint_Set)
+1. [<b>DisjointSet</b>](https://github.com/unsik6/Algorithms_Codes/tree/main/02_Data_Structures/02_Hierarchical_Data_Structure/04_Set/01_Disjoint_Set)
 	> - Contributor: unsik6
 	 > - Reference: [TECHIE DELIGT</>](https://www.techiedelight.com/ko/disjoint-set-data-structure-union-find-algorithm/)
 	 > - Language used to implement: C++
