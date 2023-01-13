@@ -1,3 +1,4 @@
+
 # Algorithms_Codes
 
 # Outline
@@ -73,12 +74,11 @@
   </tr>
   <tr>
 	  <td rowspan= 4><center>Data Structures</center></td>
-	  <td rowspan= 1><center>Linear Data Structures</center></td>
-  	  <td rowspan = 1><center>Priority_Queue</center></td>
-	  <td><center><a href = "#Heap">Heap</a></center></td>
+	  <td rowspan= 3><center>Hierarchical Data Structures</center></td>
+  	  <td rowspan = 1><center>Priority Queue</center></td>
+  	  <td><center><a href = "#Heap">Heap</a></center></td>
   </tr>
-  <tr>
-  	  <td rowspan= 2><center>Hierarchical Data Structures</center></td>
+ <tr>
 	  <td rowspan = 1><center>Binary Search Tree</center></td>
 	  <td><center><a href = "#RB_TREE">Red-Black Tree</a></center></td>
   </tr>
